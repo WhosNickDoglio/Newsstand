@@ -20,3 +20,7 @@ android:
 
 script:
    - ./gradlew build connectedCheck
+
+after_success:
+   - ./gradlew jacocoTestReport coveralls
+
