@@ -1,14 +1,5 @@
 language: android
-
-jdk:
-  - oraclejdk8
-
-install:
-  - echo yes | sdkmanager "tools" &>/dev/null
-  - echo yes | sdkmanager "platform-tools" &>/dev/null
-  - echo yes | sdkmanager "build-tools;27.0.2" &>/dev/null
-  - echo yes | sdkmanager "platforms;android-27" &>/dev/null
-
+jdk: oraclejdk8
 
 android:
   components:
@@ -17,10 +8,16 @@ android:
     - platform-tools
     - build-tools-27.0.3
     - android-27
+    - addon
+    - extra-android-m2repository
+
+  licenses:
+    - 'android-sdk-preview-license-52d11cd2'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
 
 script:
-   - ./gradlew build connectedCheck
+  - ./gradlew build jacocoTestReportFull
 
 after_success:
-   - ./gradlew jacocoTestReport coveralls
-
+  - bash <(curl -s https://codecov.io/bash)
