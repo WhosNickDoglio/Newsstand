@@ -1,23 +1,57 @@
+sudo: false
+
 language: android
 jdk: oraclejdk8
 
+env:
+  global:
+    - ADB_INSTALL_TIMEOUT=10
+
+before_install:
+- yes | sdkmanager "platforms;android-27"
+
 android:
   components:
-    - tools
-    - tools
     - platform-tools
-    - build-tools-27.0.3
-    - android-27
-    - addon
-    - extra-android-m2repository
+    - tools
 
+    - build-tools-26.0.2
+
+    - android-15
+    - android-21
+    - android-25
+
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - extra-android-support
+
+    - sys-img-armeabi-v7a-android-21
   licenses:
     - 'android-sdk-preview-license-52d11cd2'
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
 
+before_script:
+  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
+  - emulator -avd test -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+
 script:
-  - ./gradlew build jacocoTestReportFull
+  - ./gradlew build connectedAndroidTest jacocoTestReport
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+env:
+  matrix:
+  - TERM=dumb
+
+cache:
+  directories:
+    - $HOME/.m2
+    - $HOME/.gradle
+    - $HOME/.android
+    - ${TRAVIS_BUILD_DIR}/gradle/caches/
+    - ${TRAVIS_BUILD_DIR}/gradle/wrapper/dists/
