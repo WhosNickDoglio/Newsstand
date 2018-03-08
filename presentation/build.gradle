@@ -4,11 +4,14 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'jacoco'
 
 android {
-    compileSdkVersion 27
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+
+    compileSdkVersion globalConfiguration["compilesdk"]
     defaultConfig {
         applicationId "com.nicholasdoglio.newsstand"
-        minSdkVersion 21
-        targetSdkVersion 27
+        minSdkVersion globalConfiguration["minsdk"]
+        targetSdkVersion globalConfiguration["targetsdk"]
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -36,34 +39,68 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.0.2'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-}
 
-jacoco {
-    toolVersion = "0.8.0"
-    reportsDir = file("$buildDir/reports")
-}
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def presentationTestDependencies = rootProject.ext.presentationTestDependencies
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+    def commonDependencies = rootProject.ext.commonDependencies
+    def commonTestDependencies = rootProject.ext.commonTestDependencies
 
-    reports {
-        xml.enabled = true
-        html.enabled = true
+    //Libaries
+    implementation commonDependencies.kotlin
+    implementation commonDependencies.paging
+    implementation commonDependencies.ktx
+    implementation commonDependencies.rxjava
+    implementation commonDependencies.rxrelay
+    implementation commonDependencies.rxkotlin
+    implementation presentationDependencies.appcompat
+    implementation presentationDependencies.recyclerview
+    implementation presentationDependencies.cardview
+    implementation presentationDependencies.design
+    implementation presentationDependencies.support
+    implementation presentationDependencies.constraint
+    implementation presentationDependencies.lifecycleCommons
+    implementation presentationDependencies.lifecycleExtensions
+    implementation presentationDependencies.rxbinding
+    implementation presentationDependencies.rxAndroid
+    implementation presentationDependencies.dispose
+    implementation presentationDependencies.disposeAndroid
+    implementation presentationDependencies.disposeComponents
+    implementation presentationDependencies.dagger
+    implementation presentationDependencies.daggerAndroid
+    implementation presentationDependencies.daggerAndroidSupport
+    kapt presentationDependencies.daggerKapt
+    kapt presentationDependencies.daggerAndroidKapt
+
+    //Debugging
+    implementation commonDependencies.timber
+    releaseImplementation presentationDependencies.leakCanaryRelease
+    debugImplementation presentationDependencies.leakCanaryDebug
+    implementation(presentationDependencies.crashlytics) {
+        transitive = true
     }
 
-    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
-    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
-    def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
-    def mainSrc = "${project.projectDir}/src/test/java"
+    //Testing
+    testImplementation commonTestDependencies.junit
+    testImplementation commonTestDependencies.kotlinJunit
+    testImplementation commonTestDependencies.robolectric
+    testImplementation commonTestDependencies.mockito
+    androidTestImplementation presentationTestDependencies.archTesting
+    androidTestImplementation presentationTestDependencies.rules
+    androidTestImplementation presentationTestDependencies.runner
+    androidTestImplementation presentationTestDependencies.espressoIntents
+    androidTestImplementation presentationTestDependencies.espressoCore, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+}
 
-    sourceDirectories = files([mainSrc])
-    classDirectories = files([debugTree], [kotlinDebugTree])
-    executionData = fileTree(dir: "$buildDir", includes: [
-            "jacoco/testDebugUnitTest.exec"
-    ])
+// Ensure the no-op dependency is always used in JVM tests.
+configurations.all { config ->
+    if (config.name.contains('UnitTest')) {
+        config.resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'com.squareup.leakcanary' && details.requested.name == 'leakcanary-android') {
+                details.useTarget(group: details.requested.group, name: 'leakcanary-android-no-op', version: details.requested.version)
+            }
+        }
+    }
 }

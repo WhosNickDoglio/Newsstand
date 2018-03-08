@@ -1,8 +1,32 @@
-apply plugin: 'java-library'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["compilesdk"]
+    defaultConfig {
+        minSdkVersion globalConfiguration["minsdk"]
+        targetSdkVersion globalConfiguration["targetsdk"]
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
 }
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+dependencies {
+    def commonDependencies = rootProject.ext.commonDependencies
+    def commonTestDependencies = rootProject.ext.commonTestDependencies
+
+    //Libaries
+    implementation commonDependencies.kotlin
+    implementation commonDependencies.paging
+    implementation commonDependencies.ktx
+    implementation commonDependencies.rxjava
+    implementation commonDependencies.rxrelay
+    implementation commonDependencies.rxkotlin
+
+    //Testing
+    testImplementation commonTestDependencies.junit
+    testImplementation commonTestDependencies.kotlinJunit
+    testImplementation commonTestDependencies.robolectric
+    testImplementation commonTestDependencies.mockito
+}

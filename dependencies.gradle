@@ -1,0 +1,113 @@
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    //Android
+    minsdk = 21
+    targetsdk = 27
+    compilesdk = 27
+
+    //Libraries
+    retrofit = '2.3.0'
+    room = '1.1.0-alpha3'
+    paging = '1.0.0-alpha6'
+    ktx = '0.2'
+    dagger = '2.15'
+    rxJava = '2.1.9'
+    rxKotlin = '2.2.0'
+    rxAndroid = '2.0.2'
+    dispose = '0.6.1'
+    rxRelay = '2.0.0'
+    rxBinding = '2.1.1'
+    support = '27.1.0'
+    constraint = '1.1.0-beta5'
+    archComponents = '1.1.0'
+
+    //Debugging
+    timber = '4.6.1'
+    canary = '1.5.4'
+    crashlytics = "2.6.8@aar"
+
+    //Testing
+    junit = '4.12'
+    robolectric = '3.7.1'
+    mockitoKotlin = '1.5.0'
+    espresso = '3.0.1'
+    espressoTest = '1.0.1'
+
+    dataDependencies = [
+            retrofit         : "com.squareup.retrofit2:retrofit:${retrofit}",
+            retrofitRxAdapter: "com.squareup.retrofit2:adapter-rxjava2:${retrofit}",
+            retrofitMoshi    : "com.squareup.retrofit2:converter-moshi:${retrofit}",
+            room             : "android.arch.persistence.room:runtime:${room}",
+            roomRx           : "android.arch.persistence.room:rxjava2:${room}",
+            roomKapt         : "android.arch.persistence.room:compiler:${room}",
+            paging           : "android.arch.paging:runtime:${paging}",
+    ]
+
+    dataTestDependencies = [
+            mockRetrofit: "com.squareup.retrofit2:retrofit-mock:${retrofit}",
+            roomTesting : "android.arch.persistence.room:testing:${room}",
+    ]
+
+    domainDependencies = [
+
+    ]
+
+    domainTestDependencies = [
+
+    ]
+
+    presentationDependencies = [
+            appcompat           : "com.android.support:appcompat-v7:${support}",
+            recyclerview        : "com.android.support:recyclerview-v7:${support}",
+            cardview            : "com.android.support:cardview-v7:${support}",
+            design              : "com.android.support:design:${support}",
+            support             : "com.android.support:support-v4:${support}",
+            constraint          : "com.android.support.constraint:constraint-layout:${constraint}",
+            lifecycleCommons    : "android.arch.lifecycle:common-java8:${archComponents}",
+            lifecycleExtensions : "android.arch.lifecycle:extensions:${archComponents}",
+            rxbinding           : "com.jakewharton.rxbinding2:rxbinding-kotlin:${rxBinding}",
+            rxAndroid           : "io.reactivex.rxjava2:rxandroid:${rxAndroid}",
+            dispose             : "com.uber.autodispose:autodispose-kotlin:${dispose}",
+            disposeAndroid      : "com.uber.autodispose:autodispose-android-kotlin:${dispose}",
+            disposeComponents   : "com.uber.autodispose:autodispose-android-archcomponents-kotlin:${dispose}",
+            dagger              : "com.google.dagger:dagger:${dagger}",
+            daggerAndroid       : "com.google.dagger:dagger-android:${dagger}",
+            daggerAndroidSupport: "com.google.dagger:dagger-android-support:${dagger}",
+            daggerKapt          : "com.google.dagger:dagger-compiler:${dagger}",
+            daggerAndroidKapt   : "com.google.dagger:dagger-android-processor:${dagger}",
+            leakCanaryRelease   : "com.squareup.leakcanary:leakcanary-android-no-op:${canary}",
+            leakCanaryDebug     : "com.squareup.leakcanary:leakcanary-android:${canary}",
+            crashlytics         : "com.crashlytics.sdk.android:crashlytics:${crashlytics}",
+    ]
+
+    presentationTestDependencies = [
+            rules          : "com.android.support.test:rules:${espressoTest}",
+            runner         : "com.android.support.test:runner:${espressoTest}",
+            espressoIntents: "com.android.support.test.espresso:espresso-intents:${espresso}",
+            espressoCore   : "com.android.support.test.espresso:espresso-core:${espresso}",
+            archTesting    : "android.arch.core:core-testing:${archComponents}",
+    ]
+
+    commonDependencies = [
+            kotlin  : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlin_version}",
+            paging  : "android.arch.paging:runtime:${paging}",
+            timber  : "com.jakewharton.timber:timber:${timber}",
+            ktx     : "androidx.core:core-ktx:${ktx}",
+            rxjava  : "io.reactivex.rxjava2:rxjava:${rxJava}",
+            rxrelay : "com.jakewharton.rxrelay2:rxrelay:${rxRelay}",
+            rxkotlin: "io.reactivex.rxjava2:rxkotlin:${rxKotlin}",
+
+    ]
+
+    commonTestDependencies = [
+            junit      : "junit:junit:${junit}",
+            kotlinJunit: "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
+            robolectric: "org.robolectric:robolectric:${robolectric}",
+            mockito    : "com.nhaarman:mockito-kotlin:${mockitoKotlin}",
+    ]
+}
