@@ -1,7 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco'
+apply from: rootProject.file("quality.gradle")
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
@@ -14,7 +16,7 @@ android {
         targetSdkVersion globalConfiguration["targetsdk"]
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -46,18 +48,18 @@ dependencies {
     def commonDependencies = rootProject.ext.commonDependencies
     def commonTestDependencies = rootProject.ext.commonTestDependencies
 
-    //Libaries
+    //Libraries
     implementation commonDependencies.kotlin
     implementation commonDependencies.paging
     implementation commonDependencies.ktx
     implementation commonDependencies.rxjava
     implementation commonDependencies.rxrelay
     implementation commonDependencies.rxkotlin
+    implementation commonDependencies.threeten
     implementation presentationDependencies.appcompat
     implementation presentationDependencies.recyclerview
     implementation presentationDependencies.cardview
-    implementation presentationDependencies.design
-    implementation presentationDependencies.support
+    implementation presentationDependencies.material
     implementation presentationDependencies.constraint
     implementation presentationDependencies.lifecycleCommons
     implementation presentationDependencies.lifecycleExtensions
@@ -69,22 +71,29 @@ dependencies {
     implementation presentationDependencies.dagger
     implementation presentationDependencies.daggerAndroid
     implementation presentationDependencies.daggerAndroidSupport
+    implementation presentationDependencies.epoxy
+    implementation presentationDependencies.glide
+    implementation presentationDependencies.navigationFragment
+    implementation presentationDependencies.navigationUi
+    implementation presentationDependencies.firebase
+    kapt presentationDependencies.epoxyProcessor
+    kapt presentationDependencies.glideKapt
     kapt presentationDependencies.daggerKapt
     kapt presentationDependencies.daggerAndroidKapt
+
+
+    implementation project(':domain')
+    implementation project(':data')
 
     //Debugging
     implementation commonDependencies.timber
     releaseImplementation presentationDependencies.leakCanaryRelease
     debugImplementation presentationDependencies.leakCanaryDebug
-    implementation(presentationDependencies.crashlytics) {
-        transitive = true
-    }
 
     //Testing
     testImplementation commonTestDependencies.junit
     testImplementation commonTestDependencies.kotlinJunit
-    testImplementation commonTestDependencies.robolectric
-    testImplementation commonTestDependencies.mockito
+    testImplementation commonTestDependencies.mockk
     androidTestImplementation presentationTestDependencies.archTesting
     androidTestImplementation presentationTestDependencies.rules
     androidTestImplementation presentationTestDependencies.runner
@@ -104,3 +113,5 @@ configurations.all { config ->
         }
     }
 }
+
+apply plugin: 'com.google.gms.google-services'

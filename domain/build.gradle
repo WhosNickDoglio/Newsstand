@@ -8,7 +8,7 @@ android {
     defaultConfig {
         minSdkVersion globalConfiguration["minsdk"]
         targetSdkVersion globalConfiguration["targetsdk"]
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 }
 
@@ -23,10 +23,10 @@ dependencies {
     implementation commonDependencies.rxjava
     implementation commonDependencies.rxrelay
     implementation commonDependencies.rxkotlin
+    implementation commonDependencies.threeten
 
     //Testing
     testImplementation commonTestDependencies.junit
     testImplementation commonTestDependencies.kotlinJunit
-    testImplementation commonTestDependencies.robolectric
-    testImplementation commonTestDependencies.mockito
+    testImplementation commonTestDependencies.mockk
 }

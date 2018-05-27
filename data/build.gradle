@@ -33,16 +33,17 @@ dependencies {
 
     implementation commonDependencies.kotlin
     implementation commonDependencies.paging
+    implementation commonDependencies.threeten
     implementation dataDependencies.retrofit
     implementation dataDependencies.retrofitRxAdapter
     implementation dataDependencies.retrofitMoshi
     implementation dataDependencies.room
+    implementation dataDependencies.roomRx
     kapt dataDependencies.roomKapt
 
     testImplementation commonTestDependencies.junit
     testImplementation commonTestDependencies.kotlinJunit
-    testImplementation commonTestDependencies.robolectric
-    testImplementation commonTestDependencies.mockito
+    testImplementation commonTestDependencies.mockk
     testImplementation dataTestDependencies.mockRetrofit
     testImplementation dataTestDependencies.roomTesting
 }

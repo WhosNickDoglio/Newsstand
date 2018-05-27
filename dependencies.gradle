@@ -7,50 +7,54 @@ allprojects {
 ext {
     //Android
     minsdk = 21
-    targetsdk = 27
-    compilesdk = 27
+    targetsdk = 28
+    compilesdk = 'android-P'
 
     //Libraries
-    retrofit = '2.3.0'
-    room = '1.1.0-alpha3'
-    paging = '1.0.0-alpha6'
-    ktx = '0.2'
-    dagger = '2.15'
-    rxJava = '2.1.9'
+    retrofit = '2.4.0'
+    okhttp = '3.10.0'
+    dagger = '2.16'
+    rxJava = '2.1.14'
     rxKotlin = '2.2.0'
     rxAndroid = '2.0.2'
-    dispose = '0.6.1'
+    dispose = '0.8.0'
     rxRelay = '2.0.0'
     rxBinding = '2.1.1'
-    support = '27.1.0'
-    constraint = '1.1.0-beta5'
-    archComponents = '1.1.0'
+    constraint = '1.1.0'
+    threeten = '1.1.0'
+    epoxy = '2.12.0'
+    glide = '4.7.1'
+
+    //Android X
+    androidX = '1.0.0-alpha1'
+    androidX2 = '2.0.0-alpha1'
+    navigation = '1.0.0-alpha01'
 
     //Debugging
-    timber = '4.6.1'
+    timber = '4.7.0'
     canary = '1.5.4'
-    crashlytics = "2.6.8@aar"
+    firebase = '15.0.2'
 
     //Testing
     junit = '4.12'
-    robolectric = '3.7.1'
-    mockitoKotlin = '1.5.0'
-    espresso = '3.0.1'
-    espressoTest = '1.0.1'
+    mockk = '1.8'
+    espressoX = '3.1.0-alpha1'
+    espressoTestX = '1.1.0-alpha1'
 
     dataDependencies = [
             retrofit         : "com.squareup.retrofit2:retrofit:${retrofit}",
             retrofitRxAdapter: "com.squareup.retrofit2:adapter-rxjava2:${retrofit}",
             retrofitMoshi    : "com.squareup.retrofit2:converter-moshi:${retrofit}",
-            room             : "android.arch.persistence.room:runtime:${room}",
-            roomRx           : "android.arch.persistence.room:rxjava2:${room}",
-            roomKapt         : "android.arch.persistence.room:compiler:${room}",
-            paging           : "android.arch.paging:runtime:${paging}",
+            room             : "androidx.room:room-runtime:${androidX2}",
+            roomRx           : "androidx.room:room-rxjava2:$androidX2",
+            roomKapt         : "androidx.room:room-compiler:${androidX2}",
+            okhttp           : "com.squareup.okhttp3:okhttp:${okhttp}",
+            okhttpLogger     : "com.squareup.okhttp3:logging-interceptor:${okhttp}"
     ]
 
     dataTestDependencies = [
             mockRetrofit: "com.squareup.retrofit2:retrofit-mock:${retrofit}",
-            roomTesting : "android.arch.persistence.room:testing:${room}",
+            roomTesting : "androidx.room:room-testing:${androidX2}",
     ]
 
     domainDependencies = [
@@ -62,14 +66,13 @@ ext {
     ]
 
     presentationDependencies = [
-            appcompat           : "com.android.support:appcompat-v7:${support}",
-            recyclerview        : "com.android.support:recyclerview-v7:${support}",
-            cardview            : "com.android.support:cardview-v7:${support}",
-            design              : "com.android.support:design:${support}",
-            support             : "com.android.support:support-v4:${support}",
-            constraint          : "com.android.support.constraint:constraint-layout:${constraint}",
-            lifecycleCommons    : "android.arch.lifecycle:common-java8:${archComponents}",
-            lifecycleExtensions : "android.arch.lifecycle:extensions:${archComponents}",
+            appcompat           : "androidx.appcompat:appcompat:${androidX}",
+            recyclerview        : "androidx.recyclerview:recyclerview:${androidX}",
+            cardview            : "androidx.cardview:cardview:${androidX}",
+            constraint          : "androidx.constraintlayout:constraintlayout:${constraint}",
+            lifecycleCommons    : "androidx.lifecycle:lifecycle-common-java8:${androidX2}",
+            lifecycleExtensions : "androidx.lifecycle:lifecycle-extensions:${androidX2}",
+            material            : "com.google.android.material:material:${androidX}",
             rxbinding           : "com.jakewharton.rxbinding2:rxbinding-kotlin:${rxBinding}",
             rxAndroid           : "io.reactivex.rxjava2:rxandroid:${rxAndroid}",
             dispose             : "com.uber.autodispose:autodispose-kotlin:${dispose}",
@@ -82,32 +85,39 @@ ext {
             daggerAndroidKapt   : "com.google.dagger:dagger-android-processor:${dagger}",
             leakCanaryRelease   : "com.squareup.leakcanary:leakcanary-android-no-op:${canary}",
             leakCanaryDebug     : "com.squareup.leakcanary:leakcanary-android:${canary}",
-            crashlytics         : "com.crashlytics.sdk.android:crashlytics:${crashlytics}",
+            epoxy               : "com.airbnb.android:epoxy:${epoxy}",
+            epoxyProcessor      : "com.airbnb.android:epoxy-processor:${epoxy}",
+            glide               : "com.github.bumptech.glide:glide:${glide}",
+            glideKapt           : "com.github.bumptech.glide:compiler:${glide}",
+            navigationFragment  : "android.arch.navigation:navigation-fragment-ktx:${navigation}",
+            navigationUi        : "android.arch.navigation:navigation-ui-ktx:${navigation}",
+            firebase            : "com.google.firebase:firebase-crash:${firebase}"
     ]
 
     presentationTestDependencies = [
-            rules          : "com.android.support.test:rules:${espressoTest}",
-            runner         : "com.android.support.test:runner:${espressoTest}",
-            espressoIntents: "com.android.support.test.espresso:espresso-intents:${espresso}",
-            espressoCore   : "com.android.support.test.espresso:espresso-core:${espresso}",
-            archTesting    : "android.arch.core:core-testing:${archComponents}",
+            rules          : "androidx.test:rules:${espressoTestX}",
+            runner         : "androidx.test:runner:${espressoTestX}",
+            espressoIntents: "androidx.test.espresso:espresso-intents:${espressoX}",
+            espressoCore   : "androidx.test.espresso:espresso-core:${espressoX}",
+            archTesting    : "androidx.arch.core:core-testing:${androidX2}",
     ]
 
     commonDependencies = [
-            kotlin  : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlin_version}",
-            paging  : "android.arch.paging:runtime:${paging}",
+            kotlin  : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}",
+            paging  : "androidx.paging:paging-runtime:${androidX2}",
+            rxpaging: "androidx.paging:paging-rxjava2:${androidX2}",
+            ktx     : "androidx.core:core-ktx:${androidX}",
             timber  : "com.jakewharton.timber:timber:${timber}",
-            ktx     : "androidx.core:core-ktx:${ktx}",
             rxjava  : "io.reactivex.rxjava2:rxjava:${rxJava}",
-            rxrelay : "com.jakewharton.rxrelay2:rxrelay:${rxRelay}",
             rxkotlin: "io.reactivex.rxjava2:rxkotlin:${rxKotlin}",
+            rxrelay : "com.jakewharton.rxrelay2:rxrelay:${rxRelay}",
+            threeten    : "com.jakewharton.threetenabp:threetenabp:${threeten}"
 
     ]
 
     commonTestDependencies = [
             junit      : "junit:junit:${junit}",
             kotlinJunit: "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
-            robolectric: "org.robolectric:robolectric:${robolectric}",
-            mockito    : "com.nhaarman:mockito-kotlin:${mockitoKotlin}",
+            mockk      : "io.mockk:mockk:${mockk}",
     ]
 }

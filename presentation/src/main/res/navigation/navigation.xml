@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/feedFragment">
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.nicholasdoglio.newsstand.ui.feed.FeedFragment"
+        android:label="fragment_feed"
+        tools:layout="@layout/fragment_feed">
+        <action
+            android:id="@+id/action_feedFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_feedFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.nicholasdoglio.newsstand.ui.about.AboutFragment"
+        android:label="about_fragment"
+        tools:layout="@layout/about_fragment">
+        <action
+            android:id="@+id/action_aboutFragment_to_libsFragment"
+            app:destination="@id/libsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.nicholasdoglio.newsstand.ui.article.ArticleFragment"
+        android:label="article_fragment"
+        tools:layout="@layout/article_fragment" />
+    <fragment
+        android:id="@+id/libsFragment"
+        android:name="com.nicholasdoglio.newsstand.ui.about.libs.LibsFragment"
+        android:label="libs_fragment"
+        tools:layout="@layout/libs_fragment" />
+</navigation>

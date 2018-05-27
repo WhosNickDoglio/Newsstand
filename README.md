@@ -4,11 +4,11 @@
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![Build Status](https://travis-ci.org/WhosNickDoglio/Newsstand.svg?branch=master)](https://travis-ci.org/WhosNickDoglio/Newsstand)
 
-A Feedly and Medium client written in Kotlin used to practice Clean Architecture
+A [Feedly](https://feedly.com/), [Inoreader](https://www.inoreader.com/), [Medium](https://medium.com/) and RSS client written in Kotlin used to practice Clean Architecture
 
 Talk about clean
 
-Talk about MVVM
+Talk about MVI
 
 # To-Do
 
