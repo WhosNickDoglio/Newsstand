@@ -4,6 +4,10 @@
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![Build Status](https://travis-ci.org/WhosNickDoglio/Newsstand.svg?branch=master)](https://travis-ci.org/WhosNickDoglio/Newsstand)
 
+### Project status:  ¯\\_(ツ)_/¯ 
+Lots of side project ideas and things to learn got in the way of actually working on this.  I plan on working on this eventually when I have more time. 
+
+
 A [Feedly](https://feedly.com/), [Inoreader](https://www.inoreader.com/), [Medium](https://medium.com/) and RSS client written in Kotlin used to practice Clean Architecture
 
 Talk about clean

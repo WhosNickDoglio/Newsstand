@@ -1,0 +1,1 @@
+include(":mobile", ":data", ":domain", ":remote", ":persistence", ":buildSrc")
