@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.0-alpha08'
+        classpath 'com.android.tools.build:gradle:3.4.0-alpha09'
         classpath 'org.jacoco:org.jacoco.core:0.8.2'
         classpath 'com.google.gms:google-services:4.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -17,7 +17,7 @@ buildscript {
 }
 
 plugins {
-    id("jmfayard.github.io.gradle-kotlin-dsl-libs") version "0.2.6"
+    id("de.fayard.buildSrcVersions") version "0.3.2"
 }
 
 
