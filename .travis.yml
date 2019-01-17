@@ -1,36 +1,38 @@
-sudo: false
 
 language: android
 jdk: oraclejdk8
+sudo: false
 
 env:
   global:
-    - ADB_INSTALL_TIMEOUT=10
+  - ANDROID_API_LEVEL=28
+  - ANDROID_EMULATOR_LEVEL=18
+  - ANDROID_BUILD_TOOLS_VERSION=28.0.3
+  - ADB_INSTALL_TIMEOUT=20
+  - ANDROID_ABI=armeabi-v7a
+  - ANDROID_TAG=google_apis
+  - QEMU_AUDIO_DRV=none
 
 before_install:
 - yes | sdkmanager "platforms;android-27"
 
 android:
   components:
-    - platform-tools
-    - tools
+  - tools
+  - platform-tools
+  - tools
+  - build-tools-$ANDROID_BUILD_TOOLS_VERSION
+  - android-$ANDROID_API_LEVEL
+  - android-$ANDROID_EMULATOR_LEVEL
+  - extra-android-support
+  - extra-google-m2repository
+  - extra-android-m2repository
+  - sys-img-$ANDROID_ABI-google_apis-$ANDROID_EMULATOR_LEVEL
 
-    - build-tools-26.0.2
-
-    - android-15
-    - android-21
-    - android-25
-
-    - extra-google-google_play_services
-    - extra-google-m2repository
-    - extra-android-m2repository
-    - extra-android-support
-
-    - sys-img-armeabi-v7a-android-21
   licenses:
-    - 'android-sdk-preview-license-52d11cd2'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
+  - android-sdk-preview-license-.+
+  - android-sdk-license-.+
+  - google-gdk-license-.+
 
 before_script:
   - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
@@ -39,14 +41,10 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-  - ./gradlew build jacocoTestReport
+- ./gradlew build jacocoTestReportDebug
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-
-env:
-  matrix:
-  - TERM=dumb
 
 cache:
   directories:

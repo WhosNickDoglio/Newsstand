@@ -22,6 +22,15 @@
  * SOFTWARE.
  */
 
-package com.nicholasdoglio.data.remote.authentication
+plugins {
+    id("java-library")
+    kotlin("jvm")
+    kotlin("kapt")
+}
 
-class FeedlyAuthenticationManager
+dependencies {
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(Libs.kotlin_stdlib_jdk8)
+
+}
+
