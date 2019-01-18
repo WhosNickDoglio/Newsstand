@@ -4,7 +4,6 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
-        maven { url = uri("https://plugins.gradle.org/m2/") }
     }
     dependencies {
         classpath("com.android.tools.build:gradle:3.3.0")
@@ -27,7 +26,6 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
-        maven { url = uri("https://plugins.gradle.org/m2/") }
     }
 }
 
