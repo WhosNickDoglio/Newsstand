@@ -45,7 +45,7 @@ object Versions {
 
     const val exoplayer: String = "2.9.3"
 
-    const val com_google_dagger: String = "2.20"
+    const val com_google_dagger: String = "2.21"
 
     const val firebase_crash: String = "16.2.1"
 
@@ -91,7 +91,7 @@ object Versions {
 
     const val org_jacoco: String = "0.8.2"
 
-    const val org_jetbrains_kotlin: String = "1.3.11"
+    const val org_jetbrains_kotlin: String = "1.3.11" 
 
     /**
      *
@@ -103,7 +103,7 @@ object Versions {
 
         const val currentVersion: String = "5.1.1"
 
-        const val nightlyVersion: String = "5.2-20190116160151+0000"
+        const val nightlyVersion: String = "5.2-20190117003518+0000"
 
         const val releaseCandidate: String = ""
     }
