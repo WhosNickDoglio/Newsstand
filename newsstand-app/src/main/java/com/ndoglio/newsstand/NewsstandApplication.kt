@@ -25,13 +25,11 @@
 package com.ndoglio.newsstand
 
 import android.app.Application
-import android.os.StrictMode
 import com.ndoglio.feedly.ui.FeedlyInjector
 import com.ndoglio.feedly.ui.FeedlyInjectorProvider
 import com.ndoglio.newsstand.di.AppComponent
 import com.ndoglio.newsstand.di.AppComponentProvider
 import com.ndoglio.newsstand.di.DaggerAppComponent
-import timber.log.Timber
 
 class NewsstandApplication : Application(), AppComponentProvider, FeedlyInjectorProvider {
 
@@ -53,25 +51,6 @@ class NewsstandApplication : Application(), AppComponentProvider, FeedlyInjector
 
     override fun onCreate() {
         super.onCreate()
-        if (BuildConfig.DEBUG) {
-            initDebugTools()
-        }
-    }
-
-    private fun initDebugTools() {
-        Timber.plant(Timber.DebugTree())
-        StrictMode.setThreadPolicy(
-            StrictMode.ThreadPolicy.Builder()
-                .detectAll()
-                .penaltyLog()
-                .build()
-        )
-
-        StrictMode.setVmPolicy(
-            StrictMode.VmPolicy.Builder()
-                .detectAll()
-                .penaltyLog()
-                .build()
-        )
+        component.initializers.forEach { it.init() }
     }
 }

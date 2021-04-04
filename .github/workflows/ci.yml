@@ -21,7 +21,7 @@ jobs:
       - name: Lint
         uses: eskatos/gradle-command-action@v1
         with:
-          arguments: ktlintCheck detekt
+          arguments: detekt
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug

@@ -28,9 +28,12 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import com.ndoglio.auth.AuthenticationHelper
-import com.ndoglio.core.Screen
+import com.ndoglio.core.WorkflowScreen
 import com.ndoglio.feedly.ui.databinding.LoginViewBinding
-import com.ndoglio.feedly.ui.login.LoginWorkflow.LoginProps
+import com.ndoglio.feedly.ui.login.LoginWorkflow.LoggedIn
+import com.ndoglio.feedly.ui.login.LoginWorkflow.Screen
+import com.ndoglio.feedly.ui.login.LoginWorkflow.Props
+import com.ndoglio.feedly.ui.login.LoginWorkflow.State
 import com.squareup.workflow1.Snapshot
 import com.squareup.workflow1.StatefulWorkflow
 import com.squareup.workflow1.Worker
@@ -39,41 +42,69 @@ import com.squareup.workflow1.runningWorker
 import com.squareup.workflow1.ui.LayoutRunner
 import com.squareup.workflow1.ui.ViewEnvironment
 import com.squareup.workflow1.ui.ViewFactory
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class LoginWorkflow @Inject constructor(private val authenticationHelper: AuthenticationHelper) :
-    StatefulWorkflow<LoginProps, LoginModel, LoggedIn, LoginScreen>() {
+class LoginWorkflow @Inject constructor(
+    private val authenticationHelper: AuthenticationHelper
+) : StatefulWorkflow<Props, State, LoggedIn, Screen>() {
 
-    data class LoginProps(
+    sealed class State {
+        object LoginPrompt : State()
+        object Oauth : State()
+        object RetrievingTokens : State()
+    }
+
+    data class Props(
         val codeUrl: String? = null,
         val context: Context? = null
     )
 
-    override fun initialState(props: LoginProps, snapshot: Snapshot?): LoginModel =
-        LoginModel(
-            redirectUrl = authenticationHelper.provideRedirectUrl(),
-            isLoggedIn = authenticationHelper.isLoggedIn
-        )
+    data class LoginModel(
+        val redirectUrl: String,
+        val isLoggedIn: Boolean = false
+    )
+
+    object LoggedIn
+
+    data class Screen(
+        val onLoginSelected: () -> Unit
+    ) : WorkflowScreen
+
+    override fun initialState(props: Props, snapshot: Snapshot?): State = State.LoginPrompt
 
     override fun render(
-        renderProps: LoginProps,
-        renderState: LoginModel,
+        renderProps: Props,
+        renderState: State,
         context: RenderContext
-    ): LoginScreen {
-        renderProps.codeUrl?.let { context.runningWorker(authenticationHelper.asTokenWorker(it)) }
+    ): Screen {
 
-        if (renderState.isLoggedIn) {
-            context.actionSink.send(onLoggedIn())
-        }
+        // when (renderState) {
+        //     State.LoginPrompt -> TODO()
+        //     State.Oauth -> TODO()
+        //     State.RetrievingTokens -> TODO()
+        // }
+        //
+        //
+        // context.runningWorker(Worker.from { authenticationHelper.isLoggedIn() }, handler = {
+        //     loggedIn(it)
+        // })
+        //
+        // renderProps.codeUrl?.let { code ->
+        //     context.runningSideEffect("RETRIEVE_TOKENS") {
+        //         authenticationHelper.retrieveTokens(code)
+        //     }
+        // }
+        //
+        // if (renderState.isLoggedIn) {
+        //     context.actionSink.send(onLoggedIn())
+        // }
 
-        return LoginScreen(
+        return Screen(
             onLoginSelected = { renderProps.context?.let { launchRedirectUrl(it) } }
         )
     }
 
-    override fun snapshotState(state: LoginModel): Snapshot? = null
+    override fun snapshotState(state: State): Snapshot? = null
 
     private fun launchRedirectUrl(context: Context) {
         context.startActivity(
@@ -89,18 +120,11 @@ class LoginWorkflow @Inject constructor(private val authenticationHelper: Authen
     }
 }
 
-data class LoginModel(
-    val redirectUrl: String,
-    val isLoggedIn: Boolean = false
-)
-
-object LoggedIn
-
 class LoginLayoutRunner(
     private val binding: LoginViewBinding
-) : LayoutRunner<LoginScreen> {
+) : LayoutRunner<Screen> {
 
-    override fun showRendering(rendering: LoginScreen, viewEnvironment: ViewEnvironment) {
+    override fun showRendering(rendering: Screen, viewEnvironment: ViewEnvironment) {
         with(binding) {
 
             logIn.setOnClickListener {
@@ -109,25 +133,7 @@ class LoginLayoutRunner(
         }
     }
 
-    companion object : ViewFactory<LoginScreen> by LayoutRunner.bind(
+    companion object : ViewFactory<Screen> by LayoutRunner.bind(
         LoginViewBinding::inflate, ::LoginLayoutRunner
     )
 }
-
-data class LoginScreen(
-    val onLoginSelected: () -> Unit
-) : Screen
-
-private class RetrieveTokensWorker(
-    val authCode: String,
-    val authenticationHelper: AuthenticationHelper
-) : Worker<Nothing> {
-    override fun run(): Flow<Nothing> {
-        return flow {
-            authenticationHelper.retrieveTokens(authCode)
-        }
-    }
-}
-
-private fun AuthenticationHelper.asTokenWorker(authCode: String): Worker<Nothing> =
-    RetrieveTokensWorker(authCode, this)

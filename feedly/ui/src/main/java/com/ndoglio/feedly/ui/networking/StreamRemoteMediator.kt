@@ -42,7 +42,7 @@ class StreamRemoteMediator @AssistedInject constructor(
 
     @AssistedFactory
     interface Factory {
-        fun create(streamId: String): RemoteMediator<StreamParams, Stream>
+        fun create(streamId: String): StreamRemoteMediator
     }
 
     override suspend fun load(
@@ -63,7 +63,7 @@ class StreamRemoteMediator @AssistedInject constructor(
 
         )
 
-        return MediatorResult.Success()
+        return TODO()
     }
 }
 

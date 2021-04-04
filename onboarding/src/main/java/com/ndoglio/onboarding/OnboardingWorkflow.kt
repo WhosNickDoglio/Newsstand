@@ -24,84 +24,69 @@
 
 package com.ndoglio.onboarding
 
-import com.ndoglio.core.Screen
-import com.ndoglio.onboarding.OnboardingWorkflow.OnboardingOutput
-import com.ndoglio.onboarding.OnboardingWorkflow.OnboardingScreen
-import com.ndoglio.onboarding.OnboardingWorkflow.OnboardingState
+import com.ndoglio.core.WorkflowScreen
+import com.ndoglio.onboarding.OnboardingWorkflow.Output
+import com.ndoglio.onboarding.OnboardingWorkflow.Screen
+import com.ndoglio.onboarding.OnboardingWorkflow.State
 import com.squareup.workflow1.Snapshot
 import com.squareup.workflow1.StatefulWorkflow
-import com.squareup.workflow1.Worker
 import com.squareup.workflow1.action
+import com.squareup.workflow1.asWorker
 import com.squareup.workflow1.runningWorker
-import kotlinx.coroutines.flow.Flow
 import timber.log.Timber
 import javax.inject.Inject
 
 class OnboardingWorkflow @Inject constructor(
-    model: OnboardingModel
-) : StatefulWorkflow<Unit, OnboardingState, OnboardingOutput, OnboardingScreen>() {
+    private val model: OnboardingModel
+) : StatefulWorkflow<Unit, State, Output, Screen>() {
     // TODO can this be stateless?
 
-    data class OnboardingOutput(
-        val selectedFeature: Feature
-    )
+    data class Output(val selectedFeature: Feature)
 
-    data class OnboardingState(
-        val selectedFeature: Feature? = null
-    )
+    data class State(val selectedFeature: Feature? = null)
 
-    data class OnboardingScreen(
+    data class Screen(
         val featureSelection: (Feature) -> Unit = {},
         val nextButtonClick: () -> Unit = {}
-    ) : Screen
+    ) : WorkflowScreen
 
-    private val isOnboardingCompleteWorker = model.asWorker()
-
-    override fun initialState(props: Unit, snapshot: Snapshot?): OnboardingState =
-        OnboardingState()
+    override fun initialState(props: Unit, snapshot: Snapshot?): State = State()
 
     override fun render(
         renderProps: Unit,
-        renderState: OnboardingState,
+        renderState: State,
         context: RenderContext
-    ): OnboardingScreen {
+    ): Screen {
         context.runningWorker(
-            isOnboardingCompleteWorker,
+            model.onboardingIsComplete.asWorker(),
             handler = { _ -> onNextButtonClicked(renderState) })
 
-        return OnboardingScreen(
+        return Screen(
             featureSelection = { context.actionSink.send(onFeatureSelected(it)) },
             nextButtonClick = {
                 context.actionSink.send(onNextButtonClicked((renderState)))
-                // context.runningSideEffect("ONBOARDING_COMPLETE") { model.markOnboardingComplete() }
+                context.runningSideEffect("ONBOARDING_COMPLETE") {
+                    model.markOnboardingComplete()
+                }
             }
         )
     }
 
     // TODO what does snapshot support look like?
-    override fun snapshotState(state: OnboardingState): Snapshot? = null
+    override fun snapshotState(state: State): Snapshot? = null
 
     private fun onFeatureSelected(feature: Feature) = action {
-        Timber.i("FEATURE SELECTED $feature")
+        Timber.d("FEATURE SELECTED $feature")
         state = state.copy(selectedFeature = feature)
     }
 
-    private fun onNextButtonClicked(state: OnboardingState) = action {
+    private fun onNextButtonClicked(state: State) = action {
         setOutput(
-            OnboardingOutput(
+            Output(
                 state.selectedFeature ?: error("Must have at least one selected feature!")
             )
         )
     }
 }
-
-private class OnboardingIsCompleteWorker(
-    private val model: OnboardingModel
-) : Worker<Boolean> {
-    override fun run(): Flow<Boolean> = model.onboardingIsComplete
-}
-
-private fun OnboardingModel.asWorker(): OnboardingIsCompleteWorker =
-    OnboardingIsCompleteWorker(this)
 
 enum class Feature { FEEDLY, INOREADER, RSS }

@@ -71,6 +71,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun Intent?.pushIntent() {
-        if (this != null) model.props.value = AppProps(this, this@MainActivity)
+        if (this != null) model.props.value = AppWorkflow.Props(this, this@MainActivity)
     }
 }

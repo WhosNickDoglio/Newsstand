@@ -25,13 +25,18 @@
 package com.ndoglio.auth
 
 import com.ndoglio.feedly.models.Tokens
+import kotlinx.coroutines.flow.Flow
 
 interface TokenRepository {
-    val accessToken: String?
-    val tokenType: String?
-    val refreshToken: String?
 
-    fun setTokens(container: Tokens)
+    // TODO do we want these to be suspend funs or Flows?
+    val accessToken: Flow<String?>
 
-    fun clear()
+    val tokenType: Flow<String?>
+
+    val refreshToken: Flow<String?>
+
+    suspend fun setTokens(container: Tokens)
+
+    suspend fun clear()
 }

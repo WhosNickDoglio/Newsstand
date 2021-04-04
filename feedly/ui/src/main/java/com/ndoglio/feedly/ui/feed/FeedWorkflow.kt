@@ -24,8 +24,10 @@
 
 package com.ndoglio.feedly.ui.feed
 
-import com.ndoglio.core.Screen
+import com.ndoglio.core.WorkflowScreen
 import com.ndoglio.feedly.ui.databinding.FeedViewBinding
+import com.ndoglio.feedly.ui.feed.FeedWorkflow.Screen
+import com.ndoglio.feedly.ui.feed.FeedWorkflow.State
 import com.squareup.workflow1.Snapshot
 import com.squareup.workflow1.StatefulWorkflow
 import com.squareup.workflow1.ui.LayoutRunner
@@ -33,31 +35,30 @@ import com.squareup.workflow1.ui.LayoutRunner.Companion.bind
 import com.squareup.workflow1.ui.ViewEnvironment
 import com.squareup.workflow1.ui.ViewFactory
 
-class FeedWorkflow :
-    StatefulWorkflow<Unit, FeedWorkflow.FeedState, Nothing, FeedWorkflow.FeedScreen>() {
+internal class FeedWorkflow : StatefulWorkflow<Unit, State, Nothing, Screen>() {
 
-    data class FeedState(
+    internal data class State(
         val data: List<String> = emptyList(),
         val isRefreshing: Boolean = false,
         val isLoading: Boolean = true,
     )
 
-    data class FeedScreen(
+    internal data class Screen(
         val data: List<String>,
         val onItemClicked: () -> Unit,
         val onRefresh: () -> Unit,
         val showRefresher: Boolean,
         val showLoader: Boolean,
-    ) : Screen
+    ) : WorkflowScreen
 
-    override fun initialState(props: Unit, snapshot: Snapshot?): FeedState = FeedState()
+    override fun initialState(props: Unit, snapshot: Snapshot?): State = State()
 
     override fun render(
         renderProps: Unit,
-        renderState: FeedState,
+        renderState: State,
         context: RenderContext
-    ): FeedScreen {
-        return FeedScreen(
+    ): Screen {
+        return Screen(
             data = renderState.data,
             onItemClicked = {},
             onRefresh = {},
@@ -66,14 +67,15 @@ class FeedWorkflow :
         )
     }
 
-    override fun snapshotState(state: FeedState): Snapshot? = null
+    // https://github.com/square/workflow-kotlin/blob/main/samples/tictactoe/common/src/main/java/com/squareup/sample/gameworkflow/RunGameState.kt
+    override fun snapshotState(state: State): Snapshot? = null
 }
 
-class FeedLayoutRunner(
+internal class FeedLayoutRunner(
     private val binding: FeedViewBinding
-) : LayoutRunner<FeedWorkflow.FeedScreen> {
+) : LayoutRunner<Screen> {
     override fun showRendering(
-        rendering: FeedWorkflow.FeedScreen,
+        rendering: Screen,
         viewEnvironment: ViewEnvironment
     ) {
         with(binding) {
@@ -81,7 +83,7 @@ class FeedLayoutRunner(
         }
     }
 
-    companion object : ViewFactory<FeedWorkflow.FeedScreen> by bind(
+    companion object : ViewFactory<Screen> by bind(
         FeedViewBinding::inflate, ::FeedLayoutRunner
     )
 }

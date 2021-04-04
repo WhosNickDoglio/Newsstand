@@ -26,6 +26,7 @@ package com.ndoglio.auth
 
 import com.ndoglio.core.AppScope
 import com.squareup.anvil.annotations.ContributesBinding
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Authenticator
 import okhttp3.Request
@@ -49,14 +50,18 @@ class FeedlyAuthenticator @Inject constructor(
 
         runBlocking { authenticationHelper.refreshTokens() }
 
-        val newToken = tokenStore.accessToken ?: error(" No new token")
+        val newToken = runBlocking { tokenStore.accessToken.first() } ?: error(" No new token")
 
         return response.makeRequestWithToken(newToken)
     }
 
-    private fun Response.makeRequestWithToken(token: String): Request = this.request.newBuilder()
-        .header(AUTH_HEADER, "${tokenStore.tokenType} $token")
-        .build()
+    private fun Response.makeRequestWithToken(token: String): Request {
+        val tokenType = runBlocking { tokenStore.tokenType.first() }
+
+        return request.newBuilder()
+            .header(AUTH_HEADER, "$tokenType $token")
+            .build()
+    }
 
     private val Response.retryCount: Int
         get() {

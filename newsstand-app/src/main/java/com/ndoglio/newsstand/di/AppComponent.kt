@@ -27,6 +27,7 @@ package com.ndoglio.newsstand.di
 import android.app.Application
 import android.content.Context
 import com.ndoglio.core.AppScope
+import com.ndoglio.core.Initializable
 import com.ndoglio.newsstand.MainActivity
 import com.squareup.anvil.annotations.MergeComponent
 import dagger.BindsInstance
@@ -36,6 +37,8 @@ import javax.inject.Singleton
 @Singleton
 @MergeComponent(AppScope::class)
 interface AppComponent {
+
+    val initializers: Set<Initializable>
 
     @Component.Factory
     interface Factory {

@@ -22,27 +22,21 @@
  *   SOFTWARE.
  */
 
-package com.ndoglio.newsstand.di
+package dev.whosnickdoglio.newsstand.bindings
 
-import android.app.Application
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.createDataStore
 import com.ndoglio.core.AppScope
-import com.ndoglio.core.NewsstandDataStore
-import com.squareup.anvil.annotations.ContributesTo
-import dagger.Module
-import dagger.Provides
-import javax.inject.Qualifier
-import javax.inject.Singleton
+import com.squareup.anvil.annotations.ContributesBinding
+import com.squareup.workflow1.SimpleLoggingWorkflowInterceptor
+import timber.log.Timber
+import javax.inject.Inject
 
-@Module
-@ContributesTo(AppScope::class)
-object DataStoreModule {
+@ContributesBinding(AppScope::class)
+class TimberWorkflowInterceptor @Inject constructor() : SimpleLoggingWorkflowInterceptor() {
+    override fun log(text: String) {
+        Timber.d(text)
+    }
 
-    @NewsstandDataStore
-    @Singleton
-    @Provides
-    fun provideAppDataStore(application: Application): DataStore<Preferences> =
-        application.createDataStore(name = "newsstand_app")
+    override fun logError(text: String) {
+        Timber.e(text)
+    }
 }

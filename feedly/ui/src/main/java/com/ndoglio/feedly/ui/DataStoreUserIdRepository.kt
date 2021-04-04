@@ -30,40 +30,37 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.ndoglio.auth.UserIdRepository
 import com.ndoglio.core.AppScope
+import com.ndoglio.core.DispatchersProvider
 import com.squareup.anvil.annotations.ContributesBinding
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
 @ContributesBinding(AppScope::class)
 class DataStoreUserIdRepository @Inject constructor(
     @FeedlyDataStore private val store: DataStore<Preferences>,
+    private val dispatchersProvider: DispatchersProvider
 ) : UserIdRepository {
     private val userIdKey = stringPreferencesKey(USER_ID_KEY)
 
-    override val currentUserId: String?
-        get() = runBlocking {
-            store.data
-                .map { value -> value[userIdKey] }
-                .first()
-        }
-    override val user: Flow<String?>
-        get() =   store.data.map { value -> value[userIdKey] }
+    override val user: Flow<String?> = store.data
+        .flowOn(dispatchersProvider.background)
+        .map { value -> value[userIdKey] }
 
-    override fun setUserId(id: String) {
-        Timber.i("New User ID: $id")
-        runBlocking { store.edit { pref -> pref[userIdKey] = id } }
+    override suspend fun setUserId(id: String) {
+        Timber.d("New User ID: $id")
+        withContext(dispatchersProvider.background) {
+            store.edit { pref -> pref[userIdKey] = id }
+        }
     }
 
-    override fun clear() {
+    override suspend fun clear() {
         // TODO is this the best way to do this?
-        runBlocking {
-            store.edit {
-                it.clear()
-            }
+        withContext(dispatchersProvider.background) {
+            store.edit { it.clear() }
         }
     }
 

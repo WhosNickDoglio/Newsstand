@@ -150,7 +150,7 @@ interface FeedlyService {
         private const val PROD_BASE_URL = "https://cloud.feedly.com/v3/"
         private const val SANDBOX_BASE_URL = "https://sandbox7.feedly.com/v3/"
 
-        internal operator fun invoke(
+        internal fun create(
             okHttpClient: OkHttpClient,
             isProd: Boolean = true
         ): FeedlyService {

@@ -23,5 +23,5 @@
  */
 
 plugins {
-    kotlin("jvm")
+    id("newsstand-kotlin")
 }

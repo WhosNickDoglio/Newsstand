@@ -31,52 +31,40 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.ndoglio.auth.TokenRepository
 import com.ndoglio.core.AppScope
 import com.ndoglio.core.DispatchersProvider
-import com.ndoglio.feedly.core.FeedlyScope
 import com.ndoglio.feedly.models.Tokens
 import com.squareup.anvil.annotations.ContributesBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
 @ContributesBinding(AppScope::class)
 class DataStoreTokenRepository @Inject constructor(
     @FeedlyDataStore private val store: DataStore<Preferences>,
-    dispatchersProvider: DispatchersProvider
+    private val dispatchersProvider: DispatchersProvider
 ) : TokenRepository {
 
-    private val scope = CoroutineScope(dispatchersProvider.background)
     private val accessTokenKey = stringPreferencesKey(ACCESS_TOKEN_KEY)
     private val tokenTypeKey = stringPreferencesKey(TOKEN_TYPE_KEY)
     private val refreshTokenKey = stringPreferencesKey(REFRESH_TOKEN_KEY)
 
-    override val accessToken: String?
-        get() = runBlocking {
-            store.data
-                .map { value: Preferences -> value[accessTokenKey] }
-                .first()
-        }
+    override val accessToken: Flow<String?> = store.data
+        .flowOn(dispatchersProvider.background)
+        .map { value: Preferences -> value[accessTokenKey] }
 
-    override val tokenType: String?
-        get() = runBlocking {
-            store.data
-                .map { value: Preferences -> value[tokenTypeKey] }
-                .first()
-        }
+    override val tokenType: Flow<String?> = store.data
+        .flowOn(dispatchersProvider.background)
+        .map { value: Preferences -> value[tokenTypeKey] }
 
-    override val refreshToken: String?
-        get() = runBlocking {
-            store.data
-                .map { value: Preferences -> value[refreshTokenKey] }
-                .first()
-        }
+    override val refreshToken: Flow<String?> = store.data
+        .flowOn(dispatchersProvider.background)
+        .map { value: Preferences -> value[refreshTokenKey] }
 
-    override fun setTokens(container: Tokens) {
-        Timber.i("New Tokens set: $container")
-        scope.launch {
+    override suspend fun setTokens(container: Tokens) {
+        Timber.d("New Tokens set: $container")
+        withContext(dispatchersProvider.background) {
             store.edit { pref ->
                 pref[accessTokenKey] = container.access
                 pref[tokenTypeKey] = container.tokenType
@@ -87,11 +75,9 @@ class DataStoreTokenRepository @Inject constructor(
         }
     }
 
-    override fun clear() {
-        runBlocking {
-            store.edit {
-                it.clear()
-            }
+    override suspend fun clear() {
+        withContext(dispatchersProvider.background) {
+            store.edit { it.clear() }
         }
     }
 

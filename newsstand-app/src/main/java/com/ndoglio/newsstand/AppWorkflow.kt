@@ -26,10 +26,12 @@ package com.ndoglio.newsstand
 
 import android.content.Context
 import android.content.Intent
-import com.ndoglio.core.Screen
-import com.ndoglio.feedly.ui.FeedlyProps
+import com.ndoglio.core.WorkflowScreen
 import com.ndoglio.feedly.ui.FeedlyWorkflow
 import com.ndoglio.feedly.ui.feedlyInjector
+import com.ndoglio.newsstand.AppWorkflow.Props
+import com.ndoglio.newsstand.AppWorkflow.State
+import com.ndoglio.onboarding.Feature
 import com.ndoglio.onboarding.OnboardingWorkflow
 import com.squareup.workflow1.Snapshot
 import com.squareup.workflow1.StatefulWorkflow
@@ -40,7 +42,12 @@ import javax.inject.Inject
 class AppWorkflow @Inject constructor(
     private val feedly: FeedlyWorkflow,
     private val onboardingWorkflow: OnboardingWorkflow
-) : StatefulWorkflow<AppProps, AppWorkflow.State, Nothing, Screen>() {
+) : StatefulWorkflow<Props, State, Nothing, WorkflowScreen>() {
+
+    data class Props(
+        val intent: Intent? = null,
+        val context: Context? = null,
+    )
 
     sealed class State {
         object Onboarding : State()
@@ -49,35 +56,36 @@ class AppWorkflow @Inject constructor(
         object Inoreader : State()
     }
 
-    override fun initialState(props: AppProps, snapshot: Snapshot?): State = State.Feedly
+    override fun initialState(props: Props, snapshot: Snapshot?): State = State.Feedly
 
     override fun render(
-        renderProps: AppProps,
+        renderProps: Props,
         renderState: State,
         context: RenderContext
-    ): Screen {
-        return when (renderState) {
-            State.Feedly -> {
-                renderProps.context?.feedlyInjector()
-                val code =
-                    if (renderProps.intent?.data != null) renderProps.intent.data.toString() else null
+    ): WorkflowScreen = when (renderState) {
+        State.Feedly -> {
+            renderProps.context?.feedlyInjector()
+            val code =
+                if (renderProps.intent?.data != null) renderProps.intent.data.toString() else null
 
-                val feedly = context.renderChild(feedly, FeedlyProps(code, renderProps.context))
+            val feedly =
+                context.renderChild(feedly, FeedlyWorkflow.Props(code, renderProps.context))
 
-                feedly
-            }
-            State.Onboarding -> context.renderChild(onboardingWorkflow, Unit) { _ ->
-                onboardingComplete()
-            }
-            else -> error("THIS STATE: $renderState NOT SUPPORTED YET")
+            feedly
         }
+        State.Onboarding -> context.renderChild(onboardingWorkflow, Unit) { output ->
+            onboardingComplete(output.selectedFeature)
+        }
+        else -> error("THIS STATE: $renderState NOT SUPPORTED YET")
     }
 
     override fun snapshotState(state: State): Snapshot? = null
 
-    private fun onboardingComplete() = action {
-        // TODO need to handle other features
-        state = State.Feedly
+    private fun onboardingComplete(feature: Feature) = action {
+        state = when (feature) {
+            Feature.FEEDLY -> State.Feedly
+            else -> error("Not yet supported.")
+        }
     }
 
     private fun onLoggedIn() = action {
@@ -86,7 +94,3 @@ class AppWorkflow @Inject constructor(
     }
 }
 
-data class AppProps(
-    val intent: Intent? = null,
-    val context: Context? = null,
-)

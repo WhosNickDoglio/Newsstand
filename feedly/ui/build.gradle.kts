@@ -23,8 +23,7 @@
  */
 
 plugins {
-    id("com.android.library")
-    kotlin("android")
+    id("newsstand-library")
     id("com.squareup.anvil")
 }
 
@@ -62,9 +61,6 @@ dependencies {
     implementation(libs.viewpager)
     implementation(libs.swiperefreshlayout)
     implementation(libs.cardview)
-
-    implementation(libs.flowbinding.android.core)
-    implementation(libs.flowbinding.material)
 
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)

@@ -22,7 +22,7 @@
  *   SOFTWARE.
  */
 
-package com.ndoglio.newsstand.util
+package dev.whosnickdoglio.newsstand.bindings
 
 import android.app.Application
 import android.content.Context
@@ -45,25 +45,25 @@ class AndroidTenAndAboveConnectivityModel @Inject constructor(application: Appli
     private val mutableIsConnected: MutableStateFlow<Boolean?> = MutableStateFlow(null)
 
     init {
-        connectivityManager.registerNetworkCallback(
-            NetworkRequest.Builder().build(),
-            object : ConnectivityManager.NetworkCallback() {
-                override fun onAvailable(network: Network) {
-                    super.onAvailable(network)
-                    mutableIsConnected.value = true
-                }
-
-                override fun onLost(network: Network) {
-                    super.onLost(network)
-                    mutableIsConnected.value = false
-                }
-
-                override fun onUnavailable() {
-                    super.onUnavailable()
-                    mutableIsConnected.value = false
-                }
-            }
-        )
+        // connectivityManager.registerNetworkCallback(
+        //     NetworkRequest.Builder().build(),
+        //     object : ConnectivityManager.NetworkCallback() {
+        //         override fun onAvailable(network: Network) {
+        //             super.onAvailable(network)
+        //             mutableIsConnected.value = true
+        //         }
+        //
+        //         override fun onLost(network: Network) {
+        //             super.onLost(network)
+        //             mutableIsConnected.value = false
+        //         }
+        //
+        //         override fun onUnavailable() {
+        //             super.onUnavailable()
+        //             mutableIsConnected.value = false
+        //         }
+        //     }
+        // )
     }
 
     override val isConnected: Flow<Boolean>

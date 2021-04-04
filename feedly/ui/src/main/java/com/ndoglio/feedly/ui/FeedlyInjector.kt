@@ -29,9 +29,10 @@ import android.content.Context
 interface FeedlyInjector {
 }
 
-interface FeedlyInjectorProvider: Injector<FeedlyInjector>
+interface FeedlyInjectorProvider : Injector<FeedlyInjector>
 
-fun Context.feedlyInjector() = (applicationContext as FeedlyInjectorProvider).featureIfAbsentCreate()
+fun Context.feedlyInjector() =
+    (applicationContext as FeedlyInjectorProvider).featureIfAbsentCreate()
 
 interface Injector<FEATURE> {
 

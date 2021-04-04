@@ -23,8 +23,8 @@
  */
 
 plugins {
-    kotlin("jvm")
-    kotlin("kapt")
+    id("newsstand-kotlin")
+    id("newsstand-kapt")
 
 }
 

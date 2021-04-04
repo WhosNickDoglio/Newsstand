@@ -23,7 +23,7 @@
  */
 
 plugins {
-    kotlin("jvm")
+    id("newsstand-kotlin")
     id("com.squareup.anvil")
 }
 

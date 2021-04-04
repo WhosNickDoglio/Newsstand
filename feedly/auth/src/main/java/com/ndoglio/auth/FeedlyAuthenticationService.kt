@@ -78,7 +78,7 @@ interface FeedlyAuthenticationService {
         private const val RESPONSE_TYPE = "code"
         private const val SCOPE = "https://cloud.feedly.com/subscriptions"
 
-        operator fun invoke(
+        fun create(
             isProd: Boolean = true
         ): FeedlyAuthenticationService = Retrofit.Builder()
             .baseUrl(if (isProd) PROD_BASE_URL else SANDBOX_BASE_URL)

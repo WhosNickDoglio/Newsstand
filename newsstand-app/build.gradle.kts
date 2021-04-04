@@ -26,7 +26,6 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    id("kotlin-android")
     id("com.squareup.anvil")
 }
 
@@ -35,7 +34,7 @@ android {
     compileSdkVersion(30)
     defaultConfig {
         applicationId = "com.ndoglio.newsstand"
-        minSdkVersion(23)
+        minSdkVersion(24)
         targetSdkVersion(30)
         versionCode = 1
         versionName = "1.0.0"
@@ -71,6 +70,7 @@ android {
 dependencies {
     coreLibraryDesugaring(libs.desugar)
 
+    implementation(project(":app-binding"))
     implementation(project(":core"))
     implementation(project(":onboarding"))
     implementation(project(":feedly:networking"))
@@ -102,10 +102,6 @@ dependencies {
     implementation(libs.viewpager)
     implementation(libs.swiperefreshlayout)
     implementation(libs.cardview)
-
-    implementation(libs.flowbinding.android.core)
-    implementation(libs.flowbinding.material)
-
 
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)

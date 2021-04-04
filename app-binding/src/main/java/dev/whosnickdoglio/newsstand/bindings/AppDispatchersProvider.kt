@@ -22,7 +22,7 @@
  *   SOFTWARE.
  */
 
-package com.ndoglio.newsstand
+package dev.whosnickdoglio.newsstand.bindings
 
 import com.ndoglio.core.AppScope
 import com.ndoglio.core.DispatchersProvider

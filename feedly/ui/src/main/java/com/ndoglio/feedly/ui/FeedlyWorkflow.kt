@@ -29,9 +29,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.ndoglio.core.Screen
+import com.ndoglio.core.WorkflowScreen
+import com.ndoglio.feedly.ui.FeedlyWorkflow.Props
+import com.ndoglio.feedly.ui.FeedlyWorkflow.Screen
+import com.ndoglio.feedly.ui.FeedlyWorkflow.State
 import com.ndoglio.feedly.ui.databinding.FeedItemViewholderBinding
 import com.ndoglio.feedly.ui.databinding.FeedViewBinding
+import com.ndoglio.feedly.ui.login.LoginWorkflow
 import com.squareup.workflow1.Snapshot
 import com.squareup.workflow1.StatefulWorkflow
 import com.squareup.workflow1.ui.LayoutRunner
@@ -42,49 +46,51 @@ import javax.inject.Inject
 class FeedlyWorkflow @Inject constructor() :
 // TODO this will eventually manage the whole backstack for feedly, just playing around right now.
 // StatefulWorkflow<FeedlyProps, FeedlyState, Nothing, BackStackScreen<Screen>>() {
-    StatefulWorkflow<FeedlyProps, FeedlyState, Nothing, HomeScreen>() {
+    StatefulWorkflow<Props, State, Nothing, Screen>() {
 
-    override fun initialState(props: FeedlyProps, snapshot: Snapshot?): FeedlyState =
-        FeedlyState.Home
+    data class Props(
+        val codeUrl: String? = null,
+        val context: Context? = null
+    )
+
+    sealed class State {
+        object Login : State()
+        object Home : State()
+        object ManageFeeds : State()
+        object HomeMenu : State()
+        object Settings : State()
+        object Search : State()
+    }
+
+    data class Screen(
+        val items: List<String>,
+        val onSearchFabPressed: () -> Unit,
+        val onPullToRefresh: () -> Unit,
+
+        ) : WorkflowScreen
+
+    override fun initialState(props: Props, snapshot: Snapshot?): State =
+        State.Home
 
     override fun render(
-        renderProps: FeedlyProps,
-        renderState: FeedlyState,
+        renderProps: Props,
+        renderState: State,
         context: RenderContext
-    ): HomeScreen = HomeScreen(
+    ): Screen = Screen(
         items = List(200) { "$it Hello World" },
         onSearchFabPressed = {},
         onPullToRefresh = {}
     )
 
-    override fun snapshotState(state: FeedlyState): Snapshot? = null
+    override fun snapshotState(state: State): Snapshot? = null
 }
 
-data class FeedlyProps(
-    val codeUrl: String? = null,
-    val context: Context? = null
-)
 
-sealed class FeedlyState {
-    object Login : FeedlyState()
-    object Home : FeedlyState()
-    object ManageFeeds : FeedlyState()
-    object HomeMenu : FeedlyState()
-    object Settings : FeedlyState()
-    object Search : FeedlyState()
-}
-
-data class HomeScreen(
-    val items: List<String>,
-    val onSearchFabPressed: () -> Unit,
-    val onPullToRefresh: () -> Unit,
-
-    ) : Screen
 
 class HomeLayoutRunner(
     private val binding: FeedViewBinding
-) : LayoutRunner<HomeScreen> {
-    override fun showRendering(rendering: HomeScreen, viewEnvironment: ViewEnvironment) {
+) : LayoutRunner<Screen> {
+    override fun showRendering(rendering: Screen, viewEnvironment: ViewEnvironment) {
         with(binding) {
             swipeToRefresh.setOnRefreshListener { rendering.onPullToRefresh() }
             searchFab.setOnClickListener { rendering.onSearchFabPressed() }
@@ -96,7 +102,7 @@ class HomeLayoutRunner(
         }
     }
 
-    companion object : ViewFactory<HomeScreen> by LayoutRunner.bind(
+    companion object : ViewFactory<Screen> by LayoutRunner.bind(
         FeedViewBinding::inflate, ::HomeLayoutRunner
     )
 }

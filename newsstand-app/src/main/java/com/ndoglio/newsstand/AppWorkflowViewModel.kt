@@ -31,7 +31,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.savedstate.SavedStateRegistryOwner
-import com.ndoglio.core.Screen
+import com.ndoglio.core.WorkflowScreen
 import com.squareup.workflow1.SimpleLoggingWorkflowInterceptor
 import com.squareup.workflow1.ui.renderWorkflowIn
 import dagger.assisted.Assisted
@@ -46,9 +46,9 @@ class AppWorkflowViewModel @AssistedInject constructor(
     @Assisted handle: SavedStateHandle
 ) : ViewModel() {
 
-    val props = MutableStateFlow(AppProps())
+    val props = MutableStateFlow(AppWorkflow.Props())
 
-    val renderings: StateFlow<Screen> = renderWorkflowIn(
+    val renderings: StateFlow<WorkflowScreen> = renderWorkflowIn(
         workflow = appWorkflow,
         scope = viewModelScope,
         savedStateHandle = handle,

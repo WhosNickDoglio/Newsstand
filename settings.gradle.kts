@@ -43,10 +43,10 @@ gradleEnterprise {
     }
 }
 
-includeBuild("setup")
-
+includeBuild("conventions")
 include(
     ":newsstand-app",
+    ":app-binding",
     ":core",
     ":onboarding",
     ":feedly:models",

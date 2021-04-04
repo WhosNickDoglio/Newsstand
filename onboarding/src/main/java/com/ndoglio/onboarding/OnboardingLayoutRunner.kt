@@ -31,10 +31,10 @@ import com.squareup.workflow1.ui.ViewFactory
 
 class OnboardingLayoutRunner(
     private val binding: OnboardingViewBinding
-) : LayoutRunner<OnboardingWorkflow.OnboardingScreen> {
+) : LayoutRunner<OnboardingWorkflow.Screen> {
 
     override fun showRendering(
-        rendering: OnboardingWorkflow.OnboardingScreen,
+        rendering: OnboardingWorkflow.Screen,
         viewEnvironment: ViewEnvironment
     ) {
         with(binding) {
@@ -52,7 +52,7 @@ class OnboardingLayoutRunner(
         }
     }
 
-    companion object : ViewFactory<OnboardingWorkflow.OnboardingScreen> by LayoutRunner.bind(
+    companion object : ViewFactory<OnboardingWorkflow.Screen> by LayoutRunner.bind(
         OnboardingViewBinding::inflate, ::OnboardingLayoutRunner
     )
 }

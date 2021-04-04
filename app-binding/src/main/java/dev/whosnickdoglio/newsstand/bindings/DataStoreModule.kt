@@ -22,38 +22,27 @@
  *   SOFTWARE.
  */
 
-package com.ndoglio.setup
+package dev.whosnickdoglio.newsstand.bindings
 
-import org.gradle.api.JavaVersion
-import org.gradle.api.model.ObjectFactory
-import org.gradle.api.provider.Property
-import javax.inject.Inject
+import android.app.Application
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.createDataStore
+import com.ndoglio.core.AppScope
+import com.ndoglio.core.NewsstandDataStore
+import com.squareup.anvil.annotations.ContributesTo
+import dagger.Module
+import dagger.Provides
+import javax.inject.Qualifier
+import javax.inject.Singleton
 
-open class SetupExtension @Inject constructor(objects: ObjectFactory) {
+@Module
+@ContributesTo(AppScope::class)
+object DataStoreModule {
 
-    val jvmTarget: Property<JavaVersion> = objects.property(JavaVersion::class.java).convention(
-        JavaVersion.VERSION_1_8
-    )
-
-    val compileSdk: Property<Int> = objects.property(Int::class.java)
-
-    val minSdk: Property<Int> = objects.property(Int::class.java)
-
-    val targetSdk: Property<Int> = objects.property(Int::class.java)
-
-    val versionCode: Property<Int> = objects.property(Int::class.java)
-
-    val versionName: Property<String> = objects.property(String::class.java)
-
+    @NewsstandDataStore
+    @Singleton
+    @Provides
+    fun provideAppDataStore(application: Application): DataStore<Preferences> =
+        application.createDataStore(name = "newsstand_app")
 }
-
-data class Sdk(
-    val min: Int,
-    val compile: Int,
-    val target: String
-)
-
-data class Version(
-    val code: Int,
-    val name: String
-)

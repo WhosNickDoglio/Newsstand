@@ -24,6 +24,8 @@
 
 package com.ndoglio.auth
 
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
@@ -32,10 +34,13 @@ class AuthenticationHeaderInterceptor @Inject constructor(
     private val tokenStore: TokenRepository
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val token = tokenStore.accessToken ?: error("Token wasn't available")
+        val token =
+            runBlocking { tokenStore.accessToken.first() } ?: error("Token wasn't available")
+
+        val tokenType = runBlocking { tokenStore.tokenType.first() }
 
         val request = chain.request().newBuilder()
-            .header(HEADER, " ${tokenStore.tokenType} $token")
+            .header(HEADER, " $tokenType $token")
             .build()
 
         return chain.proceed(request)

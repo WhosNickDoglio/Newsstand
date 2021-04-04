@@ -22,15 +22,8 @@
  *   SOFTWARE.
  */
 
-package com.ndoglio.feedly.ui
+package com.ndoglio.core
 
-import com.dropbox.android.external.store4.Fetcher
-import com.dropbox.android.external.store4.Store
-import com.dropbox.android.external.store4.StoreBuilder
-import com.ndoglio.core.AppScope
-import com.ndoglio.feedly.FeedlyClient
-import com.ndoglio.feedly.GlobalResourceIdProvider
-import com.ndoglio.feedly.models.streams.Stream
-import com.squareup.anvil.annotations.ContributesTo
-import dagger.Module
-import dagger.Provides
+// TODO move this somewhere it makes sense? This is for Workflow UI
+interface WorkflowScreen {
+}

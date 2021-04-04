@@ -10,7 +10,6 @@ retrofit = "2.9.0"
 moshi = "1.12.0"
 sqldelight = "1.4.4"
 lifecycle = "2.3.1"
-flowbinding = "1.0.0"
 workflow = "1.0.0-alpha.12"
 
 [libraries]
@@ -44,8 +43,6 @@ activity = { module = "androidx.activity:activity-ktx", version = "1.2.2" }
 viewpager = { module = "androidx.viewpager2:viewpager2", version = "1.0.0" }
 swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version = "1.1.0" }
 cardview = { module = "androidx.cardview:cardview", version = "1.0.0" }
-flowbinding-android-core = { module = "io.github.reactivecircus.flowbinding:flowbinding-android", version.ref = "flowbinding" }
-flowbinding-material = { module = "io.github.reactivecircus.flowbinding:flowbinding-material", version.ref = "flowbinding" }
 insetter = { module = "dev.chrisbanes.insetter:insetter", version = "0.5.0" }
 junit = { module = "junit:junit", version = "4.13.2" }
 truth = { module = "com.google.truth:truth", version = "1.1.2" }

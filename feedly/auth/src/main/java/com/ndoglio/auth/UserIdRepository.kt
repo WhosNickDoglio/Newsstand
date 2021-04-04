@@ -28,11 +28,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserIdRepository {
 
-    val currentUserId: String?
-
     val user: Flow<String?>
 
-    fun setUserId(id: String)
+    suspend fun setUserId(id: String)
 
-    fun clear()
+    suspend fun clear()
 }

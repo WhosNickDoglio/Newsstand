@@ -24,10 +24,9 @@
 
 
 plugins {
-    id("com.android.library")
-    id("com.squareup.sqldelight")
-    kotlin("android")
+    id("newsstand-library")
     id("com.squareup.anvil")
+    id("com.squareup.sqldelight")
 }
 
 anvil {

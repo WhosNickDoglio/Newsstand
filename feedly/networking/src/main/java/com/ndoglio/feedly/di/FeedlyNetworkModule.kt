@@ -27,6 +27,8 @@ package com.ndoglio.feedly.di
 import com.ndoglio.auth.AuthenticationHeaderInterceptor
 import com.ndoglio.auth.FeedlyAuthenticationService
 import com.ndoglio.core.AppScope
+import com.ndoglio.core.BuildInfo
+import com.ndoglio.core.isDebug
 import com.ndoglio.feedly.FeedlyService
 import com.squareup.anvil.annotations.ContributesTo
 import dagger.Module
@@ -42,21 +44,26 @@ object FeedlyNetworkModule {
     @Provides
     fun provideOkhttpClient(
         authenticator: Authenticator,
-        headerInterceptor: AuthenticationHeaderInterceptor
+        headerInterceptor: AuthenticationHeaderInterceptor,
+        buildInfo: BuildInfo
     ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(headerInterceptor)
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            })
+            .apply {
+                if (buildInfo.isDebug()) {
+                    addInterceptor(HttpLoggingInterceptor().apply {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    })
+                }
+            }
             .authenticator(authenticator) // TODO I don't think this works right
             .build()
 
     @Provides
     fun provideAuthenticationService(): FeedlyAuthenticationService =
-        FeedlyAuthenticationService(isProd = false)
+        FeedlyAuthenticationService.create(isProd = false)
 
     @Provides
     fun provideFeedlyService(okHttpClient: OkHttpClient): FeedlyService =
-        FeedlyService(okHttpClient, isProd = false)
+        FeedlyService.create(okHttpClient, isProd = false)
 }

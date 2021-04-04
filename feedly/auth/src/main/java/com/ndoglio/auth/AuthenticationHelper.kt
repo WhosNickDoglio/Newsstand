@@ -26,13 +26,14 @@ package com.ndoglio.auth
 
 import com.ndoglio.core.AppScope
 import com.squareup.anvil.annotations.ContributesBinding
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 interface AuthenticationHelper {
 
-    val isLoggedIn: Boolean
-
     fun provideRedirectUrl(): String
+
+    suspend fun isLoggedIn(): Boolean
 
     suspend fun retrieveTokens(url: String)
 
@@ -48,8 +49,7 @@ class DefaultAuthenticationHelper @Inject constructor(
     private val userIdRepository: UserIdRepository
 ) : AuthenticationHelper {
 
-    override val isLoggedIn: Boolean
-        get() = userIdRepository.user != null
+    override suspend fun isLoggedIn(): Boolean = userIdRepository.user.first() != null
 
     override fun provideRedirectUrl(): String = authenticationService.retrieveAuthCode(
         id = CLIENT_ID,
@@ -72,7 +72,7 @@ class DefaultAuthenticationHelper @Inject constructor(
 
     override suspend fun refreshTokens() {
         val newTokens = authenticationService.refreshTokens(
-            token = tokenRepository.refreshToken ?: error("No token!"),
+            token = tokenRepository.refreshToken.first() ?: error("No token!"),
             id = CLIENT_ID,
             secret = CLIENT_SECRET
         )
