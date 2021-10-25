@@ -22,6 +22,16 @@
  * SOFTWARE.
  */
 
-package com.nicholasdoglio.data.remote.authentication
+package com.nicholasdoglio.newsstand
 
-class FeedlyAuthenticationManager
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.nicholasdoglio.newsstand.R
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+}

@@ -10,8 +10,6 @@ Lots of side project ideas and things to learn got in the way of actually workin
 
 A [Feedly](https://feedly.com/), [Inoreader](https://www.inoreader.com/), [Medium](https://medium.com/) and RSS client written in Kotlin used to practice Clean Architecture
 
-Talk about clean
-
 # To-Do
 
 All planned work is detailed in the [projects](https://github.com/WhosNickDoglio/Newsstand/projects) page.
