@@ -29,13 +29,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(App.compileSdk)
+    compileSdk = 31
     defaultConfig {
         applicationId = "com.nicholasdoglio.newsstand"
-        minSdkVersion(App.minSdk)
-        targetSdkVersion(App.targetSdk)
-        versionCode = App.versionCode
-        versionName = App.versionName
+        minSdk = 24
+        targetSdk = 31
+        versionCode = 1
+        versionName = "0.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildTypes {
