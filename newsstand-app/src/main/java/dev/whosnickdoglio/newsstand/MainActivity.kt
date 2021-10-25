@@ -22,9 +22,16 @@
  * SOFTWARE.
  */
 
-package com.nicholasdoglio.newsstand
+package dev.whosnickdoglio.newsstand
 
-import android.app.Application
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import dev.whosnickdoglio.newsstand.R
 
-class NewsstandApplication : Application() {
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
 }

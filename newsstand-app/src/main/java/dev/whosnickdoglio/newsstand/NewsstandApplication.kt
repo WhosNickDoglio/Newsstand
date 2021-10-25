@@ -22,7 +22,9 @@
  * SOFTWARE.
  */
 
-package com.nicholasdoglio.newsstand.di
+package dev.whosnickdoglio.newsstand
 
+import android.app.Application
 
-interface AppComponent
+class NewsstandApplication : Application() {
+}

@@ -31,7 +31,7 @@ plugins {
 android {
     compileSdk = 31
     defaultConfig {
-        applicationId = "com.nicholasdoglio.newsstand"
+        applicationId = "dev.whosnickdoglio.newsstand"
         minSdk = 24
         targetSdk = 31
         versionCode = 1
@@ -56,4 +56,5 @@ android {
 
 
 dependencies {
+    implementation("androidx.appcompat:appcompat:1.3.1")
 }
