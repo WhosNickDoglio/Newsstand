@@ -1,17 +1,18 @@
 # Newsstand
 
+[![CI](https://github.com/WhosNickDoglio/Newsstand/actions/workflows/ci.yml/badge.svg)](https://github.com/WhosNickDoglio/Newsstand/actions/workflows/ci.yml)
 [![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=24)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c8cd740dd75599c2318b/maintainability)](https://codeclimate.com/github/WhosNickDoglio/Newsstand/maintainability)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
- 
 
-A [Feedly](https://feedly.com/), [Inoreader](https://www.inoreader.com/), and RSS client written in Kotlin used to practice Clean Architecture
-
+A [Feedly](https://feedly.com/), [Inoreader](https://www.inoreader.com/), and RSS client written in
+Kotlin.
 
 # License
 
 	MIT License
 
-	Copyright (c) 2019 Nicholas Doglio
+	Copyright (c) 2021 Nicholas Doglio
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
