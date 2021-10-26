@@ -3,8 +3,8 @@ import io.gitlab.arturbosch.detekt.Detekt
 
 buildscript {
     dependencies {
-        classpath(libs.android.gradle.plugin.core)
-        classpath(libs.kotlin.gradle)
+        classpath(libs.gradle.android)
+        classpath(libs.gradle.kotlin)
     }
 }
 

@@ -25,10 +25,9 @@
 package dev.whosnickdoglio.newsstand
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import dev.whosnickdoglio.newsstand.R
+import androidx.activity.ComponentActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

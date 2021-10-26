@@ -26,17 +26,20 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 android-app = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 
 [libraries]
-android-gradle-plugin-core = { module = "com.android.tools.build:gradle", version.ref = "agp" }
-sqldelight-gradle = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight" }
-kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-detekt-gradle = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+gradle-android = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+gradle-sqldelight = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight" }
+gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+gradle-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 
-core-ktx = { module = "androidx.core:core-ktx", version = "1.6.0" }
-datastore = { module = "androidx.datastore:datastore-preferences", version = "1.0.0" }
-startup = { module = "androidx.startup:startup-runtime", version = "1.1.0" }
-browser = { module = "androidx.browser:browser", version = "1.3.0" }
+androidx-core = { module = "androidx.core:core-ktx", version = "1.6.0" }
+androidx-datastore = { module = "androidx.datastore:datastore-preferences", version = "1.0.0" }
+androidx-startup = { module = "androidx.startup:startup-runtime", version = "1.1.0" }
+androidx-browser = { module = "androidx.browser:browser", version = "1.3.0" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version = "1.3.1" }
+androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version = "1.0.0-beta01" }
 
 dagger-core = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
@@ -80,26 +83,20 @@ workflow-ui-compose-tooling = { module = "com.squareup.workflow1:workflow-ui-com
 workflow-container = { module = "com.squareup.workflow1:workflow-ui-container-android", version.ref = "workflow" }
 workflow-test = { module = "com.squareup.workflow1:workflow-testing-jvm", version.ref = "workflow" }
 
-compose-ui-core = { module = "androidx.compose.ui:ui", version.ref = "compose" }
-compose-ui-tooling-core = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-animations = { module = "androidx.compose.animation:animation", version.ref = "compose" }
 compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "compose" }
-compose-material-core = { module = "androidx.compose.material:material", version.ref = "compose" }
+compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
 compose-material-icons-core = { module = "androidx.compose.material:material-icons-core", version.ref = "compose" }
 compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
 
-compose-activity-ext = { module = "androidx.activity:activity-compose", version = "1.3.1" }
-compose-constraintlayout = { module = "androidx.constraintlayout:constraintlayout-compose", version = "1.0.0-beta01" }
-
-accompanist-insets-core = { module = "com.google.accompanist:accompanist-insets", version.ref = "accompanist" }
+accompanist-insets = { module = "com.google.accompanist:accompanist-insets", version.ref = "accompanist" }
 accompanist-insets-ui = { module = "com.google.accompanist:accompanist-insets-ui", version.ref = "accompanist" }
 accompanist-systems-ui = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 accompanist-pager-core = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist" }
 accompanist-pager-indicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanist" }
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
 accompanist-refresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanist" }
-
-#[bundles]
-#workflow = ["workflow.core", "workflow.android.ui", "workflow.container", "workflow.backstack"]
