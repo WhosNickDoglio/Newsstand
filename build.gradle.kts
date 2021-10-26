@@ -1,26 +1,52 @@
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import io.gitlab.arturbosch.detekt.Detekt
+
 buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.0.3")
-        classpath(kotlin("gradle-plugin", version = "1.5.31"))
+        classpath(libs.android.gradle.plugin.core)
+        classpath(libs.kotlin.gradle)
     }
 }
 
 plugins {
-    id("io.gitlab.arturbosch.detekt") version("1.18.1")
-    id("com.vanniktech.android.junit.jacoco") version "0.16.0"
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.ben.manes)
+    alias(libs.plugins.junit.jacoco)
+    alias(libs.plugins.dependency.analysis)
+    alias(libs.plugins.doctor)
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+junitJacoco {
+    version = libs.versions.jacoco.get()
 }
 
 tasks.register<Delete>("clean") {
     delete(rootProject.buildDir)
+}
+
+tasks.register<Detekt>("detektAll") {
+    parallel = true
+    autoCorrect = true
+    setSource(files(projectDir))
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude("**/resources/**")
+    exclude("**/build/**")
+}
+
+tasks.named<Wrapper>("wrapper") {
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+fun isNonStable(version: String): Boolean {
+    val unstableKeywords =
+        listOf("ALPHA", "RC", "BETA", "DEV", "-M").any { version.toUpperCase().contains(it) }
+    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+    return unstableKeywords && !regex.matches(version)
+}
+
+tasks.named("dependencyUpdates", DependencyUpdatesTask::class.java).configure {
+    rejectVersionIf {
+        isNonStable(candidate.version)
+    }
 }
