@@ -9,6 +9,11 @@ buildscript {
     }
 }
 
+plugins {
+    id("io.gitlab.arturbosch.detekt") version("1.18.1")
+    id("com.vanniktech.android.junit.jacoco") version "0.16.0"
+}
+
 allprojects {
     repositories {
         google()

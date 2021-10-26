@@ -1,6 +1,6 @@
 name: CI
 
-on: [push]
+on: [ push ]
 
 jobs:
   build:
@@ -19,18 +19,18 @@ jobs:
       - name: Gradle Wrapper Validation
         uses: gradle/wrapper-validation-action@v1.0.4
 
-#      - name: Lint TODO add back detekt
-#        uses: eskatos/gradle-command-action@v1
-#        with:
-#          arguments: detekt
+      - name: Lint
+        uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: detekt
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug
 
-#      - name: Run Unit Tests TODO add back JaCoCo plugin
-#        uses: eskatos/gradle-command-action@v1
-#        with:
-#          arguments: jacocoTestReportDebug
+      - name: Run Unit Tests
+        uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: jacocoTestReportDebug
 
       - name: Codecov
         uses: codecov/codecov-action@v2.1.0
