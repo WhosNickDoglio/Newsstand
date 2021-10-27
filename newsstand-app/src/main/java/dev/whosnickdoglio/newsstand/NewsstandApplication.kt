@@ -25,6 +25,13 @@
 package dev.whosnickdoglio.newsstand
 
 import android.app.Application
+import dev.whosnickdoglio.newsstand.di.AppComponent
+import dev.whosnickdoglio.newsstand.di.AppComponentProvider
+import dev.whosnickdoglio.newsstand.di.DaggerAppComponent
 
-class NewsstandApplication : Application() {
+class NewsstandApplication : Application(), AppComponentProvider {
+
+    override val component: AppComponent by lazy {
+        DaggerAppComponent.factory().create(this)
+    }
 }

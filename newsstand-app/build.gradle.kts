@@ -26,14 +26,21 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    alias(libs.plugins.anvil)
+}
+
+object Sdk { // TODO find a better place for this
+    const val compile = 31
+    const val min = 24
+    const val target = 31
 }
 
 android {
-    compileSdk = 31
+    compileSdk = Sdk.compile
     defaultConfig {
         applicationId = "dev.whosnickdoglio.newsstand"
-        minSdk = 24
-        targetSdk = 31
+        minSdk = Sdk.min
+        targetSdk = Sdk.target
         versionCode = 1
         versionName = "0.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -56,5 +63,10 @@ android {
 
 
 dependencies {
+    implementation(projects.appScope)
+
     implementation(libs.androidx.activity.compose)
+
+    implementation(libs.dagger.core)
+    kapt(libs.dagger.compiler)
 }
