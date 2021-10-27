@@ -25,7 +25,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Material.Light" />
+    <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar" />
 
     <style name="AppTheme.NoActionBar">
         <item name="android:windowActionBar">false</item>
