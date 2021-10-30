@@ -29,18 +29,12 @@ plugins {
     alias(libs.plugins.anvil)
 }
 
-object Sdk { // TODO find a better place for this
-    const val compile = 31
-    const val min = 24
-    const val target = 31
-}
-
 android {
-    compileSdk = Sdk.compile
+    compileSdk = 31
     defaultConfig {
         applicationId = "dev.whosnickdoglio.newsstand"
-        minSdk = Sdk.min
-        targetSdk = Sdk.target
+        minSdk = 24
+        targetSdk = 31
         versionCode = 1
         versionName = "0.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -51,6 +45,15 @@ android {
                 proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
             }
         }
+
+        buildFeatures {
+            compose = true
+        }
+
+        composeOptions {
+            kotlinCompilerExtensionVersion = libs.versions.compose.get()
+        }
+
         compileOptions {
             sourceCompatibility = JavaVersion.VERSION_11
             targetCompatibility = JavaVersion.VERSION_11
@@ -63,6 +66,16 @@ dependencies {
     implementation(projects.appScope)
 
     implementation(libs.androidx.activity.compose)
+
+    implementation(libs.compose.ui)
+    implementation(libs.compose.ui.tooling)
+    implementation(libs.compose.material)
+    implementation(libs.compose.material.icons.core)
+    implementation(libs.compose.material.icons.extended)
+    implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.animations)
+    implementation(libs.compose.compiler)
 
     implementation(libs.dagger.core)
     kapt(libs.dagger.compiler)

@@ -26,11 +26,26 @@ package dev.whosnickdoglio.newsstand
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContent {
+            NewsstandApp()
+        }
     }
 }
+
+
+@Composable
+private fun NewsstandApp() {
+    MaterialTheme {
+        Text("Hello World.")
+    }
+}
+
