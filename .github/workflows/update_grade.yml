@@ -15,3 +15,4 @@ jobs:
         uses: gradle-update/update-gradle-wrapper-action@v1.0.15
         with:
           repo-token: ${{ secrets.GRADLE_UPGRADE_TOKEN }}
+          set-distribution-checksum: false
