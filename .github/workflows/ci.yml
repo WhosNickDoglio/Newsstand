@@ -20,7 +20,7 @@ jobs:
         uses: gradle/wrapper-validation-action@v1.0.4
 
       - name: Lint
-        uses: eskatos/gradle-command-action@v1
+        uses: eskatos/gradle-command-action@v2
         with:
           arguments: detektAll
 
@@ -28,7 +28,7 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: Run Unit Tests
-        uses: eskatos/gradle-command-action@v1
+        uses: eskatos/gradle-command-action@v2
         with:
           arguments: jacocoTestReportDebug
 
