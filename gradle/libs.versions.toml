@@ -1,7 +1,7 @@
 [versions]
 agp = "7.0.3"
 kotlin = "1.5.31"
-dagger = "2.40.1"
+dagger = "2.40.2"
 detekt = "1.18.1"
 coroutines = "1.5.2"
 okhttp = "4.9.3"
