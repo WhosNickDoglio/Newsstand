@@ -1,6 +1,6 @@
 [versions]
 agp = "7.0.3"
-kotlin = "1.5.31"
+kotlin = "1.6.0"
 dagger = "2.40.3"
 detekt = "1.18.1"
 coroutines = "1.5.2"
