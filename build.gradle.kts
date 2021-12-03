@@ -27,6 +27,7 @@ tasks.register<Delete>("clean") {
 tasks.register<Detekt>("detektAll") {
     parallel = true
     autoCorrect = true
+    config.setFrom("$projectDir/config/detekt/detekt.yml")
     setSource(files(projectDir))
     include("**/*.kt")
     include("**/*.kts")
