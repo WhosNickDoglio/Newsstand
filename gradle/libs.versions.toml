@@ -10,7 +10,7 @@ moshi = "1.12.0"
 sqldelight = "1.5.3"
 workflow = "1.2.0"
 compose = "1.0.5"
-accompanist = "0.20.2"
+accompanist = "0.20.3"
 jacoco = "0.8.7"
 
 [plugins]
