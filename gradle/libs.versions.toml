@@ -18,7 +18,7 @@ detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ben-manes = { id = "com.github.ben-manes.versions", version = "0.39.0" }
 doctor = { id = "com.osacky.doctor", version = "0.7.3" }
 anvil = { id = "com.squareup.anvil", version = "2.3.9" }
-ksp = { id = "com.google.devtools.ksp", version = "1.5.31-1.0.0" }
+ksp = { id = "com.google.devtools.ksp", version = "1.6.10-1.0.2" }
 play-publish = { id = "com.github.triplet.play", version = "3.7.0" }
 junit-jacoco = { id = "com.vanniktech.android.junit.jacoco", version = "0.16.0" }
 dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version = "0.78.0" }
