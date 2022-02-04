@@ -15,7 +15,7 @@ jacoco = "0.8.7"
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-ben-manes = { id = "com.github.ben-manes.versions", version = "0.41.0" }
+ben-manes = { id = "com.github.ben-manes.versions", version = "0.42.0" }
 doctor = { id = "com.osacky.doctor", version = "0.7.3" }
 anvil = { id = "com.squareup.anvil", version = "2.3.9" }
 ksp = { id = "com.google.devtools.ksp", version = "1.5.31-1.0.0" }
