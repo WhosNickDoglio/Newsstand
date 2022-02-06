@@ -28,4 +28,4 @@ gradleEnterprise {
     }
 }
 include(":newsstand-app")
-include(":app-scope")
+include(":libraries:app-scope")

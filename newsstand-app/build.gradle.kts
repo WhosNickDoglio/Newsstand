@@ -72,7 +72,7 @@ android {
 dependencies {
     coreLibraryDesugaring(libs.desugar)
 
-    implementation(projects.appScope)
+    implementation(projects.libraries.appScope)
 
     implementation(libs.androidx.activity.compose)
 
