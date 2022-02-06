@@ -19,7 +19,6 @@ plugins {
     id("com.gradle.enterprise") version ("3.7")
 }
 
-enableFeaturePreview("VERSION_CATALOGS")
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 gradleEnterprise {
