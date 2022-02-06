@@ -1,6 +1,6 @@
 [versions]
 agp = "7.1.1"
-kotlin = "1.5.31"
+kotlin = "1.6.10"
 dagger = "2.40.5"
 detekt = "1.19.0"
 coroutines = "1.6.0"
@@ -9,16 +9,16 @@ retrofit = "2.9.0"
 moshi = "1.13.0"
 sqldelight = "1.5.3"
 workflow = "1.5.0"
-compose = "1.0.5"
-accompanist = "0.20.3"
+compose = "1.1.0-rc03"
+accompanist = "0.22.1-rc"
 jacoco = "0.8.7"
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ben-manes = { id = "com.github.ben-manes.versions", version = "0.42.0" }
 doctor = { id = "com.osacky.doctor", version = "0.7.3" }
-anvil = { id = "com.squareup.anvil", version = "2.3.9" }
-ksp = { id = "com.google.devtools.ksp", version = "1.5.31-1.0.0" }
+anvil = { id = "com.squareup.anvil", version = "2.3.11-1-6-10" }
+ksp = { id = "com.google.devtools.ksp", version = "1.6.10-1.0.2" }
 play-publish = { id = "com.github.triplet.play", version = "3.7.0" }
 junit-jacoco = { id = "com.vanniktech.android.junit.jacoco", version = "0.16.0" }
 dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version = "0.80.0" }
