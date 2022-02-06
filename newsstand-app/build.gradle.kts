@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2021 Nicholas Doglio
+ * Copyright (c) 2022 Nicholas Doglio
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,59 +20,17 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
-*/
+ */
 
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    id("newsstand-app")
+    id("newsstand-kapt")
     kotlin("kapt")
     alias(libs.plugins.anvil)
 }
 
-object Sdk { // TODO find a better place for this
-    const val compile = 31
-    const val min = 24
-    const val target = 31
-}
-
-android {
-    compileSdk = Sdk.compile
-    defaultConfig {
-        applicationId = "dev.whosnickdoglio.newsstand"
-        minSdk = Sdk.min
-        targetSdk = Sdk.target
-        versionCode = 1
-        versionName = "0.1.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        buildTypes {
-            getByName("release") {
-                isMinifyEnabled = true
-                proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            }
-        }
-
-        buildFeatures {
-            compose = true
-        }
-
-        composeOptions {
-            kotlinCompilerExtensionVersion = libs.versions.compose.get()
-        }
-
-        compileOptions {
-            isCoreLibraryDesugaringEnabled = true
-            sourceCompatibility = JavaVersion.VERSION_11
-            targetCompatibility = JavaVersion.VERSION_11
-        }
-    }
-}
-
-
 dependencies {
-    coreLibraryDesugaring(libs.desugar)
-
-    implementation(projects.appScope)
+    implementation(projects.libraries.appScope)
 
     implementation(libs.androidx.activity.compose)
 
