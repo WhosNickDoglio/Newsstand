@@ -59,7 +59,6 @@ retrofit-converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", 
 
 moshi-core = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
-moshi-ksp = { module = "dev.zacsweers.moshix:moshi-ksp", version = "0.14.1" }
 moshi-adapters = { module = "com.squareup.moshi:moshi-adapters", version.ref = "moshi" }
 
 eithernet = { module = "com.slack.eithernet:eithernet", version = "1.2.1" }
