@@ -25,7 +25,6 @@
 plugins {
     id("newsstand-app")
     id("newsstand-kapt")
-    kotlin("kapt")
     alias(libs.plugins.anvil)
 }
 
