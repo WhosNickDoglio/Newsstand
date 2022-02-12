@@ -15,6 +15,13 @@ kotlin {
     explicitApi()
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
+
+
 extensions.configure<LibraryExtension>() {
     compileSdk = COMPILE_SDK
     defaultConfig {

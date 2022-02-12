@@ -9,8 +9,14 @@ kotlin {
     explicitApi()
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
 
-val newsstandExtension: NewsstandExtension = extensions.create("newsstand", NewsstandExtension::class.java)
+val newsstandExtension: NewsstandExtension =
+    extensions.create("newsstand", NewsstandExtension::class.java)
 
 tasks.apply {
     configureTests()
