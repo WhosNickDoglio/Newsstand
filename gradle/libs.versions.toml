@@ -23,11 +23,6 @@ ksp = { id = "com.google.devtools.ksp", version = "1.6.10-1.0.2" }
 play-publish = { id = "com.github.triplet.play", version.ref = "publish" }
 junit-jacoco = { id = "com.vanniktech.android.junit.jacoco", version = "0.16.0" }
 dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version = "0.80.0" }
-android-library = { id = "com.android.library", version.ref = "agp" }
-android-app = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 
 [libraries]
 gradle-android = { module = "com.android.tools.build:gradle", version.ref = "agp" }
