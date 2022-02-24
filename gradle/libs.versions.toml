@@ -1,5 +1,5 @@
 [versions]
-agp = "7.1.1"
+agp = "7.1.2"
 kotlin = "1.6.10"
 dagger = "2.41"
 detekt = "1.19.0"
