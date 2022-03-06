@@ -20,15 +20,17 @@ jobs:
         uses: gradle/wrapper-validation-action@v1.0.4
 
       - name: Lint
-        uses: eskatos/gradle-command-action@v2
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: detektAll
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: assembleDebug
 
       - name: Run Unit Tests
-        uses: eskatos/gradle-command-action@v2
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: jacocoTestReportDebug
 
