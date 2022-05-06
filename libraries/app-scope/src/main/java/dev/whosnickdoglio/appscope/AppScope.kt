@@ -30,4 +30,4 @@ package dev.whosnickdoglio.appscope
  *
  * @see <a href="https://github.com/square/anvil">More info on Anvil Github repo.</a>
  */
-abstract class AppScope private constructor()
+sealed interface AppScope
