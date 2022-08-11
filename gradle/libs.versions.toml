@@ -9,7 +9,7 @@ retrofit = "2.9.0"
 moshi = "1.13.0"
 sqldelight = "1.5.3"
 workflow = "1.7.1"
-compose = "1.1.1"
+compose = "1.2.1"
 accompanist = "0.25.1"
 jacoco = "0.8.7"
 
