@@ -30,9 +30,9 @@ plugins {
 }
 
 object Sdk { // TODO find a better place for this
-    const val compile = 31
+    const val compile = 33
     const val min = 24
-    const val target = 31
+    const val target = 33
 }
 
 android {
@@ -57,7 +57,7 @@ android {
         }
 
         composeOptions {
-            kotlinCompilerExtensionVersion = libs.versions.compose.get()
+            kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
         }
 
         compileOptions {

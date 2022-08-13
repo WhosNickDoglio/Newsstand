@@ -1,6 +1,6 @@
 [versions]
 agp = "7.2.2"
-kotlin = "1.6.10"
+kotlin = "1.7.10"
 dagger = "2.43.2"
 detekt = "1.21.0"
 coroutines = "1.6.4"
@@ -9,7 +9,8 @@ retrofit = "2.9.0"
 moshi = "1.13.0"
 sqldelight = "1.5.3"
 workflow = "1.7.1"
-compose = "1.1.1"
+compose = "1.2.1"
+composeCompiler = "1.3.0"
 accompanist = "0.25.1"
 jacoco = "0.8.7"
 
@@ -17,8 +18,8 @@ jacoco = "0.8.7"
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ben-manes = { id = "com.github.ben-manes.versions", version = "0.42.0" }
 doctor = { id = "com.osacky.doctor", version = "0.8.1" }
-anvil = { id = "com.squareup.anvil", version = "2.4.1-1-6" }
-ksp = { id = "com.google.devtools.ksp", version = "1.6.10-1.0.4" }
+anvil = { id = "com.squareup.anvil", version = "2.4.1" }
+ksp = { id = "com.google.devtools.ksp", version = "1.7.10-1.0.6" }
 play-publish = { id = "com.github.triplet.play", version = "3.7.0" }
 junit-jacoco = { id = "com.vanniktech.android.junit.jacoco", version = "0.16.0" }
 dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version = "1.12.0" }
@@ -87,7 +88,7 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-animations = { module = "androidx.compose.animation:animation", version.ref = "compose" }
-compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "compose" }
+compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "composeCompiler" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
 compose-material-icons-core = { module = "androidx.compose.material:material-icons-core", version.ref = "compose" }
 compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
