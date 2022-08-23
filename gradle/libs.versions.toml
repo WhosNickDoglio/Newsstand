@@ -22,7 +22,7 @@ anvil = { id = "com.squareup.anvil", version = "2.4.1" }
 ksp = { id = "com.google.devtools.ksp", version = "1.7.10-1.0.6" }
 play-publish = { id = "com.github.triplet.play", version = "3.7.0" }
 junit-jacoco = { id = "com.vanniktech.android.junit.jacoco", version = "0.16.0" }
-dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version = "1.12.0" }
+dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version = "1.13.0" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 android-app = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
