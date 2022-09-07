@@ -77,15 +77,16 @@ dependencies {
     implementation(libs.androidx.activity.compose)
 
     implementation(libs.compose.ui)
-    implementation(libs.compose.ui.tooling)
     implementation(libs.compose.material)
-    implementation(libs.compose.material.icons.core)
-    implementation(libs.compose.material.icons.extended)
-    implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.foundation)
     implementation(libs.compose.animations)
     implementation(libs.compose.compiler)
+    debugImplementation(libs.compose.ui.tooling)
+    implementation(libs.compose.ui.tooling.preview)
 
     implementation(libs.dagger.core)
     kapt(libs.dagger.compiler)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.truth)
 }
