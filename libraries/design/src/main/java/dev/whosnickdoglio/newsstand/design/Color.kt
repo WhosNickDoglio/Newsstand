@@ -1,3 +1,4 @@
+@file:Suppress("MagicNumber")
 package dev.whosnickdoglio.newsstand.design
 
 import androidx.compose.ui.graphics.Color
