@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package dev.whosnickdoglio.appscope
+package dev.whosnickdoglio.newsstand.anvil
 
 /**
  * A scope for [com.squareup.anvil] that adds anything contributed to it to the top-level app

@@ -70,7 +70,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun SetSystemBars() {
+    private fun SetSystemBars() {
         val systemUiController = rememberSystemUiController()
         val useDarkIcons = !isSystemInDarkTheme()
 

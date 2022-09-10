@@ -29,7 +29,7 @@ import android.content.Context
 import com.squareup.anvil.annotations.MergeComponent
 import dagger.BindsInstance
 import dagger.Component
-import dev.whosnickdoglio.appscope.AppScope
+import dev.whosnickdoglio.newsstand.anvil.AppScope
 import javax.inject.Singleton
 
 /**

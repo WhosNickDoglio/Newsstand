@@ -32,7 +32,7 @@ import com.squareup.workflow1.Workflow
 import com.squareup.workflow1.ui.Screen
 import com.squareup.workflow1.ui.toParcelable
 import com.squareup.workflow1.ui.toSnapshot
-import dev.whosnickdoglio.appscope.AppScope
+import dev.whosnickdoglio.newsstand.anvil.AppScope
 import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 

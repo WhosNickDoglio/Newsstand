@@ -10,7 +10,6 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
-
 private val LightColors = lightColorScheme(
     surfaceTint = md_theme_light_surfaceTint,
     onErrorContainer = md_theme_light_onErrorContainer,
@@ -40,7 +39,6 @@ private val LightColors = lightColorScheme(
     primaryContainer = md_theme_light_primaryContainer,
     primary = md_theme_light_primary,
 )
-
 
 private val DarkColors = darkColorScheme(
     surfaceTint = md_theme_dark_surfaceTint,
@@ -75,7 +73,7 @@ private val DarkColors = darkColorScheme(
 @Composable
 fun NewsstandTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
+    content: @Composable () -> Unit
 ) {
     val dynamicColor = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
     val colorScheme = when {
@@ -83,7 +81,6 @@ fun NewsstandTheme(
         dynamicColor && !useDarkTheme -> dynamicLightColorScheme(LocalContext.current)
         useDarkTheme -> DarkColors
         else -> LightColors
-
     }
 
     MaterialTheme(
