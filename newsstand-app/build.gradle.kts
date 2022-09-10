@@ -29,19 +29,12 @@ plugins {
     id("kotlin-parcelize")
     alias(libs.plugins.anvil)
 }
-
-object Sdk { // TODO find a better place for this
-    const val compile = 33
-    const val min = 24
-    const val target = 33
-}
-
 android {
-    compileSdk = Sdk.compile
+    compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
         applicationId = "dev.whosnickdoglio.newsstand"
-        minSdk = Sdk.min
-        targetSdk = Sdk.target
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
         versionName = "0.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

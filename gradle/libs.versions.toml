@@ -1,4 +1,7 @@
 [versions]
+targetSdk = "33"
+compileSdk = "33"
+minSdk = "24"
 agp = "7.2.2"
 kotlin = "1.7.10"
 dagger = "2.43.2"
