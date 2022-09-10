@@ -25,16 +25,14 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import io.gitlab.arturbosch.detekt.Detekt
 
-buildscript {
-    dependencies {
-        classpath(libs.gradle.android)
-        classpath(libs.gradle.kotlin)
-    }
-}
-
 plugins {
     alias(libs.plugins.detekt)
-    alias(libs.plugins.ben.manes)
+    alias(libs.plugins.android.app) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply  false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.kotlin.kapt) apply false
+    alias(libs.plugins.gradle.versions)
     alias(libs.plugins.junit.jacoco)
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.doctor)

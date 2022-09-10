@@ -23,11 +23,11 @@
  */
 
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    kotlin("kapt")
-    id("kotlin-parcelize")
+    alias(libs.plugins.android.app)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.anvil)
+    id("kotlin-parcelize")
 }
 android {
     compileSdk = libs.versions.compileSdk.get().toInt()
