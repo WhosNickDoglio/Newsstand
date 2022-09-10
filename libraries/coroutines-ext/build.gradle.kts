@@ -22,36 +22,11 @@
  * SOFTWARE.
  */
 
-rootProject.name = "Newsstand"
-
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
 plugins {
-    id("com.gradle.enterprise") version ("3.11.1")
+    alias(libs.plugins.kotlin.jvm)
 }
 
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-    }
+dependencies {
+    implementation(libs.coroutines.core)
 }
-include(":newsstand-app")
-include(":libraries:app-scope")
-include(":libraries:design")
-include(":libraries:coroutines-ext")

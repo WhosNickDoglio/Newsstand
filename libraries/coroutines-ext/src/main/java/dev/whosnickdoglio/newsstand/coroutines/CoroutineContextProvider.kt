@@ -22,36 +22,29 @@
  * SOFTWARE.
  */
 
-rootProject.name = "Newsstand"
+package dev.whosnickdoglio.newsstand.coroutines
 
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
+import kotlin.coroutines.CoroutineContext
+
+/**
+ * A component that will maintain a set of [CoroutineContexts][CoroutineContext] used for common
+ * operations like making network requests, running work on a background thread or rendering UI on
+ * the main thread.
+ */
+interface CoroutineContextProvider {
+
+    /**
+     * A [CoroutineContext] for doing work on the main thread, like laying out UI components.
+     */
+    val main: CoroutineContext
+
+    /**
+     * A [CoroutineContext] for doing work on a background thread.
+     */
+    val background: CoroutineContext
+
+    /**
+     * A [CoroutineContext] for handling network requests or writing/reading to/from disk.
+     */
+    val io: CoroutineContext
 }
-
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-plugins {
-    id("com.gradle.enterprise") version ("3.11.1")
-}
-
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-    }
-}
-include(":newsstand-app")
-include(":libraries:app-scope")
-include(":libraries:design")
-include(":libraries:coroutines-ext")
