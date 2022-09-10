@@ -26,6 +26,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    id("kotlin-parcelize")
     alias(libs.plugins.anvil)
 }
 
@@ -61,6 +62,7 @@ android {
         }
 
         compileOptions {
+            kotlinOptions.freeCompilerArgs += "-opt-in=com.squareup.workflow1.ui.WorkflowUiExperimentalApi"
             isCoreLibraryDesugaringEnabled = true
             sourceCompatibility = JavaVersion.VERSION_11
             targetCompatibility = JavaVersion.VERSION_11
@@ -75,6 +77,12 @@ dependencies {
     implementation(projects.libraries.appScope)
 
     implementation(libs.androidx.activity.compose)
+
+    implementation(libs.workflow.core)
+    implementation(libs.workflow.android.ui)
+    implementation(libs.workflow.ui.compose)
+    implementation(libs.workflow.ui.compose.tooling)
+    implementation(libs.workflow.container)
 
     implementation(libs.compose.ui)
     implementation(libs.compose.material)
@@ -91,6 +99,7 @@ dependencies {
     implementation(libs.dagger.core)
     kapt(libs.dagger.compiler)
 
+    testImplementation(libs.workflow.test)
     testImplementation(libs.junit)
     testImplementation(libs.truth)
 }

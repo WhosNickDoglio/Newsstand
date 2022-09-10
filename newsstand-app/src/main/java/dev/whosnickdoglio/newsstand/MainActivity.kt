@@ -28,23 +28,30 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import com.squareup.workflow1.ui.ViewEnvironment
+import com.squareup.workflow1.ui.ViewRegistry
+import com.squareup.workflow1.ui.compose.WorkflowRendering
+import com.squareup.workflow1.ui.plus
+import dev.whosnickdoglio.newsstand.root.rootViewFactory
+import tangle.viewmodel.compose.tangleViewModel
 
 class MainActivity : ComponentActivity() {
+
+    private val registry = ViewRegistry(rootViewFactory)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NewsstandApp()
+            MaterialTheme {
+                val model = tangleViewModel<NewsstandWorkflowContainerViewModel>()
+                val rendering by model.rendering.collectAsState()
+                val viewEnvironment = remember { ViewEnvironment.EMPTY.plus(registry) }
+
+                WorkflowRendering(rendering, viewEnvironment)
+            }
         }
-    }
-}
-
-
-@Composable
-private fun NewsstandApp() {
-    MaterialTheme {
-        Text("Hello World.")
     }
 }

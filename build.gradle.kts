@@ -75,3 +75,7 @@ tasks.named("dependencyUpdates", DependencyUpdatesTask::class.java).configure {
         isNonStable(candidate.version)
     }
 }
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions.freeCompilerArgs += "-opt-in=com.squareup.workflow1.ui.WorkflowUiExperimentalApi"
+}
