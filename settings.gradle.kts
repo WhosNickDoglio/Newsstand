@@ -53,3 +53,4 @@ gradleEnterprise {
 }
 include(":newsstand-app")
 include(":libraries:app-scope")
+include(":libraries:design")

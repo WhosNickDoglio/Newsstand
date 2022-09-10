@@ -67,6 +67,9 @@ android {
             sourceCompatibility = JavaVersion.VERSION_11
             targetCompatibility = JavaVersion.VERSION_11
         }
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_11.toString()
+        }
     }
 }
 
@@ -75,6 +78,7 @@ dependencies {
     coreLibraryDesugaring(libs.desugar)
 
     implementation(projects.libraries.appScope)
+    implementation(projects.libraries.design)
 
     implementation(libs.androidx.activity.compose)
 
@@ -91,6 +95,8 @@ dependencies {
     implementation(libs.compose.compiler)
     debugImplementation(libs.compose.ui.tooling)
     implementation(libs.compose.ui.tooling.preview)
+
+    implementation(libs.accompanist.systems.ui)
 
     implementation(libs.tangle.viewmodel.compose)
     implementation(libs.tangle.viewmodel.api)

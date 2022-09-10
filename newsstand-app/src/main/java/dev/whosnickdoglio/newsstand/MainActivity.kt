@@ -27,14 +27,20 @@ package dev.whosnickdoglio.newsstand
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
+import androidx.core.view.WindowCompat
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.squareup.workflow1.ui.ViewEnvironment
 import com.squareup.workflow1.ui.ViewRegistry
 import com.squareup.workflow1.ui.compose.WorkflowRendering
 import com.squareup.workflow1.ui.plus
+import dev.whosnickdoglio.newsstand.design.NewsstandTheme
 import dev.whosnickdoglio.newsstand.root.rootViewFactory
 import tangle.viewmodel.compose.tangleViewModel
 
@@ -44,14 +50,37 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
-            MaterialTheme {
-                val model = tangleViewModel<NewsstandWorkflowContainerViewModel>()
-                val rendering by model.rendering.collectAsState()
-                val viewEnvironment = remember { ViewEnvironment.EMPTY.plus(registry) }
-
-                WorkflowRendering(rendering, viewEnvironment)
+            NewsstandTheme {
+                NewsstandApp()
             }
+        }
+    }
+
+    @Composable
+    private fun NewsstandApp() {
+        SetSystemBars()
+
+        val model = tangleViewModel<NewsstandWorkflowContainerViewModel>()
+        val rendering by model.rendering.collectAsState()
+        val viewEnvironment = remember { ViewEnvironment.EMPTY.plus(registry) }
+
+        WorkflowRendering(rendering, viewEnvironment)
+    }
+
+    @Composable
+    fun SetSystemBars() {
+        val systemUiController = rememberSystemUiController()
+        val useDarkIcons = !isSystemInDarkTheme()
+
+        DisposableEffect(systemUiController, useDarkIcons) {
+            systemUiController.setSystemBarsColor(
+                color = Color.Transparent,
+                darkIcons = useDarkIcons
+            )
+
+            onDispose {}
         }
     }
 }
