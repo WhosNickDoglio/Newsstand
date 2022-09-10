@@ -23,7 +23,6 @@
  */
 
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-import io.gitlab.arturbosch.detekt.Detekt
 
 plugins {
     alias(libs.plugins.android.app) apply false
@@ -31,7 +30,7 @@ plugins {
     alias(libs.plugins.kotlin.android) apply  false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.kapt) apply false
-    alias(libs.plugins.detekt)
+    alias(libs.plugins.detekt) apply false
     alias(libs.plugins.gradle.versions)
     alias(libs.plugins.junit.jacoco)
     alias(libs.plugins.dependency.analysis)
@@ -44,17 +43,6 @@ junitJacoco {
 
 tasks.register<Delete>("clean") {
     delete(rootProject.buildDir)
-}
-
-tasks.register<Detekt>("detektAll") {
-    parallel = true
-    autoCorrect = true
-    config.setFrom("$projectDir/config/detekt/detekt.yml")
-    setSource(files(projectDir))
-    include("**/*.kt")
-    include("**/*.kts")
-    exclude("**/resources/**")
-    exclude("**/build/**")
 }
 
 tasks.named<Wrapper>("wrapper") {

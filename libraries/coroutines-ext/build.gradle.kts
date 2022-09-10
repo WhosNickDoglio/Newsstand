@@ -24,9 +24,11 @@
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.detekt)
 }
 
 
 dependencies {
+    detektPlugins(libs.detekt.formatting)
     api(libs.coroutines.core)
 }

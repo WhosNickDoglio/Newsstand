@@ -27,6 +27,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.anvil)
+    alias(libs.plugins.detekt)
     id("kotlin-parcelize")
 }
 android {
@@ -68,6 +69,7 @@ android {
 
 
 dependencies {
+    detektPlugins(libs.detekt.formatting)
     coreLibraryDesugaring(libs.desugar)
 
     implementation(projects.libraries.appScope)

@@ -64,7 +64,9 @@ class DefaultRootWorkflow @Inject constructor(
         snapshot?.toParcelable() ?: RootWorkflow.State.Feedly
 
     override fun render(
-        renderProps: RootWorkflow.Props, renderState: RootWorkflow.State, context: RenderContext
+        renderProps: RootWorkflow.Props,
+        renderState: RootWorkflow.State,
+        context: RenderContext
     ): Screen = context.renderChild(
         child = feedlyRootWorkflow,
         props = FeedlyRootWorkflow.Props

@@ -24,6 +24,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -66,6 +67,7 @@ android {
 }
 
 dependencies {
+    detektPlugins(libs.detekt.formatting)
     coreLibraryDesugaring(libs.desugar)
 
     implementation(libs.compose.ui)

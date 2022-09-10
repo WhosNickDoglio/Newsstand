@@ -32,13 +32,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.squareup.workflow1.ui.compose.composeScreenViewFactory
 
-
-internal val rootViewFactory = composeScreenViewFactory<FeedlyRootWorkflow.Rendering> { rendering, _ ->
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Text(rendering.text)
+internal val rootViewFactory =
+    composeScreenViewFactory<FeedlyRootWorkflow.Rendering> { rendering, _ ->
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Text(rendering.text)
+        }
     }
-}
