@@ -34,6 +34,7 @@ import com.squareup.workflow1.ui.toParcelable
 import com.squareup.workflow1.ui.toSnapshot
 import dev.whosnickdoglio.newsstand.anvil.AppScope
 import kotlinx.parcelize.Parcelize
+import javax.inject.Inject
 
 /** Top level entry point for the Feedly feature. */
 interface FeedlyRootWorkflow :
@@ -51,11 +52,10 @@ interface FeedlyRootWorkflow :
         @Parcelize
         object Feed : State
     }
-
 }
 
 @ContributesBinding(scope = AppScope::class, boundType = FeedlyRootWorkflow::class)
-class DefaultFeedlyRootWorkflow : FeedlyRootWorkflow,
+class DefaultFeedlyRootWorkflow @Inject constructor() : FeedlyRootWorkflow,
     StatefulWorkflow<FeedlyRootWorkflow.Props, FeedlyRootWorkflow.State, Nothing, FeedlyRootWorkflow.Rendering>() {
 
     override fun initialState(

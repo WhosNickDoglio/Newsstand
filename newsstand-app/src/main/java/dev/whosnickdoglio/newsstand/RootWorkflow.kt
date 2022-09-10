@@ -29,10 +29,12 @@ import com.squareup.anvil.annotations.ContributesBinding
 import com.squareup.workflow1.Snapshot
 import com.squareup.workflow1.StatefulWorkflow
 import com.squareup.workflow1.Workflow
+import com.squareup.workflow1.renderChild
 import com.squareup.workflow1.ui.Screen
 import com.squareup.workflow1.ui.toParcelable
 import com.squareup.workflow1.ui.toSnapshot
 import dev.whosnickdoglio.newsstand.anvil.AppScope
+import dev.whosnickdoglio.newsstand.feedly.root.FeedlyRootWorkflow
 import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 
@@ -41,11 +43,9 @@ import javax.inject.Inject
  * Top-level root/parent [Workflow] for the entire app. This is the entry
  * point.
  */
-interface RootWorkflow : Workflow<RootWorkflow.Props, Nothing, RootWorkflow.Rendering> {
+interface RootWorkflow : Workflow<RootWorkflow.Props, Nothing, Screen> {
 
     object Props
-
-    data class Rendering(val text: String) : Screen
 
     sealed interface State : Parcelable {
 
@@ -55,15 +55,20 @@ interface RootWorkflow : Workflow<RootWorkflow.Props, Nothing, RootWorkflow.Rend
 }
 
 @ContributesBinding(scope = AppScope::class, boundType = RootWorkflow::class)
-class DefaultRootWorkflow @Inject constructor() : RootWorkflow,
-    StatefulWorkflow<RootWorkflow.Props, RootWorkflow.State, Nothing, RootWorkflow.Rendering>() {
+class DefaultRootWorkflow @Inject constructor(
+    private val feedlyRootWorkflow: FeedlyRootWorkflow
+) : RootWorkflow,
+    StatefulWorkflow<RootWorkflow.Props, RootWorkflow.State, Nothing, Screen>() {
 
     override fun initialState(props: RootWorkflow.Props, snapshot: Snapshot?): RootWorkflow.State =
         snapshot?.toParcelable() ?: RootWorkflow.State.Feedly
 
     override fun render(
         renderProps: RootWorkflow.Props, renderState: RootWorkflow.State, context: RenderContext
-    ): RootWorkflow.Rendering = RootWorkflow.Rendering("Hello World!")
+    ): Screen = context.renderChild(
+        child = feedlyRootWorkflow,
+        props = FeedlyRootWorkflow.Props
+    )
 
     override fun snapshotState(state: RootWorkflow.State): Snapshot = state.toSnapshot()
 }

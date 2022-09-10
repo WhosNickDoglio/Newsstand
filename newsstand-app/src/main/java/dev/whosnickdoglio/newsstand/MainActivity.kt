@@ -42,12 +42,11 @@ import com.squareup.workflow1.ui.compose.WorkflowRendering
 import com.squareup.workflow1.ui.plus
 import dev.whosnickdoglio.newsstand.design.NewsstandTheme
 import dev.whosnickdoglio.newsstand.feedly.root.feedlyViewRegistry
-import dev.whosnickdoglio.newsstand.root.rootViewFactory
 import tangle.viewmodel.compose.tangleViewModel
 
 class MainActivity : ComponentActivity() {
 
-    private val registry = ViewRegistry(rootViewFactory) + feedlyViewRegistry
+    private val registry = ViewRegistry() + feedlyViewRegistry
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +62,7 @@ class MainActivity : ComponentActivity() {
     private fun NewsstandApp() {
         SetSystemBars()
 
-        val model = tangleViewModel<NewsstandWorkflowContainerViewModel>()
+        val model = tangleViewModel<WorkflowProvider>()
         val rendering by model.rendering.collectAsState()
         val viewEnvironment = remember { ViewEnvironment.EMPTY.plus(registry) }
 
