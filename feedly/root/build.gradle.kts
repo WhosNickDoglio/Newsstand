@@ -23,46 +23,53 @@
  */
 
 plugins {
-    alias(libs.plugins.android.app)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.anvil)
     id("kotlin-parcelize")
 }
+
+anvil {
+    generateDaggerFactories.set(true)
+}
+
 android {
+    namespace = "dev.whosnickdoglio.newsstand.feedly.root"
     compileSdk = libs.versions.compileSdk.get().toInt()
+
     defaultConfig {
-        applicationId = "dev.whosnickdoglio.newsstand"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "0.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
+    }
 
-        buildTypes {
-            getByName("release") {
-                isMinifyEnabled = true
-                proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            }
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
+    }
 
-        buildFeatures {
-            compose = true
-        }
+    buildFeatures {
+        compose = true
+    }
 
-        composeOptions {
-            kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
-        }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
+    }
 
-        compileOptions {
-            kotlinOptions.freeCompilerArgs += "-opt-in=com.squareup.workflow1.ui.WorkflowUiExperimentalApi"
-            isCoreLibraryDesugaringEnabled = true
-            sourceCompatibility = JavaVersion.VERSION_11
-            targetCompatibility = JavaVersion.VERSION_11
-        }
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_11.toString()
-        }
+    compileOptions {
+        kotlinOptions.freeCompilerArgs += "-opt-in=com.squareup.workflow1.ui.WorkflowUiExperimentalApi"
+        isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
@@ -71,18 +78,8 @@ dependencies {
     coreLibraryDesugaring(libs.desugar)
 
     implementation(projects.libraries.appScope)
-    implementation(projects.libraries.design)
-    implementation(projects.libraries.appBinding)
-    implementation(projects.libraries.coroutinesExt)
-    implementation(projects.feedly.root)
 
-    implementation(libs.androidx.activity.compose)
-
-    implementation(libs.workflow.core)
-    implementation(libs.workflow.android.ui)
-    implementation(libs.workflow.ui.compose)
-    implementation(libs.workflow.ui.compose.tooling)
-    implementation(libs.workflow.container)
+    implementation(libs.dagger.core)
 
     implementation(libs.compose.ui)
     implementation(libs.compose.material)
@@ -92,16 +89,11 @@ dependencies {
     debugImplementation(libs.compose.ui.tooling)
     implementation(libs.compose.ui.tooling.preview)
 
-    implementation(libs.accompanist.systems.ui)
 
-    implementation(libs.tangle.viewmodel.compose)
-    implementation(libs.tangle.viewmodel.api)
-    anvil(libs.tangle.viewmodel.compiler)
+    implementation(libs.workflow.core)
+    implementation(libs.workflow.android.ui)
+    implementation(libs.workflow.ui.compose)
+    implementation(libs.workflow.ui.compose.tooling)
+    implementation(libs.workflow.container)
 
-    implementation(libs.dagger.core)
-    kapt(libs.dagger.compiler)
-
-    testImplementation(libs.workflow.test)
-    testImplementation(libs.junit)
-    testImplementation(libs.truth)
 }

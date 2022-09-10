@@ -22,38 +22,8 @@
  * SOFTWARE.
  */
 
-rootProject.name = "Newsstand"
+package dev.whosnickdoglio.newsstand.feedly.root
 
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
+import com.squareup.workflow1.ui.ViewRegistry
 
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-plugins {
-    id("com.gradle.enterprise") version ("3.11.1")
-}
-
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-    }
-}
-include(":newsstand-app")
-include(":libraries:app-scope")
-include(":libraries:design")
-include(":libraries:coroutines-ext")
-include(":libraries:app-binding")
-include(":feedly:root")
+val feedlyViewRegistry = ViewRegistry(rootViewFactory)

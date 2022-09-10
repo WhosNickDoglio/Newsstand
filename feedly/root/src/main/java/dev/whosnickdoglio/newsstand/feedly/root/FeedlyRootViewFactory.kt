@@ -22,38 +22,23 @@
  * SOFTWARE.
  */
 
-rootProject.name = "Newsstand"
+package dev.whosnickdoglio.newsstand.feedly.root
 
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import com.squareup.workflow1.ui.compose.composeScreenViewFactory
+
+
+internal val rootViewFactory = composeScreenViewFactory<FeedlyRootWorkflow.Rendering> { rendering, _ ->
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Text(rendering.text)
     }
 }
-
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-plugins {
-    id("com.gradle.enterprise") version ("3.11.1")
-}
-
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-    }
-}
-include(":newsstand-app")
-include(":libraries:app-scope")
-include(":libraries:design")
-include(":libraries:coroutines-ext")
-include(":libraries:app-binding")
-include(":feedly:root")

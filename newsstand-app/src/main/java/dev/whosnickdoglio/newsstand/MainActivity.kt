@@ -41,12 +41,13 @@ import com.squareup.workflow1.ui.ViewRegistry
 import com.squareup.workflow1.ui.compose.WorkflowRendering
 import com.squareup.workflow1.ui.plus
 import dev.whosnickdoglio.newsstand.design.NewsstandTheme
+import dev.whosnickdoglio.newsstand.feedly.root.feedlyViewRegistry
 import dev.whosnickdoglio.newsstand.root.rootViewFactory
 import tangle.viewmodel.compose.tangleViewModel
 
 class MainActivity : ComponentActivity() {
 
-    private val registry = ViewRegistry(rootViewFactory)
+    private val registry = ViewRegistry(rootViewFactory) + feedlyViewRegistry
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
