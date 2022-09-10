@@ -72,6 +72,8 @@ dependencies {
 
     implementation(projects.libraries.appScope)
     implementation(projects.libraries.design)
+    implementation(projects.libraries.appBinding)
+    implementation(projects.libraries.coroutinesExt)
 
     implementation(libs.androidx.activity.compose)
 

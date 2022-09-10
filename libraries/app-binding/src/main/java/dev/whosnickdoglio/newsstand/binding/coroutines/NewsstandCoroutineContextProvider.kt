@@ -22,37 +22,23 @@
  * SOFTWARE.
  */
 
-rootProject.name = "Newsstand"
+package dev.whosnickdoglio.newsstand.binding.coroutines
 
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
+import com.squareup.anvil.annotations.ContributesBinding
+import dev.whosnickdoglio.newsstand.anvil.AppScope
+import dev.whosnickdoglio.newsstand.coroutines.CoroutineContextProvider
+import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
+
+/**
+ * Default implementation of [CoroutineContextProvider].
+ *
+ * @see CoroutineContextProvider
+ */
+@ContributesBinding(AppScope::class)
+class NewsstandCoroutineContextProvider @Inject constructor() : CoroutineContextProvider {
+    override val main: CoroutineContext = Dispatchers.Main
+    override val background: CoroutineContext = Dispatchers.Default
+    override val io: CoroutineContext = Dispatchers.IO
 }
-
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-plugins {
-    id("com.gradle.enterprise") version ("3.11.1")
-}
-
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-    }
-}
-include(":newsstand-app")
-include(":libraries:app-scope")
-include(":libraries:design")
-include(":libraries:coroutines-ext")
-include(":libraries:app-binding")

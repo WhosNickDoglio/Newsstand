@@ -28,5 +28,5 @@ plugins {
 
 
 dependencies {
-    implementation(libs.coroutines.core)
+    api(libs.coroutines.core)
 }
