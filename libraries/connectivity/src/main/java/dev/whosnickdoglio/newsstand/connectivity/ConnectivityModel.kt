@@ -22,39 +22,25 @@
  * SOFTWARE.
  */
 
-rootProject.name = "Newsstand"
+package dev.whosnickdoglio.newsstand.connectivity
 
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
+import kotlinx.coroutines.flow.Flow
+
+/**
+ * A model used to monitor or check the network connectivity of the user's
+ * device.
+ */
+interface ConnectivityModel {
+
+    /**
+     * Returns `true` if the user's device currently has network connectivity,
+     * `false` otherwise.
+     */
+    suspend fun isConnected(): Boolean
+
+    /**
+     * Observes the network connectivity of the user's device, will return
+     * `true` when connected and `false` otherwise.
+     */
+    val isConnected: Flow<Boolean>
 }
-
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-plugins {
-    id("com.gradle.enterprise") version ("3.11.1")
-}
-
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-    }
-}
-include(":newsstand-app")
-include(":libraries:app-scope")
-include(":libraries:design")
-include(":libraries:coroutines-ext")
-include(":libraries:app-binding")
-include(":feedly:root")
-include(":libraries:connectivity")

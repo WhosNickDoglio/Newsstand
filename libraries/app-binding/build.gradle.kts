@@ -69,6 +69,7 @@ dependencies {
     coreLibraryDesugaring(libs.desugar)
 
     implementation(projects.libraries.coroutinesExt)
+    implementation(projects.libraries.connectivity)
     implementation(projects.libraries.appScope)
 
     implementation(libs.dagger.core)
