@@ -94,6 +94,8 @@ dependencies {
     debugImplementation(libs.compose.ui.tooling)
     implementation(libs.compose.ui.tooling.preview)
 
+    debugImplementation(libs.leakcanary)
+
     implementation(libs.accompanist.systems.ui)
 
     implementation(libs.tangle.viewmodel.compose)
