@@ -38,7 +38,6 @@ import dev.whosnickdoglio.newsstand.feedly.root.FeedlyRootWorkflow
 import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 
-// TODO do we want to separate this out to a JVM module? or a public vs impl setup?
 /**
  * Top-level root/parent [Workflow] for the entire app. This is the entry
  * point.
