@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package dev.whosnickdoglio.newsstand.root
+package dev.whosnickdoglio.newsstand
 
 import android.os.Parcelable
 import com.squareup.anvil.annotations.ContributesBinding

@@ -37,7 +37,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.squareup.workflow1.ui.ViewEnvironment
-import com.squareup.workflow1.ui.ViewRegistry
 import com.squareup.workflow1.ui.compose.WorkflowRendering
 import com.squareup.workflow1.ui.plus
 import dev.whosnickdoglio.newsstand.design.NewsstandTheme
@@ -46,7 +45,7 @@ import tangle.viewmodel.compose.tangleViewModel
 
 class MainActivity : ComponentActivity() {
 
-    private val registry = ViewRegistry() + feedlyViewRegistry
+    private val registry = feedlyViewRegistry
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,18 +58,9 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun NewsstandApp() {
-        SetSystemBars()
-
-        val model = tangleViewModel<WorkflowProvider>()
-        val rendering by model.rendering.collectAsState()
-        val viewEnvironment = remember { ViewEnvironment.EMPTY.plus(registry) }
-
-        WorkflowRendering(rendering, viewEnvironment)
-    }
-
-    @Composable
-    private fun SetSystemBars() {
+    private fun NewsstandApp(
+        model: WorkflowProvider = tangleViewModel()
+    ) {
         val systemUiController = rememberSystemUiController()
         val useDarkIcons = !isSystemInDarkTheme()
 
@@ -82,5 +72,10 @@ class MainActivity : ComponentActivity() {
 
             onDispose {}
         }
+
+        val rendering by model.rendering.collectAsState()
+        val viewEnvironment = remember { ViewEnvironment.EMPTY.plus(registry) }
+
+        WorkflowRendering(rendering, viewEnvironment)
     }
 }
