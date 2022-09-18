@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 Nicholas Doglio
+ * Copyright (c) 2021-2022 Nicholas Doglio
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,45 +22,19 @@
  * SOFTWARE.
  */
 
-rootProject.name = "Newsstand"
+package dev.whosnickdoglio.newsstand.feedly.auth
 
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
+import dev.whosnickdoglio.newsstand.feedly.models.Tokens
+
+interface TokenRepository {
+
+    suspend fun retrieveAccessToken(): String?
+
+    suspend fun retrieveRefreshToken(): String?
+
+    suspend fun retrieveTokenType(): String?
+
+    suspend fun setTokens(container: Tokens)
+
+    suspend fun clear()
 }
-
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-plugins {
-    id("com.gradle.enterprise") version ("3.11.1")
-}
-
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-    }
-}
-
-include(
-    ":newsstand-app",
-    ":feedly:auth",
-    ":feedly:models",
-    ":feedly:networking",
-    ":feedly:root",
-    ":libraries:app-binding",
-    ":libraries:app-scope",
-    ":libraries:connectivity",
-    ":libraries:coroutines-ext",
-    ":libraries:design",
-)

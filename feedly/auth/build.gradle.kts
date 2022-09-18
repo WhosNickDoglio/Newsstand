@@ -34,10 +34,9 @@ anvil {
 
 dependencies {
     detektPlugins(libs.detekt.formatting)
-
     implementation(projects.feedly.models)
-    implementation(projects.feedly.auth)
     implementation(projects.libraries.appScope)
+    implementation(projects.libraries.coroutinesExt)
 
     api(libs.coroutines.core)
 

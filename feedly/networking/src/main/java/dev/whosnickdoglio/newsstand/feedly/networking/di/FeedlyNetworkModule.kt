@@ -31,6 +31,7 @@ import dagger.Lazy
 import dagger.Module
 import dagger.Provides
 import dev.whosnickdoglio.newsstand.anvil.AppScope
+import dev.whosnickdoglio.newsstand.feedly.auth.FeedlyAuthenticationService
 import dev.whosnickdoglio.newsstand.feedly.networking.internal.FeedlyService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -60,4 +61,17 @@ object FeedlyNetworkModule {
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
         .create()
+
+    @Singleton
+    @Provides
+    fun provideFeedlyAuthService(okHttpClient: Lazy<OkHttpClient>): FeedlyAuthenticationService {
+        return Retrofit.Builder()
+            .baseUrl(SANDBOX_BASE_URL)
+            .addConverterFactory(ApiResultConverterFactory)
+            .addCallAdapterFactory(ApiResultCallAdapterFactory)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .callFactory { request -> okHttpClient.get().newCall(request) }
+            .build()
+            .create()
+    }
 }

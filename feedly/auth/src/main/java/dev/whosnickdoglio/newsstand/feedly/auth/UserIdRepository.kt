@@ -22,30 +22,13 @@
  *   SOFTWARE.
  */
 
-plugins {
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.detekt)
-    alias(libs.plugins.anvil)
-}
+package dev.whosnickdoglio.newsstand.feedly.auth
 
-anvil {
-    generateDaggerFactories.set(true)
-}
+interface UserIdRepository {
 
-dependencies {
-    detektPlugins(libs.detekt.formatting)
+    suspend fun getUser(): String? //TODO should this return a string or User object?
 
-    implementation(projects.feedly.models)
-    implementation(projects.feedly.auth)
-    implementation(projects.libraries.appScope)
+    suspend fun setUserId(id: String)
 
-    api(libs.coroutines.core)
-
-    implementation(libs.okhttp.core)
-    implementation(libs.okhttp.logging)
-    implementation(libs.retrofit.core)
-    implementation(libs.retrofit.converter.moshi)
-    implementation(libs.eithernet)
-
-    implementation(libs.dagger.core)
+    suspend fun clear()
 }
