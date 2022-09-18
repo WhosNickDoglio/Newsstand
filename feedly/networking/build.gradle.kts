@@ -34,6 +34,7 @@ anvil {
 
 dependencies {
     detektPlugins(libs.detekt.formatting)
+    detektPlugins(libs.detekt.compose)
 
     implementation(projects.feedly.models)
     implementation(projects.feedly.auth)

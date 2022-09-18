@@ -119,5 +119,4 @@ object NewsstandTheme {
     val colorScheme: ColorScheme
         @Composable
         get() = MaterialTheme.colorScheme
-
 }

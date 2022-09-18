@@ -26,7 +26,6 @@ package dev.whosnickdoglio.newsstand.feedly.auth
 
 import com.squareup.anvil.annotations.ContributesBinding
 import dev.whosnickdoglio.newsstand.anvil.AppScope
-import dev.whosnickdoglio.newsstand.coroutines.CoroutineContextProvider
 import kotlinx.coroutines.runBlocking
 import okhttp3.Authenticator
 import okhttp3.Request
@@ -38,7 +37,6 @@ import javax.inject.Inject
 class FeedlyAuthenticator @Inject constructor(
     private val tokenStore: TokenRepository,
     private val authenticationHelper: AuthenticationHelper,
-    private val coroutineContextProvider: CoroutineContextProvider
 ) : Authenticator {
 
     // TODO there's a better way to write this
