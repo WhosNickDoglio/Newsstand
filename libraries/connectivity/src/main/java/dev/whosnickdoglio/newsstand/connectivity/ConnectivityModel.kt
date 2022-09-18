@@ -32,15 +32,12 @@ import kotlinx.coroutines.flow.Flow
  */
 interface ConnectivityModel {
 
-    /**
-     * Returns `true` if the user's device currently has network connectivity,
-     * `false` otherwise.
-     */
-    suspend fun isConnected(): Boolean
+    /** Returns the current [ConnectionStatus] of the user's device. */
+    suspend fun getCurrentConnectStatus(): ConnectionStatus
 
-    /**
-     * Observes the network connectivity of the user's device, will return
-     * `true` when connected and `false` otherwise.
-     */
-    val isConnected: Flow<Boolean>
+    /** Observes the network connectivity of the user's device. */
+    val connectionStatus: Flow<ConnectionStatus>
 }
+
+/** An enum that represents the connection status of the user's device. */
+enum class ConnectionStatus { CONNECTED, DISCONNECTED, }

@@ -29,6 +29,7 @@ import android.net.ConnectivityManager
 import android.net.Network
 import com.squareup.anvil.annotations.ContributesBinding
 import dev.whosnickdoglio.newsstand.anvil.AppScope
+import dev.whosnickdoglio.newsstand.connectivity.ConnectionStatus
 import dev.whosnickdoglio.newsstand.connectivity.ConnectivityModel
 import dev.whosnickdoglio.newsstand.coroutines.CoroutineContextProvider
 import kotlinx.coroutines.flow.Flow
@@ -48,19 +49,19 @@ class NewsstandConnectivityModel @Inject constructor(
     private val coroutineContextProvider: CoroutineContextProvider
 ) : ConnectivityModel {
 
-    private val connectedStateFlow = MutableStateFlow(true)
+    private val connectedStateFlow = MutableStateFlow(ConnectionStatus.CONNECTED)
 
     private val callback = object : ConnectivityManager.NetworkCallback() {
         override fun onAvailable(network: Network) {
-            connectedStateFlow.update { true }
+            connectedStateFlow.update { ConnectionStatus.CONNECTED }
         }
 
         override fun onLost(network: Network) {
-            connectedStateFlow.update { false }
+            connectedStateFlow.update { ConnectionStatus.DISCONNECTED }
         }
 
         override fun onUnavailable() {
-            connectedStateFlow.update { false }
+            connectedStateFlow.update { ConnectionStatus.DISCONNECTED }
         }
     }
 
@@ -70,9 +71,10 @@ class NewsstandConnectivityModel @Inject constructor(
             .registerDefaultNetworkCallback(callback)
     }
 
-    override suspend fun isConnected(): Boolean = withContext(coroutineContextProvider.io) {
-        connectedStateFlow.value
-    }
+    override suspend fun getCurrentConnectStatus(): ConnectionStatus =
+        withContext(coroutineContextProvider.io) {
+            connectedStateFlow.value
+        }
 
-    override val isConnected: Flow<Boolean> = connectedStateFlow
+    override val connectionStatus: Flow<ConnectionStatus> = connectedStateFlow
 }
