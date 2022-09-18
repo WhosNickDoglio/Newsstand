@@ -32,10 +32,6 @@ plugins {
     id("kotlin-parcelize")
 }
 
-secrets {
-    propertiesFileName = "feedly.properties"
-}
-
 android {
     compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
