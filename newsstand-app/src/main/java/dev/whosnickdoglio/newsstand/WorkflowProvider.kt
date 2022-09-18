@@ -34,6 +34,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import tangle.viewmodel.VMInject
 
+/**
+ * Androidx [ViewModel] that is a container/provider for Workflow
+ * renderings. We use a [ViewModel] to retain our Workflows across all
+ * configuration changes.
+ */
 class WorkflowProvider @VMInject constructor(
     savedState: SavedStateHandle,
     rootWorkflow: RootWorkflow,
@@ -41,6 +46,10 @@ class WorkflowProvider @VMInject constructor(
 
     private val props = MutableStateFlow(RootWorkflow.Props)
 
+    /**
+     * A [StateFlow] that provides Workflow [Screens][Screen] that will update
+     * for every screen in the app.
+     */
     val rendering: StateFlow<Screen> = renderWorkflowIn(
         workflow = rootWorkflow,
         scope = viewModelScope,
@@ -48,7 +57,8 @@ class WorkflowProvider @VMInject constructor(
         savedStateHandle = savedState,
     )
 
-    fun rootProp(prop: RootWorkflow.Props) {
+    /** Input for [RootWorkflow.Props] to be propagated to our [RootWorkflow] */
+    fun props(prop: RootWorkflow.Props) {
         props.update { prop }
     }
 }

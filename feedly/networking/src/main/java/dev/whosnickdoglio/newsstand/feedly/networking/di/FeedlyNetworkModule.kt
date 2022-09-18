@@ -64,8 +64,8 @@ object FeedlyNetworkModule {
 
     @Singleton
     @Provides
-    fun provideFeedlyAuthService(okHttpClient: Lazy<OkHttpClient>): FeedlyAuthenticationService {
-        return Retrofit.Builder()
+    fun provideFeedlyAuthService(okHttpClient: Lazy<OkHttpClient>): FeedlyAuthenticationService =
+        Retrofit.Builder()
             .baseUrl(SANDBOX_BASE_URL)
             .addConverterFactory(ApiResultConverterFactory)
             .addCallAdapterFactory(ApiResultCallAdapterFactory)
@@ -73,5 +73,4 @@ object FeedlyNetworkModule {
             .callFactory { request -> okHttpClient.get().newCall(request) }
             .build()
             .create()
-    }
 }

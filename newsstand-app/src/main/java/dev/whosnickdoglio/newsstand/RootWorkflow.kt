@@ -33,6 +33,7 @@ import com.squareup.workflow1.renderChild
 import com.squareup.workflow1.ui.Screen
 import com.squareup.workflow1.ui.toParcelable
 import com.squareup.workflow1.ui.toSnapshot
+import dagger.Lazy
 import dev.whosnickdoglio.newsstand.anvil.AppScope
 import dev.whosnickdoglio.newsstand.feedly.root.FeedlyRootWorkflow
 import kotlinx.parcelize.Parcelize
@@ -55,7 +56,7 @@ interface RootWorkflow : Workflow<RootWorkflow.Props, Nothing, Screen> {
 
 @ContributesBinding(scope = AppScope::class, boundType = RootWorkflow::class)
 class DefaultRootWorkflow @Inject constructor(
-    private val feedlyRootWorkflow: FeedlyRootWorkflow
+    private val feedlyRootWorkflow: Lazy<FeedlyRootWorkflow>
 ) : RootWorkflow,
     StatefulWorkflow<RootWorkflow.Props, RootWorkflow.State, Nothing, Screen>() {
 
@@ -67,7 +68,7 @@ class DefaultRootWorkflow @Inject constructor(
         renderState: RootWorkflow.State,
         context: RenderContext
     ): Screen = context.renderChild(
-        child = feedlyRootWorkflow,
+        child = feedlyRootWorkflow.get(),
         props = FeedlyRootWorkflow.Props
     )
 

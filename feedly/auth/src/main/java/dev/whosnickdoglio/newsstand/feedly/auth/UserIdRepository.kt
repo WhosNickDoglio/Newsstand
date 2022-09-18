@@ -26,7 +26,7 @@ package dev.whosnickdoglio.newsstand.feedly.auth
 
 interface UserIdRepository {
 
-    suspend fun getUser(): String? //TODO should this return a string or User object?
+    suspend fun getUser(): String? // TODO should this return a string or User object?
 
     suspend fun setUserId(id: String)
 
