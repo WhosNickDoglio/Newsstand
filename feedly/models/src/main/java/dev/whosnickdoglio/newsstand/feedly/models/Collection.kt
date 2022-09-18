@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 Nicholas Doglio
+ * Copyright (c) 2021-2022 Nicholas Doglio
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,40 +22,16 @@
  * SOFTWARE.
  */
 
-rootProject.name = "Newsstand"
+package dev.whosnickdoglio.newsstand.feedly.models
 
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
+import com.squareup.moshi.JsonClass
 
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-plugins {
-    id("com.gradle.enterprise") version ("3.11.1")
-}
-
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-    }
-}
-include(":newsstand-app")
-include(":libraries:app-scope")
-include(":libraries:design")
-include(":libraries:coroutines-ext")
-include(":libraries:app-binding")
-include(":feedly:root")
-include(":feedly:models")
-include(":libraries:connectivity")
+@JsonClass(generateAdapter = true)
+data class Collection(
+    val id: String, // user/af190c49-0ac8-4f08-9f83-805f1a3bc142/category/af190c49-0ac8-4f08-9f83-805f1a3bc142
+    val label: String, // Startup
+    val description: String, // Entrepreneurs and Startup Blogs
+    val cover: String, // http://imageUrl
+    val created: Long, // 1367539068016
+    val feeds: List<Feed>
+)
