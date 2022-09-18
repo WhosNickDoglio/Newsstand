@@ -28,8 +28,14 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.anvil)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.secrets)
     id("kotlin-parcelize")
 }
+
+secrets {
+    propertiesFileName = "feedly.properties"
+}
+
 android {
     compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
