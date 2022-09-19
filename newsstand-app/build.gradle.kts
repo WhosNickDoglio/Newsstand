@@ -25,8 +25,8 @@
 plugins {
     alias(libs.plugins.android.app)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.anvil)
+    alias(libs.plugins.napt)
     alias(libs.plugins.detekt)
     alias(libs.plugins.secrets)
     id("kotlin-parcelize")
@@ -107,7 +107,7 @@ dependencies {
     anvil(libs.tangle.viewmodel.compiler)
 
     implementation(libs.dagger.core)
-    kapt(libs.dagger.compiler)
+    annotationProcessor(libs.dagger.compiler)
 
     testImplementation(libs.workflow.test)
     testImplementation(libs.junit)

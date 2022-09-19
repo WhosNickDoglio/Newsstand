@@ -58,6 +58,10 @@ interface AppComponent {
          */
         fun create(@BindsInstance application: Application): AppComponent
     }
+
+    companion object {
+        fun factory(): Factory = AppComponentBridge.factory()
+    }
 }
 
 /**

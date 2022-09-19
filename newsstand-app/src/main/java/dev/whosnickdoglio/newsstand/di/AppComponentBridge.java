@@ -22,21 +22,18 @@
  * SOFTWARE.
  */
 
-package dev.whosnickdoglio.newsstand
+package dev.whosnickdoglio.newsstand.di;
 
-import android.app.Application
-import dev.whosnickdoglio.newsstand.di.AppComponent
-import dev.whosnickdoglio.newsstand.di.AppComponentProvider
-import tangle.inject.TangleGraph
-
-class NewsstandApplication : Application(), AppComponentProvider {
-
-    override val component: AppComponent by lazy {
-        AppComponent.factory().create(this)
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        TangleGraph.add(component)
+/**
+ * Bridge for our {@link AppComponent } to work with Napt so we can
+ * remove kapt from our codebase.
+ *
+ * **NOTE**: This class is intentionally in Java and not Kotlin.
+ *
+ * @see <a href="https://github.com/sergei-lapin/napt">Napt Github</a>
+ */
+public class AppComponentBridge {
+    static AppComponent.Factory factory() {
+        return DaggerAppComponent.factory();
     }
 }
