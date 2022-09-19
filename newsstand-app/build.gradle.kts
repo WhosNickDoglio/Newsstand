@@ -28,7 +28,7 @@ plugins {
     alias(libs.plugins.anvil)
     alias(libs.plugins.napt)
     alias(libs.plugins.detekt)
-    alias(libs.plugins.secrets)
+//    alias(libs.plugins.secrets)
     id("kotlin-parcelize")
 }
 
