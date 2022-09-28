@@ -27,7 +27,7 @@ package dev.whosnickdoglio.newsstand.di;
 /**
  * Bridge for our {@link AppComponent } to work with Napt so we can
  * remove kapt from our codebase.
- *
+ * <p>
  * **NOTE**: This class is intentionally in Java and not Kotlin.
  *
  * @see <a href="https://github.com/sergei-lapin/napt">Napt Github</a>
