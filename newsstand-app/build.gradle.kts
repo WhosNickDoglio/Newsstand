@@ -33,6 +33,7 @@ plugins {
 }
 
 android {
+    namespace = "dev.whosnickdoglio.newsstand"
     compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
         applicationId = "dev.whosnickdoglio.newsstand"
