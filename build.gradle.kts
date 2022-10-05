@@ -45,7 +45,7 @@ tasks.register<Delete>("clean") {
     delete(rootProject.buildDir)
 }
 
-tasks.named<Wrapper>("wrapper") {
+tasks.named<Wrapper>("wrapper").configure {
     distributionType = Wrapper.DistributionType.ALL
 }
 
