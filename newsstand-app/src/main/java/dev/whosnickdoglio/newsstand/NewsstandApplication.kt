@@ -25,6 +25,7 @@
 package dev.whosnickdoglio.newsstand
 
 import android.app.Application
+import android.os.StrictMode
 import dev.whosnickdoglio.newsstand.di.AppComponent
 import dev.whosnickdoglio.newsstand.di.AppComponentProvider
 import tangle.inject.TangleGraph
@@ -38,5 +39,21 @@ class NewsstandApplication : Application(), AppComponentProvider {
     override fun onCreate() {
         super.onCreate()
         TangleGraph.add(component)
+
+        if (BuildConfig.DEBUG) {
+            StrictMode.setThreadPolicy(
+                StrictMode.ThreadPolicy.Builder()
+                    .detectAll()
+                    .penaltyLog()
+                    .build()
+            )
+
+            StrictMode.setVmPolicy(
+                StrictMode.VmPolicy.Builder()
+                    .detectAll()
+                    .penaltyLog()
+                    .build()
+            )
+        }
     }
 }
