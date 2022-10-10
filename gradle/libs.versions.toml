@@ -17,6 +17,7 @@ material = "1.0.1"
 accompanist = "0.28.0"
 jacoco = "0.8.7"
 tangle = "0.15.1"
+circuit = "0.4.0"
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
@@ -72,6 +73,11 @@ sqldelight-coroutines = { module = "com.squareup.sqldelight:coroutines-extension
 sqldelight-jvm = { module = "com.squareup.sqldelight:sqlite-driver", version.ref = "sqldelight" }
 
 coil = { module = "io.coil-kt:coil-compose", version = "2.2.2" }
+
+circuit = { module = "com.slack.circuit:circuit-core", version.ref = "circuit" }
+circuitOverlay = { module = "com.slack.circuit:circuit-overlay", version.ref = "circuit" }
+circuitCodegen = { module = "com.slack.circuit:circuit-codegen", version.ref = "circuit" }
+circuitCodegenAnnotations = { module = "com.slack.circuit:circuit-codegen-annotations", version.ref = "circuit" }
 
 junit = { module = "junit:junit", version = "4.13.2" }
 truth = { module = "com.google.truth:truth", version = "1.1.3" }
