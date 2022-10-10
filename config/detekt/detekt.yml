@@ -847,8 +847,16 @@ formatting:
     autoCorrect: true
 
 TwitterCompose:
+  CompositionLocalAllowlist:
+    active: true
+    # You can optionally define a list of CompositionLocals that are allowed here
+    # allowedCompositionLocals: LocalSomething,LocalSomethingElse
+  CompositionLocalNaming:
+    active: true
   ContentEmitterReturningValues:
     active: true
+    # You can optionally add your own composables here
+    # contentEmitters: MyComposable,MyOtherComposable
   ModifierComposable:
     active: true
   ModifierMissing:
@@ -859,15 +867,21 @@ TwitterCompose:
     active: true
   MultipleEmitters:
     active: true
+      # You can optionally add your own composables here
+    # contentEmitters: MyComposable,MyOtherComposable
   MutableParams:
     active: true
   ComposableNaming:
     active: true
   ComposableParamOrder:
     active: true
+  PreviewNaming:
+    active: true
   PreviewPublic:
     active: true
   RememberMissing:
+    active: true
+  UnstableCollections:
     active: true
   ViewModelForwarding:
     active: true
