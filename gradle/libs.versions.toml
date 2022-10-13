@@ -2,7 +2,7 @@
 targetSdk = "33"
 compileSdk = "33"
 minSdk = "24"
-agp = "7.3.0"
+agp = "7.3.1"
 kotlin = "1.7.20"
 dagger = "2.44"
 detekt = "1.21.0"
