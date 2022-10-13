@@ -25,7 +25,7 @@ gradle-versions = { id = "com.github.ben-manes.versions", version = "0.42.0" }
 secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version = "2.0.1" }
 doctor = { id = "com.osacky.doctor", version = "0.8.1" }
 anvil = { id = "com.squareup.anvil", version = "2.4.2" }
-ksp = { id = "com.google.devtools.ksp", version = "1.7.20-1.0.6" }
+ksp = { id = "com.google.devtools.ksp", version = "1.7.20-1.0.7" }
 play-publish = { id = "com.github.triplet.play", version = "3.7.0" }
 junit-jacoco = { id = "com.vanniktech.android.junit.jacoco", version = "0.16.0" }
 dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version = "1.13.1" }
