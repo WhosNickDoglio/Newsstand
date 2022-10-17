@@ -21,7 +21,7 @@ tangle = "0.15.1"
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-gradle-versions = { id = "com.github.ben-manes.versions", version = "0.42.0" }
+gradle-versions = { id = "com.github.ben-manes.versions", version = "0.43.0" }
 secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version = "2.0.1" }
 doctor = { id = "com.osacky.doctor", version = "0.8.1" }
 anvil = { id = "com.squareup.anvil", version = "2.4.2" }
