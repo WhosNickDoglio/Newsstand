@@ -17,7 +17,7 @@ jobs:
           java-version: '11'
 
       - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v1.0.4
+        uses: gradle/wrapper-validation-action@v1.0.5
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2.3.3
