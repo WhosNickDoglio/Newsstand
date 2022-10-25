@@ -83,6 +83,7 @@ dependencies {
 
     implementation(libs.dagger.core)
 
+    implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui)
     implementation(libs.compose.material)
     implementation(libs.compose.foundation)

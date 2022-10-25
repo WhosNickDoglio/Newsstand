@@ -71,6 +71,7 @@ dependencies {
     detektPlugins(libs.detekt.compose)
     coreLibraryDesugaring(libs.desugar)
 
+    implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui)
     implementation(libs.compose.material)
     implementation(libs.compose.foundation)
