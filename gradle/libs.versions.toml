@@ -32,7 +32,7 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 android-app = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-napt = { id = "com.sergei-lapin.napt", version = "1.17" }
+napt = { id = "com.sergei-lapin.napt", version = "1.18" }
 
 [libraries]
 gradle-sqldelight = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight" }
@@ -50,7 +50,7 @@ dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = 
 timber = { module = "com.jakewharton.timber:timber", version = "5.0.1" }
 
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
-detekt-compose = { module = "com.twitter.compose.rules:detekt", version = "0.0.22" }
+detekt-compose = { module = "com.twitter.compose.rules:detekt", version = "0.0.23" }
 
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
@@ -90,7 +90,7 @@ workflow-ui-compose-tooling = { module = "com.squareup.workflow1:workflow-ui-com
 workflow-container = { module = "com.squareup.workflow1:workflow-ui-container-android", version.ref = "workflow" }
 workflow-test = { module = "com.squareup.workflow1:workflow-testing-jvm", version.ref = "workflow" }
 
-compose-bom = { module = "androidx.compose:compose-bom", version = "2022.10.00" }
+compose-bom = { module = "androidx.compose:compose-bom", version = "2022.11.00" }
 compose-ui = { module = "androidx.compose.ui:ui" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
