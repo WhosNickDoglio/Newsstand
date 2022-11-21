@@ -32,7 +32,7 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 android-app = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-napt = { id = "com.sergei-lapin.napt", version = "1.18" }
+napt = { id = "com.sergei-lapin.napt", version = "1.19" }
 
 [libraries]
 gradle-sqldelight = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight" }
