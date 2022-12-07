@@ -90,7 +90,7 @@ workflow-ui-compose-tooling = { module = "com.squareup.workflow1:workflow-ui-com
 workflow-container = { module = "com.squareup.workflow1:workflow-ui-container-android", version.ref = "workflow" }
 workflow-test = { module = "com.squareup.workflow1:workflow-testing-jvm", version.ref = "workflow" }
 
-compose-bom = { module = "androidx.compose:compose-bom", version = "2022.11.00" }
+compose-bom = { module = "androidx.compose:compose-bom", version = "2022.12.00" }
 compose-ui = { module = "androidx.compose.ui:ui" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
