@@ -14,7 +14,7 @@ sqldelight = "1.5.4"
 workflow = "1.8.0-beta12"
 composeCompiler = "1.3.2"
 material = "1.0.1"
-accompanist = "0.27.1"
+accompanist = "0.28.0"
 jacoco = "0.8.7"
 tangle = "0.15.1"
 
