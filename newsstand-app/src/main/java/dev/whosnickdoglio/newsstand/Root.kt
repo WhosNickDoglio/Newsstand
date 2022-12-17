@@ -24,33 +24,46 @@
 
 package dev.whosnickdoglio.newsstand
 
-import android.app.Application
-import android.os.StrictMode
-import dev.whosnickdoglio.newsstand.di.AppComponent
-import dev.whosnickdoglio.newsstand.di.AppComponentProvider
+import androidx.compose.runtime.Composable
+import com.slack.circuit.CircuitContent
+import com.slack.circuit.CircuitUiEvent
+import com.slack.circuit.CircuitUiState
+import com.slack.circuit.Presenter
+import com.slack.circuit.Screen
+import com.slack.circuit.codegen.annotations.CircuitInject
+import dev.whosnickdoglio.newsstand.anvil.AppScope
+import dev.whosnickdoglio.newsstand.feedly.root.FeedlyRoot
+import kotlinx.parcelize.Parcelize
+import javax.inject.Inject
 
-class NewsstandApplication : Application(), AppComponentProvider {
+@Parcelize
+object Root : Screen {
 
-    override val component: AppComponent by lazy {
-        AppComponent.factory().create(this)
+    data class State(
+        val feature: Root.Feature,
+        val eventSink: (RootEvent) -> Unit,
+    ) : CircuitUiState
+
+    enum class Feature {
+        FEEDLY
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        if (BuildConfig.DEBUG) {
-            StrictMode.setThreadPolicy(
-                StrictMode.ThreadPolicy.Builder()
-                    .detectAll()
-                    .penaltyLog()
-                    .build()
-            )
+    sealed interface RootEvent : CircuitUiEvent
+}
 
-            StrictMode.setVmPolicy(
-                StrictMode.VmPolicy.Builder()
-                    .detectAll()
-                    .penaltyLog()
-                    .build()
-            )
+@CircuitInject(Root::class, AppScope::class)
+class RootPresenter @Inject constructor() : Presenter<Root.State> {
+
+    @Composable
+    override fun present(): Root.State = Root.State(feature = Root.Feature.FEEDLY) { event -> }
+}
+
+@CircuitInject(Root::class, AppScope::class)
+@Composable
+fun Root(state: Root.State) {
+    CircuitContent(
+        screen = when (state.feature) {
+            Root.Feature.FEEDLY -> FeedlyRoot
         }
-    }
+    )
 }

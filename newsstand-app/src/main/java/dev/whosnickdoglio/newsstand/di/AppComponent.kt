@@ -29,6 +29,7 @@ import android.content.Context
 import com.squareup.anvil.annotations.MergeComponent
 import dagger.BindsInstance
 import dagger.Component
+import dev.whosnickdoglio.newsstand.MainActivity
 import dev.whosnickdoglio.newsstand.anvil.AppScope
 import javax.inject.Singleton
 
@@ -42,6 +43,8 @@ import javax.inject.Singleton
 @Singleton
 @MergeComponent(AppScope::class)
 interface AppComponent {
+
+    fun inject(target: MainActivity)
 
     /**
      * A [Component.Factory] that outlines how we want to create this

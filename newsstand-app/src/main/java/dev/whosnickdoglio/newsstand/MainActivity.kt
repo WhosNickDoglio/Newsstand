@@ -32,39 +32,46 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.ViewModelProvider
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.squareup.workflow1.ui.ViewEnvironment
-import com.squareup.workflow1.ui.compose.WorkflowRendering
-import com.squareup.workflow1.ui.plus
+import com.slack.circuit.CircuitCompositionLocals
+import com.slack.circuit.CircuitConfig
+import com.slack.circuit.CircuitContent
 import dev.whosnickdoglio.newsstand.design.NewsstandTheme
-import dev.whosnickdoglio.newsstand.feedly.root.feedlyViewRegistry
-import tangle.viewmodel.compose.tangleViewModel
+import dev.whosnickdoglio.newsstand.di.injector
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
 
-    private val registry = feedlyViewRegistry
+    @Inject
+    lateinit var circuitViewModelProviderFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var config: CircuitConfig
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        injector.inject(this)
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
             NewsstandTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    NewsstandApp()
+                    NewsstandApp(config = config)
                 }
             }
         }
     }
 
+    override fun getDefaultViewModelProviderFactory(): ViewModelProvider.Factory =
+        circuitViewModelProviderFactory
+
     @Composable
     private fun NewsstandApp(
-        model: WorkflowProvider = tangleViewModel()
+        config: CircuitConfig,
     ) {
         val systemUiController = rememberSystemUiController()
         val useDarkIcons = !isSystemInDarkTheme()
@@ -78,9 +85,8 @@ class MainActivity : ComponentActivity() {
             onDispose {}
         }
 
-        val rendering by model.rendering.collectAsState()
-        val viewEnvironment = remember { ViewEnvironment.EMPTY.plus(registry) }
-
-        WorkflowRendering(rendering, viewEnvironment)
+        CircuitCompositionLocals(config) {
+            CircuitContent(Root)
+        }
     }
 }

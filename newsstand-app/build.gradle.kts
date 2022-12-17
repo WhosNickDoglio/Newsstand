@@ -27,6 +27,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.anvil)
     alias(libs.plugins.napt)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.detekt)
 //    alias(libs.plugins.secrets)
     id("kotlin-parcelize")
@@ -59,7 +60,6 @@ android {
         }
 
         compileOptions {
-            kotlinOptions.freeCompilerArgs += "-opt-in=com.squareup.workflow1.ui.WorkflowUiExperimentalApi"
             isCoreLibraryDesugaringEnabled = true
             sourceCompatibility = JavaVersion.VERSION_11
             targetCompatibility = JavaVersion.VERSION_11
@@ -84,13 +84,10 @@ dependencies {
 
     implementation(libs.androidx.activity.compose)
 
-    implementation(libs.workflow.core)
-    implementation(libs.workflow.android.ui)
-    implementation(libs.workflow.ui.compose)
-    implementation(libs.workflow.ui.compose.tooling)
-    implementation(libs.workflow.container)
-
     implementation(libs.circuit)
+    implementation(libs.circuitOverlay)
+    implementation(libs.circuitCodegenAnnotations)
+    ksp(libs.circuitCodegen)
 
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui)
@@ -105,14 +102,9 @@ dependencies {
 
     implementation(libs.accompanist.systems.ui)
 
-    implementation(libs.tangle.viewmodel.compose)
-    implementation(libs.tangle.viewmodel.api)
-    anvil(libs.tangle.viewmodel.compiler)
-
     implementation(libs.dagger.core)
     annotationProcessor(libs.dagger.compiler)
 
-    testImplementation(libs.workflow.test)
     testImplementation(libs.junit)
     testImplementation(libs.truth)
 }

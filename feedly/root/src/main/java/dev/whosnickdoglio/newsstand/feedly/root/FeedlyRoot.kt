@@ -28,17 +28,51 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.squareup.workflow1.ui.compose.composeScreenViewFactory
+import com.slack.circuit.CircuitUiEvent
+import com.slack.circuit.CircuitUiState
+import com.slack.circuit.Presenter
+import com.slack.circuit.Screen
+import com.slack.circuit.codegen.annotations.CircuitInject
+import dev.whosnickdoglio.newsstand.anvil.AppScope
+import kotlinx.parcelize.Parcelize
+import javax.inject.Inject
 
-internal val rootViewFactory =
-    composeScreenViewFactory<FeedlyRootWorkflow.Rendering> { rendering, _ ->
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Text(rendering.text)
-        }
+@Parcelize
+object FeedlyRoot : Screen {
+
+    data class State(
+        val currentScreen: FeedlyScreen,
+        val eventSink: (FeedlyRootEvent) -> Unit,
+    ) : CircuitUiState
+
+    sealed interface FeedlyRootEvent : CircuitUiEvent
+}
+
+enum class FeedlyScreen { LOGIN, FEED, }
+
+@CircuitInject(FeedlyRoot::class, AppScope::class)
+@Composable
+fun FeedlyRoot(state: FeedlyRoot.State) {
+    // TODO once I have Feedly features I can create my own backstack here
+//    val stack = rememberSaveableBackStack { push(Root) }
+//    val circuitNavigator = rememberCircuitNavigator(stack)
+
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Text("Hello Feedly!")
     }
+}
+
+@CircuitInject(FeedlyRoot::class, AppScope::class)
+class FeedlyRootPresenter @Inject constructor() : Presenter<FeedlyRoot.State> {
+
+    @Composable
+    override fun present(): FeedlyRoot.State =
+        FeedlyRoot.State(currentScreen = FeedlyScreen.LOGIN) {}
+}
