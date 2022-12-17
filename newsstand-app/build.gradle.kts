@@ -78,9 +78,8 @@ dependencies {
 
     implementation(projects.libraries.appScope)
     implementation(projects.libraries.design)
-    implementation(projects.libraries.appBinding)
     implementation(projects.libraries.coroutinesExt.impl)
-    implementation(projects.libraries.connectivity)
+    implementation(projects.libraries.connectivity.impl)
     implementation(projects.feedly.root)
 
     implementation(libs.androidx.activity.compose)

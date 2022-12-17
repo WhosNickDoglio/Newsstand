@@ -34,7 +34,7 @@ anvil {
 }
 
 android {
-    namespace = "dev.whosnickdoglio.newsstand.binding"
+    namespace = "dev.whosnickdoglio.newsstand.connectivity"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -70,7 +70,7 @@ dependencies {
     coreLibraryDesugaring(libs.desugar)
 
     implementation(projects.libraries.coroutinesExt.public)
-    implementation(projects.libraries.connectivity)
+    api(projects.libraries.connectivity.public)
     implementation(projects.libraries.appScope)
 
     implementation(libs.dagger.core)

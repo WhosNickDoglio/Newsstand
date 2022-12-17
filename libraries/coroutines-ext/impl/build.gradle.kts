@@ -70,7 +70,7 @@ dependencies {
     coreLibraryDesugaring(libs.desugar)
 
     api(projects.libraries.coroutinesExt.public)
-    implementation(projects.libraries.connectivity)
+    implementation(projects.libraries.connectivity.public)
     implementation(projects.libraries.appScope)
 
     implementation(libs.dagger.core)

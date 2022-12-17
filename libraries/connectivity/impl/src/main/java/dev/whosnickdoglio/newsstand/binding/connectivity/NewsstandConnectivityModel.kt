@@ -22,15 +22,13 @@
  * SOFTWARE.
  */
 
-package dev.whosnickdoglio.newsstand.binding.connectivity
+package dev.whosnickdoglio.newsstand.connectivity
 
 import android.app.Application
 import android.net.ConnectivityManager
 import android.net.Network
 import com.squareup.anvil.annotations.ContributesBinding
 import dev.whosnickdoglio.newsstand.anvil.AppScope
-import dev.whosnickdoglio.newsstand.connectivity.ConnectionStatus
-import dev.whosnickdoglio.newsstand.connectivity.ConnectivityModel
 import dev.whosnickdoglio.newsstand.coroutines.CoroutineContextProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
