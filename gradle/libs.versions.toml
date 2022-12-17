@@ -12,7 +12,6 @@ retrofit = "2.9.0"
 moshi = "1.14.0"
 sqldelight = "1.5.4"
 composeCompiler = "1.4.0-alpha02"
-material = "1.0.1"
 accompanist = "0.28.0"
 jacoco = "0.8.7"
 circuit = "0.4.0"
@@ -85,17 +84,16 @@ leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version = 
 desugar = { module = "com.android.tools:desugar_jdk_libs", version = "1.2.2" }
 
 compose-bom = { module = "androidx.compose:compose-bom", version = "2022.12.00" }
+compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "composeCompiler" }
 compose-ui = { module = "androidx.compose.ui:ui" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-foundation = { module = "androidx.compose.foundation:foundation" }
 compose-animations = { module = "androidx.compose.animation:animation" }
-compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "composeCompiler" }
-compose-material = { module = "androidx.compose.material3:material3", version.ref = "material" }
-compose-material-window = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "material" }
+compose-material = { module = "androidx.compose.material3:material3" }
+compose-material-window = { module = "androidx.compose.material3:material3-window-size-class" }
 
 accompanist-systems-ui = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 accompanist-pager-core = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist" }
 accompanist-pager-indicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanist" }
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
-accompanist-refresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanist" }
