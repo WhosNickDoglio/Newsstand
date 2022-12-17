@@ -65,7 +65,7 @@ fun FeedlyRoot(state: FeedlyRoot.State) {
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()
     ) {
-        Text("Hello Feedly!")
+        Text("Hello Feedly! $state")
     }
 }
 
