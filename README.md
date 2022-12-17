@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/WhosNickDoglio/Newsstand/actions/workflows/ci.yml/badge.svg)](https://github.com/WhosNickDoglio/Newsstand/actions/workflows/ci.yml)
 [![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=24)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](/.github/CODE_OF_CONDUCT.md)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](/.github/CODE_OF_CONDUCT.MD)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c8cd740dd75599c2318b/maintainability)](https://codeclimate.com/github/WhosNickDoglio/Newsstand/maintainability)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
