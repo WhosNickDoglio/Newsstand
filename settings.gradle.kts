@@ -61,6 +61,7 @@ include(
     ":libraries:app-binding",
     ":libraries:app-scope",
     ":libraries:connectivity",
-    ":libraries:coroutines-ext",
+    ":libraries:coroutines-ext:public",
+    ":libraries:coroutines-ext:impl",
     ":libraries:design",
 )

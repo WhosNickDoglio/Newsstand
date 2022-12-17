@@ -34,7 +34,7 @@ anvil {
 }
 
 android {
-    namespace = "dev.whosnickdoglio.newsstand.binding"
+    namespace = "dev.whosnickdoglio.newsstand.coroutines"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -69,7 +69,7 @@ dependencies {
     detektPlugins(libs.detekt.compose)
     coreLibraryDesugaring(libs.desugar)
 
-    implementation(projects.libraries.coroutinesExt.public)
+    api(projects.libraries.coroutinesExt.public)
     implementation(projects.libraries.connectivity)
     implementation(projects.libraries.appScope)
 

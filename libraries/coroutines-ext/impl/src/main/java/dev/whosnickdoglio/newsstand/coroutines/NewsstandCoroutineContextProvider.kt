@@ -22,11 +22,10 @@
  * SOFTWARE.
  */
 
-package dev.whosnickdoglio.newsstand.binding.coroutines
+package dev.whosnickdoglio.newsstand.coroutines
 
 import com.squareup.anvil.annotations.ContributesBinding
 import dev.whosnickdoglio.newsstand.anvil.AppScope
-import dev.whosnickdoglio.newsstand.coroutines.CoroutineContextProvider
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext

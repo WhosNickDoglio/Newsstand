@@ -79,7 +79,7 @@ dependencies {
     implementation(projects.libraries.appScope)
     implementation(projects.libraries.design)
     implementation(projects.libraries.appBinding)
-    implementation(projects.libraries.coroutinesExt)
+    implementation(projects.libraries.coroutinesExt.impl)
     implementation(projects.libraries.connectivity)
     implementation(projects.feedly.root)
 
