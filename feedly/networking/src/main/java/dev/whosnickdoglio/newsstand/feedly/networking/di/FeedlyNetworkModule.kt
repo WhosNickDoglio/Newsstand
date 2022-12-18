@@ -49,29 +49,24 @@ object FeedlyNetworkModule {
 
     @Singleton
     @Provides
-    fun provideOkhttpClient(): OkHttpClient = OkHttpClient.Builder()
-        .build()
+    fun provideOkhttpClient(): OkHttpClient = OkHttpClient.Builder().build()
 
     @Singleton
     @Provides
-    fun provideFeedlyService(okHttpClient: Lazy<OkHttpClient>): FeedlyService = Retrofit.Builder()
+    fun provideRetrofit(okHttpClient: Lazy<OkHttpClient>): Retrofit = Retrofit.Builder()
         .baseUrl(SANDBOX_BASE_URL)
         .callFactory { request -> okHttpClient.get().newCall(request) }
         .addConverterFactory(ApiResultConverterFactory)
         .addCallAdapterFactory(ApiResultCallAdapterFactory)
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
-        .create()
 
     @Singleton
     @Provides
-    fun provideFeedlyAuthService(okHttpClient: Lazy<OkHttpClient>): FeedlyAuthenticationService =
-        Retrofit.Builder()
-            .baseUrl(SANDBOX_BASE_URL)
-            .addConverterFactory(ApiResultConverterFactory)
-            .addCallAdapterFactory(ApiResultCallAdapterFactory)
-            .addConverterFactory(MoshiConverterFactory.create())
-            .callFactory { request -> okHttpClient.get().newCall(request) }
-            .build()
-            .create()
+    fun provideFeedlyService(retrofit: Retrofit): FeedlyService = retrofit.create()
+
+    @Singleton
+    @Provides
+    fun provideFeedlyAuthService(retrofit: Retrofit): FeedlyAuthenticationService =
+        retrofit.create()
 }

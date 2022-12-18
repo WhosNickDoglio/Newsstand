@@ -31,6 +31,7 @@ plugins {
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.detekt) apply false
     alias(libs.plugins.secrets) apply false
+    alias(libs.plugins.anvil) apply false
     alias(libs.plugins.gradle.versions)
     alias(libs.plugins.junit.jacoco)
     alias(libs.plugins.dependency.analysis)

@@ -69,7 +69,7 @@ dependencies {
     detektPlugins(libs.detekt.compose)
     coreLibraryDesugaring(libs.desugar)
 
-    implementation(projects.libraries.coroutinesExt.public)
+    api(projects.libraries.coroutinesExt.public)
     api(projects.libraries.connectivity.public)
     implementation(projects.libraries.appScope)
 

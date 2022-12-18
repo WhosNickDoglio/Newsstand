@@ -36,8 +36,8 @@ dependencies {
     detektPlugins(libs.detekt.formatting)
     detektPlugins(libs.detekt.compose)
 
-    implementation(projects.feedly.models)
-    implementation(projects.feedly.auth)
+    api(projects.feedly.models)
+    api(projects.feedly.auth)
     implementation(projects.libraries.appScope)
 
     api(libs.coroutines.core)
