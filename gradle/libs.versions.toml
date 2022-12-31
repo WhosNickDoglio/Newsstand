@@ -14,7 +14,7 @@ sqldelight = "1.5.4"
 composeCompiler = "1.4.0-alpha02"
 accompanist = "0.28.0"
 jacoco = "0.8.7"
-circuit = "0.4.0"
+circuit = "0.5.0"
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
@@ -72,6 +72,7 @@ sqldelight-jvm = { module = "com.squareup.sqldelight:sqlite-driver", version.ref
 coil = { module = "io.coil-kt:coil-compose", version = "2.2.2" }
 
 circuit = { module = "com.slack.circuit:circuit-core", version.ref = "circuit" }
+circuitRetained = { module = "com.slack.circuit:circuit-retained", version.ref = "circuit" }
 circuitOverlay = { module = "com.slack.circuit:circuit-overlay", version.ref = "circuit" }
 circuitCodegen = { module = "com.slack.circuit:circuit-codegen", version.ref = "circuit" }
 circuitCodegenAnnotations = { module = "com.slack.circuit:circuit-codegen-annotations", version.ref = "circuit" }

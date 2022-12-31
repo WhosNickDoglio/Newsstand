@@ -86,6 +86,7 @@ dependencies {
 
     implementation(libs.circuit)
     implementation(libs.circuitOverlay)
+    implementation(libs.circuitRetained)
     implementation(libs.circuitCodegenAnnotations)
     ksp(libs.circuitCodegen)
 

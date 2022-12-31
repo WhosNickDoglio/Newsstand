@@ -31,23 +31,22 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.ViewModelProvider
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.slack.circuit.CircuitCompositionLocals
 import com.slack.circuit.CircuitConfig
 import com.slack.circuit.CircuitContent
+import com.slack.circuit.retained.LocalRetainedStateRegistry
+import com.slack.circuit.retained.continuityRetainedStateRegistry
 import dev.whosnickdoglio.newsstand.design.NewsstandTheme
 import dev.whosnickdoglio.newsstand.di.injector
 import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
-
-    @Inject
-    lateinit var circuitViewModelProviderFactory: ViewModelProvider.Factory
 
     @Inject
     lateinit var config: CircuitConfig
@@ -59,15 +58,16 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             NewsstandTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    NewsstandApp(config = config)
+                CompositionLocalProvider(
+                    LocalRetainedStateRegistry provides continuityRetainedStateRegistry(),
+                ) {
+                    Surface(modifier = Modifier.fillMaxSize()) {
+                        NewsstandApp(config = config)
+                    }
                 }
             }
         }
     }
-
-    override fun getDefaultViewModelProviderFactory(): ViewModelProvider.Factory =
-        circuitViewModelProviderFactory
 
     @Composable
     private fun NewsstandApp(
