@@ -3,7 +3,7 @@ targetSdk = "33"
 compileSdk = "33"
 minSdk = "24"
 agp = "7.4.0"
-kotlin = "1.7.21"
+kotlin = "1.8.0"
 dagger = "2.44.2"
 detekt = "1.22.0"
 coroutines = "1.6.4"
@@ -11,7 +11,7 @@ okhttp = "4.10.0"
 retrofit = "2.9.0"
 moshi = "1.14.0"
 sqldelight = "1.5.4"
-composeCompiler = "1.4.0-alpha02"
+composeCompiler = "1.4.0-dev-k1.8.0-33c0ad36f83"
 accompanist = "0.28.0"
 jacoco = "0.8.7"
 circuit = "0.5.0"
@@ -21,8 +21,8 @@ detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 gradle-versions = { id = "com.github.ben-manes.versions", version = "0.44.0" }
 secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version = "2.0.1" }
 doctor = { id = "com.osacky.doctor", version = "0.8.1" }
-anvil = { id = "com.squareup.anvil", version = "2.4.3" }
-ksp = { id = "com.google.devtools.ksp", version = "1.7.22-1.0.8" }
+anvil = { id = "com.squareup.anvil", version = "2.4.4" }
+ksp = { id = "com.google.devtools.ksp", version = "1.8.0-1.0.8" }
 play-publish = { id = "com.github.triplet.play", version = "3.7.0" }
 junit-jacoco = { id = "com.vanniktech.android.junit.jacoco", version = "0.16.0" }
 dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version = "1.18.0" }
