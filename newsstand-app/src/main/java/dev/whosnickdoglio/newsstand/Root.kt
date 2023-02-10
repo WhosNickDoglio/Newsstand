@@ -25,6 +25,7 @@
 package dev.whosnickdoglio.newsstand
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import com.slack.circuit.CircuitContent
 import com.slack.circuit.CircuitUiEvent
 import com.slack.circuit.CircuitUiState
@@ -40,7 +41,7 @@ import kotlinx.parcelize.Parcelize
 object Root : Screen {
 
     data class State(
-        val feature: Root.Feature,
+        val feature: Feature,
         val eventSink: (RootEvent) -> Unit,
     ) : CircuitUiState
 
@@ -54,17 +55,17 @@ object Root : Screen {
 @CircuitInject(Root::class, AppScope::class)
 class RootPresenter @Inject constructor() : Presenter<Root.State> {
 
-    @Composable
-    override fun present(): Root.State = Root.State(feature = Root.Feature.FEEDLY) { event -> }
+    @Composable override fun present(): Root.State = Root.State(feature = Root.Feature.FEEDLY) {}
 }
 
 @CircuitInject(Root::class, AppScope::class)
 @Composable
-fun Root(state: Root.State) {
+fun Root(state: Root.State, modifier: Modifier = Modifier) {
     CircuitContent(
         screen =
             when (state.feature) {
                 Root.Feature.FEEDLY -> FeedlyRoot
-            }
+            },
+        modifier = modifier
     )
 }
