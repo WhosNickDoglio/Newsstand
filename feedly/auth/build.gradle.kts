@@ -32,7 +32,6 @@ plugins {
 anvil { generateDaggerFactories.set(true) }
 
 dependencies {
-    detektPlugins(libs.detekt.formatting)
     detektPlugins(libs.detekt.compose)
     api(projects.feedly.models)
     api(projects.libraries.coroutinesExt.public)
