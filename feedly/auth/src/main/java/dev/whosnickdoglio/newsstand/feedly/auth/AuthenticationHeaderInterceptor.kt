@@ -25,10 +25,10 @@
 package dev.whosnickdoglio.newsstand.feedly.auth
 
 import dev.whosnickdoglio.newsstand.coroutines.CoroutineContextProvider
+import javax.inject.Inject
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
-import javax.inject.Inject
 
 class AuthenticationHeaderInterceptor
 @Inject

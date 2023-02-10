@@ -37,8 +37,8 @@ import com.slack.circuit.Presenter
 import com.slack.circuit.Screen
 import com.slack.circuit.codegen.annotations.CircuitInject
 import dev.whosnickdoglio.newsstand.anvil.AppScope
-import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 object FeedlyRoot : Screen {

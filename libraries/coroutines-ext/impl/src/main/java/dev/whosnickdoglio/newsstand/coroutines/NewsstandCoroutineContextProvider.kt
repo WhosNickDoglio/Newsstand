@@ -26,9 +26,9 @@ package dev.whosnickdoglio.newsstand.coroutines
 
 import com.squareup.anvil.annotations.ContributesBinding
 import dev.whosnickdoglio.newsstand.anvil.AppScope
-import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.Dispatchers
 
 /**
  * Default implementation of [CoroutineContextProvider].

@@ -33,11 +33,11 @@ import dagger.Provides
 import dev.whosnickdoglio.newsstand.anvil.AppScope
 import dev.whosnickdoglio.newsstand.feedly.auth.FeedlyAuthenticationService
 import dev.whosnickdoglio.newsstand.feedly.networking.internal.FeedlyService
+import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
-import javax.inject.Singleton
 
 @Module
 @ContributesTo(AppScope::class)

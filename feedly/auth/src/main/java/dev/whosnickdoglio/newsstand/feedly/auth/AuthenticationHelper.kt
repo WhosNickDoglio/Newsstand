@@ -30,7 +30,8 @@ import dev.whosnickdoglio.newsstand.anvil.AppScope
 import javax.inject.Inject
 
 // TODO better name, also make it more feedly package wise
-/**  */
+/**
+ */
 interface AuthenticationHelper {
 
     fun provideRedirectUrl(): String

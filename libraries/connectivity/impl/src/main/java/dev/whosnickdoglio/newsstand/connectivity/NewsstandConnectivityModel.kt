@@ -30,11 +30,11 @@ import android.net.Network
 import com.squareup.anvil.annotations.ContributesBinding
 import dev.whosnickdoglio.newsstand.anvil.AppScope
 import dev.whosnickdoglio.newsstand.coroutines.CoroutineContextProvider
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 /**
  * Default implementation of [ConnectivityModel].
