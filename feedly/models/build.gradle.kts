@@ -25,12 +25,13 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.detekt)
-    alias(libs.plugins.ktfmt)
+//    alias(libs.plugins.ktfmt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.android.lint)
 }
 
 dependencies {
-    detektPlugins(libs.detekt.compose)
+    lintChecks(libs.lints.compose)
 
     implementation(libs.moshi.core)
     ksp(libs.moshi.codegen)

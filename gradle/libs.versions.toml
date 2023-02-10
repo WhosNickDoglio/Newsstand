@@ -28,6 +28,7 @@ junit-jacoco = { id = "com.vanniktech.android.junit.jacoco", version = "0.16.0" 
 dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version = "1.19.0" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 android-app = { id = "com.android.application", version.ref = "agp" }
+android-lint = { id = "com.android.lint", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 napt = { id = "com.sergei-lapin.napt", version = "1.19" }
@@ -48,8 +49,8 @@ dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = 
 
 timber = { module = "com.jakewharton.timber:timber", version = "5.0.1" }
 
-detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 detekt-compose = { module = "com.twitter.compose.rules:detekt", version = "0.0.26" }
+lints-compose = { module = "com.slack.lint.compose:compose-lint-checks", version = "1.0.0" }
 
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }

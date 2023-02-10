@@ -27,12 +27,13 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.anvil)
     alias(libs.plugins.ktfmt)
+    alias(libs.plugins.android.lint)
 }
 
 anvil { generateDaggerFactories.set(true) }
 
 dependencies {
-    detektPlugins(libs.detekt.compose)
+    lintChecks(libs.lints.compose)
     api(projects.feedly.models)
     api(projects.libraries.coroutinesExt.public)
     implementation(projects.libraries.appScope)

@@ -66,7 +66,7 @@ android {
 }
 
 dependencies {
-    detektPlugins(libs.detekt.compose)
+    lintChecks(libs.lints.compose)
     coreLibraryDesugaring(libs.desugar)
 
     implementation(projects.libraries.appScope)
