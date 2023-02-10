@@ -25,8 +25,8 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.detekt)
-//    alias(libs.plugins.ktfmt) TODO fix
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.ktfmt)
+    alias(libs.plugins.moshiIr)
     alias(libs.plugins.android.lint)
 }
 
@@ -34,5 +34,4 @@ dependencies {
     lintChecks(libs.lints.compose)
 
     implementation(libs.moshi.core)
-    ksp(libs.moshi.codegen)
 }

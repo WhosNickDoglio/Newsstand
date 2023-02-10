@@ -32,12 +32,12 @@ import com.squareup.moshi.JsonClass
  *
  * @param id The logged in user's feedly id.
  * @param refresh A token that may be used to obtain a new access token. Refresh tokens are valid
- *   until the user revokes access.
+ * until the user revokes access.
  * @param access A token that may be used to access APIs. This token expires in the given amount of
- *   time in [expiresIn], it can also be refreshed using [refresh].
+ * time in [expiresIn], it can also be refreshed using [refresh].
  * @param expiresIn The remaining lifetime on the access token in **seconds**.
  * @param tokenType Indicates the type of token returned. At this time, this field will always have
- *   the value of Bearer
+ * the value of Bearer
  * @param plan Indicated the user plan (standard, pro or business)
  * @param state The state that was passed in
  * @see <a href src="https://developer.feedly.com/v3/auth/">Feedly auth docs</a>
