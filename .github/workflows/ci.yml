@@ -23,7 +23,7 @@ jobs:
         uses: gradle/gradle-build-action@v2.3.3
 
       - name: Lint
-        run: ./gradlew detekt
+        run: ./gradlew lint detekt ktfmtCheck
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug
