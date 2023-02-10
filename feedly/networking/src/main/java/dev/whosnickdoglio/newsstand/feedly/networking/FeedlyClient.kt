@@ -34,9 +34,7 @@ import dev.whosnickdoglio.newsstand.feedly.networking.internal.FeedlyService
 import javax.inject.Inject
 
 // TODO is this class necessary
-class FeedlyClient @Inject constructor(
-    private val feedlyService: FeedlyService
-) {
+class FeedlyClient @Inject constructor(private val feedlyService: FeedlyService) {
 
     suspend fun getStream(
         id: String,

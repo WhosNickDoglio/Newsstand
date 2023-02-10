@@ -94,14 +94,12 @@ interface FeedlyService {
         @Query("withEnterprise") withEnterprise: Boolean? = null,
     ): ApiResult<List<Board>, ErrorResponse>
 
-    @POST("boards")
-    suspend fun updateBoard(@Body update: UpdateBoardParam)
+    @POST("boards") suspend fun updateBoard(@Body update: UpdateBoardParam)
 
     /**
-     * TODO how do I do this?? info from docs Send the new image as
-     * a multi-part MIME attachment with the name “cover”. Accepted
-     * images are JPG, PNG and GIF. The image will be resized to
-     * 840 pixels wide by 250 pixels high (recommended size).
+     * TODO how do I do this?? info from docs Send the new image as a multi-part MIME attachment
+     * with the name “cover”. Accepted images are JPG, PNG and GIF. The image will be resized to 840
+     * pixels wide by 250 pixels high (recommended size).
      * https://stackoverflow.com/questions/39953457/how-to-upload-image-file-in-retrofit-2
      */
     @POST("boards/{id}")
@@ -119,7 +117,9 @@ interface FeedlyService {
     ): ApiResult<List<dev.whosnickdoglio.newsstand.feedly.models.Collection>, ErrorResponse>
 
     @GET("collections/{id}")
-    suspend fun getCollection(@Path("id") id: String): List<dev.whosnickdoglio.newsstand.feedly.models.Collection>
+    suspend fun getCollection(
+        @Path("id") id: String
+    ): List<dev.whosnickdoglio.newsstand.feedly.models.Collection>
 
     @POST("collections")
     suspend fun createOrUpdateCollection(
@@ -132,10 +132,7 @@ interface FeedlyService {
     ): ApiResult<List<dev.whosnickdoglio.newsstand.feedly.models.Collection>, ErrorResponse>
 
     @PUT("collections/{id}/feeds")
-    suspend fun addFeedToCollection(
-        @Path("id") id: String,
-        @Body param: AddFeedParam
-    )
+    suspend fun addFeedToCollection(@Path("id") id: String, @Body param: AddFeedParam)
 
     // </editor-fold>
 }

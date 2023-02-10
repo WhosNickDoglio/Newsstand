@@ -28,7 +28,8 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class Collection(
-    val id: String, // user/af190c49-0ac8-4f08-9f83-805f1a3bc142/category/af190c49-0ac8-4f08-9f83-805f1a3bc142
+    val id:
+        String, // user/af190c49-0ac8-4f08-9f83-805f1a3bc142/category/af190c49-0ac8-4f08-9f83-805f1a3bc142
     val label: String, // Startup
     val description: String, // Entrepreneurs and Startup Blogs
     val cover: String, // http://imageUrl

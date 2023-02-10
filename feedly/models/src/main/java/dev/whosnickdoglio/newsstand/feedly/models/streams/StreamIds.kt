@@ -27,7 +27,4 @@ package dev.whosnickdoglio.newsstand.feedly.models.streams
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class StreamIds(
-    val ids: List<String>,
-    val continuation: String? = null
-)
+data class StreamIds(val ids: List<String>, val continuation: String? = null)

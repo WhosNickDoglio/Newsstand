@@ -47,19 +47,18 @@ object FeedlyNetworkModule {
     private const val PROD_BASE_URL = "https://cloud.feedly.com/v3/"
     private const val SANDBOX_BASE_URL = "https://sandbox7.feedly.com/v3/"
 
-    @Singleton
-    @Provides
-    fun provideOkhttpClient(): OkHttpClient = OkHttpClient.Builder().build()
+    @Singleton @Provides fun provideOkhttpClient(): OkHttpClient = OkHttpClient.Builder().build()
 
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: Lazy<OkHttpClient>): Retrofit = Retrofit.Builder()
-        .baseUrl(SANDBOX_BASE_URL)
-        .callFactory { request -> okHttpClient.get().newCall(request) }
-        .addConverterFactory(ApiResultConverterFactory)
-        .addCallAdapterFactory(ApiResultCallAdapterFactory)
-        .addConverterFactory(MoshiConverterFactory.create())
-        .build()
+    fun provideRetrofit(okHttpClient: Lazy<OkHttpClient>): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(SANDBOX_BASE_URL)
+            .callFactory { request -> okHttpClient.get().newCall(request) }
+            .addConverterFactory(ApiResultConverterFactory)
+            .addCallAdapterFactory(ApiResultCallAdapterFactory)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
 
     @Singleton
     @Provides

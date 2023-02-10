@@ -25,6 +25,7 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.ktfmt)
 }
 
 dependencies {

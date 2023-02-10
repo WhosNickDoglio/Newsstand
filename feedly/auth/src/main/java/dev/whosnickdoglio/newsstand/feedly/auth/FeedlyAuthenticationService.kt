@@ -65,8 +65,7 @@ interface FeedlyAuthenticationService {
         @Field("grant_type") grant: String = "refresh_token",
     ): ApiResult<Tokens, ErrorResponse>
 
-    @POST("auth/logout")
-    suspend fun logOut()
+    @POST("auth/logout") suspend fun logOut()
 
     private companion object {
         private const val RESPONSE_TYPE = "code"

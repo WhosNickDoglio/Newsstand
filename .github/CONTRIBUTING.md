@@ -1,14 +1,18 @@
 ## Welcome! Thank you for considering contributing to this project!
 
-Adhering to the following guidelines will help make the development process for all of us a lot smoother, more productive and painless.
+Adhering to the following guidelines will help make the development process for all of us a lot
+smoother, more productive and painless.
 
 # Ground Rules
 
-Please make sure to review and follow the [Code of Conduct](/.github/CODE_OF_CONDUCT.md) when making contributions to this project.
+Please make sure to review and follow the [Code of Conduct](/.github/CODE_OF_CONDUCT.md) when making
+contributions to this project.
 
 # Your First Contribution
 
-Check out any [open issues](https://github.com/WhosNickDoglio/Yahoo-Fantasy-Client/issues), anything labeled "help wanted" is up for grabs, if you see another issue you're interested in feel free to comment on and see if it's available to be worked on.
+Check out any [open issues](https://github.com/WhosNickDoglio/Yahoo-Fantasy-Client/issues), anything
+labeled "help wanted" is up for grabs, if you see another issue you're interested in feel free to
+comment on and see if it's available to be worked on.
 
 # Getting started
 
@@ -19,11 +23,3 @@ Check out any [open issues](https://github.com/WhosNickDoglio/Yahoo-Fantasy-Clie
 # How to report a bug or suggest a feature / enhancement
 
 Open an issue and follow the necessary template to get a discussion going for a bug or feature.
-
-
-
-
-
-
-
-

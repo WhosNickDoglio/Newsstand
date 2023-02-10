@@ -31,26 +31,16 @@ import dev.whosnickdoglio.newsstand.di.AppComponentProvider
 
 class NewsstandApplication : Application(), AppComponentProvider {
 
-    override val component: AppComponent by lazy {
-        AppComponent.factory().create(this)
-    }
+    override val component: AppComponent by lazy { AppComponent.factory().create(this) }
 
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(
-                StrictMode.ThreadPolicy.Builder()
-                    .detectAll()
-                    .penaltyLog()
-                    .build()
+                StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build()
             )
 
-            StrictMode.setVmPolicy(
-                StrictMode.VmPolicy.Builder()
-                    .detectAll()
-                    .penaltyLog()
-                    .build()
-            )
+            StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build())
         }
     }
 }

@@ -51,14 +51,17 @@ object FeedlyRoot : Screen {
     sealed interface FeedlyRootEvent : CircuitUiEvent
 }
 
-enum class FeedlyScreen { LOGIN, FEED, }
+enum class FeedlyScreen {
+    LOGIN,
+    FEED,
+}
 
 @CircuitInject(FeedlyRoot::class, AppScope::class)
 @Composable
 fun FeedlyRoot(state: FeedlyRoot.State) {
     // TODO once I have Feedly features I can create my own backstack here
-//    val stack = rememberSaveableBackStack { push(Root) }
-//    val circuitNavigator = rememberCircuitNavigator(stack)
+    //    val stack = rememberSaveableBackStack { push(Root) }
+    //    val circuitNavigator = rememberCircuitNavigator(stack)
 
     Column(
         verticalArrangement = Arrangement.Center,

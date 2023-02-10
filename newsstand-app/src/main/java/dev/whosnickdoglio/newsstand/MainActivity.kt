@@ -48,8 +48,7 @@ import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var config: CircuitConfig
+    @Inject lateinit var config: CircuitConfig
 
     override fun onCreate(savedInstanceState: Bundle?) {
         injector.inject(this)
@@ -61,9 +60,7 @@ class MainActivity : ComponentActivity() {
                 CompositionLocalProvider(
                     LocalRetainedStateRegistry provides continuityRetainedStateRegistry(),
                 ) {
-                    Surface(modifier = Modifier.fillMaxSize()) {
-                        NewsstandApp(config = config)
-                    }
+                    Surface(modifier = Modifier.fillMaxSize()) { NewsstandApp(config = config) }
                 }
             }
         }
@@ -85,8 +82,6 @@ class MainActivity : ComponentActivity() {
             onDispose {}
         }
 
-        CircuitCompositionLocals(config) {
-            CircuitContent(Root)
-        }
+        CircuitCompositionLocals(config) { CircuitContent(Root) }
     }
 }

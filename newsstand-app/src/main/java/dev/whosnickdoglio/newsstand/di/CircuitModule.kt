@@ -60,11 +60,9 @@ import dev.whosnickdoglio.newsstand.anvil.AppScope
 @ContributesTo(AppScope::class)
 @Module
 interface CircuitModule {
-    @Multibinds
-    fun presenterFactories(): Set<Presenter.Factory>
+    @Multibinds fun presenterFactories(): Set<Presenter.Factory>
 
-    @Multibinds
-    fun viewFactories(): Set<Ui.Factory>
+    @Multibinds fun viewFactories(): Set<Ui.Factory>
 
     companion object {
 

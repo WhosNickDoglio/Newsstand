@@ -29,8 +29,12 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Webfeeds(
     val accentColor: String, // 157bda
-    val coverImage: String, // https://www.androidpolice.com/wp-content/themes/ap2/images/apple-touch-icon.png
-    val icon: String, // https://www.androidpolice.com/wp-content/themes/ap2/images/apple-touch-icon.png
-    val logo: String, // https://www.androidpolice.com/wp-content/themes/ap2/images/apple-touch-icon.png
-    val wordmark: String // https://www.androidpolice.com/wp-content/themes/ap2/images/ap-logo-textonly.svg
+    val coverImage:
+        String, // https://www.androidpolice.com/wp-content/themes/ap2/images/apple-touch-icon.png
+    val icon:
+        String, // https://www.androidpolice.com/wp-content/themes/ap2/images/apple-touch-icon.png
+    val logo:
+        String, // https://www.androidpolice.com/wp-content/themes/ap2/images/apple-touch-icon.png
+    val wordmark:
+        String // https://www.androidpolice.com/wp-content/themes/ap2/images/ap-logo-textonly.svg
 )

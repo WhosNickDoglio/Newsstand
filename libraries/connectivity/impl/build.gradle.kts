@@ -27,11 +27,10 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.detekt)
     alias(libs.plugins.anvil)
+    alias(libs.plugins.ktfmt)
 }
 
-anvil {
-    generateDaggerFactories.set(true)
-}
+anvil { generateDaggerFactories.set(true) }
 
 android {
     namespace = "dev.whosnickdoglio.newsstand.connectivity"
@@ -59,9 +58,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
+    kotlinOptions { jvmTarget = JavaVersion.VERSION_11.toString() }
 }
 
 dependencies {

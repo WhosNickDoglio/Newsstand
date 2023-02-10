@@ -34,7 +34,9 @@ import okhttp3.Route
 import javax.inject.Inject
 
 @ContributesBinding(AppScope::class)
-class FeedlyAuthenticator @Inject constructor(
+class FeedlyAuthenticator
+@Inject
+constructor(
     private val tokenStore: TokenRepository,
     private val authenticationHelper: AuthenticationHelper,
 ) : Authenticator {
@@ -58,9 +60,7 @@ class FeedlyAuthenticator @Inject constructor(
     private fun Response.makeRequestWithToken(token: String): Request {
         val tokenType = runBlocking { tokenStore.retrieveTokenType() }
 
-        return request.newBuilder()
-            .header(AUTH_HEADER, "$tokenType $token")
-            .build()
+        return request.newBuilder().header(AUTH_HEADER, "$tokenType $token").build()
     }
 
     private val Response.retryCount: Int

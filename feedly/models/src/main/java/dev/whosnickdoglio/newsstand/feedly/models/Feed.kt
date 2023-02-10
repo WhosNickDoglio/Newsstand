@@ -27,8 +27,6 @@ package dev.whosnickdoglio.newsstand.feedly.models
 import com.squareup.moshi.JsonClass
 
 /**
- *
- *
  * @param id
  * @param feedId
  * @param title
@@ -49,7 +47,6 @@ import com.squareup.moshi.JsonClass
  * @param logo
  * @param wordmark
  * @param accentColor
- *
  * @see <a href="https://developer.feedly.com/v3/feeds/">Feedly docs</a>
  */
 @JsonClass(generateAdapter = true)

@@ -28,6 +28,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class Category(
-    val id: String, // user/487f1d7b-be92-4dcc-8fec-3edf76629fff/category/268b5c3f-5a3a-40ac-839f-9ee189d01ebf
+    val id:
+        String, // user/487f1d7b-be92-4dcc-8fec-3edf76629fff/category/268b5c3f-5a3a-40ac-839f-9ee189d01ebf
     val label: String // Basketball
 )

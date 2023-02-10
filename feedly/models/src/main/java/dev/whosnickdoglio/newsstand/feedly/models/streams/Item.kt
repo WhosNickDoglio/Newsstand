@@ -30,7 +30,8 @@ import com.squareup.moshi.JsonClass
 data class Item(
     val id: String, // Fc8eWZQhAo/nbGP3V9wtomJqhIKLh7hWWbPoxOUItFg=_17711a5aeca:2da:bc7cc76b
     val keywords: List<String>? = null,
-    val originId: String, // 5e1c9678b75a570f5fd57d69:5e9f3b7b4644dd371e0252bc:6002f45612a04d6cc4884a9b
+    val originId:
+        String, // 5e1c9678b75a570f5fd57d69:5e9f3b7b4644dd371e0252bc:6002f45612a04d6cc4884a9b
     val fingerprint: String, // 6932e2
     val content: Content? = null,
     val title: String, // Game Day: Knicks @ Celtics, 1/17/21

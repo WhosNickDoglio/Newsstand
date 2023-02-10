@@ -30,7 +30,9 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 
-class AuthenticationHeaderInterceptor @Inject constructor(
+class AuthenticationHeaderInterceptor
+@Inject
+constructor(
     private val tokenStore: TokenRepository,
     private val coroutineContextProvider: CoroutineContextProvider,
 ) : Interceptor {
@@ -40,9 +42,7 @@ class AuthenticationHeaderInterceptor @Inject constructor(
 
             val tokenType = tokenStore.retrieveTokenType()
 
-            val request = chain.request().newBuilder()
-                .header(HEADER, " $tokenType $token")
-                .build()
+            val request = chain.request().newBuilder().header(HEADER, " $tokenType $token").build()
 
             chain.proceed(request)
         }

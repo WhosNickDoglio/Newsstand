@@ -30,9 +30,7 @@ import dev.whosnickdoglio.newsstand.anvil.AppScope
 import javax.inject.Inject
 
 // TODO better name, also make it more feedly package wise
-/**
- *
- */
+/**  */
 interface AuthenticationHelper {
 
     fun provideRedirectUrl(): String
@@ -47,10 +45,15 @@ interface AuthenticationHelper {
 }
 
 // TODO better way to represent this
-enum class Result { SUCCESS, FAILURE }
+enum class Result {
+    SUCCESS,
+    FAILURE
+}
 
 @ContributesBinding(AppScope::class)
-class DefaultAuthenticationHelper @Inject constructor(
+class DefaultAuthenticationHelper
+@Inject
+constructor(
     private val authenticationService: FeedlyAuthenticationService,
     private val tokenRepository: TokenRepository,
     private val userIdRepository: UserIdRepository
@@ -58,20 +61,26 @@ class DefaultAuthenticationHelper @Inject constructor(
 
     override suspend fun isLoggedIn(): Boolean = userIdRepository.getUser() != null
 
-    override fun provideRedirectUrl(): String = authenticationService.retrieveAuthCode(
-        id = CLIENT_ID,
-        redirect = REDIRECT_URI,
-    ).request().url.toString()
+    override fun provideRedirectUrl(): String =
+        authenticationService
+            .retrieveAuthCode(
+                id = CLIENT_ID,
+                redirect = REDIRECT_URI,
+            )
+            .request()
+            .url
+            .toString()
 
     override suspend fun retrieveTokens(url: String): Result {
         val code = url.substringAfter(CODE)
 
-        val tokensResult = authenticationService.retrieveTokens(
-            authCode = code,
-            id = CLIENT_ID,
-            secret = CLIENT_SECRET,
-            redirect = REDIRECT_URI
-        )
+        val tokensResult =
+            authenticationService.retrieveTokens(
+                authCode = code,
+                id = CLIENT_ID,
+                secret = CLIENT_SECRET,
+                redirect = REDIRECT_URI
+            )
 
         return when (tokensResult) {
             is ApiResult.Success -> {
@@ -86,11 +95,12 @@ class DefaultAuthenticationHelper @Inject constructor(
     }
 
     override suspend fun refreshTokens() {
-        val tokensResult = authenticationService.refreshTokens(
-            token = tokenRepository.retrieveRefreshToken() ?: error("No token!"),
-            id = CLIENT_ID,
-            secret = CLIENT_SECRET
-        )
+        val tokensResult =
+            authenticationService.refreshTokens(
+                token = tokenRepository.retrieveRefreshToken() ?: error("No token!"),
+                id = CLIENT_ID,
+                secret = CLIENT_SECRET
+            )
 
         when (tokensResult) {
             is ApiResult.Success -> {

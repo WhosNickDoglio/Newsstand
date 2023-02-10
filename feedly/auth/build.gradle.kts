@@ -26,11 +26,10 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.detekt)
     alias(libs.plugins.anvil)
+    alias(libs.plugins.ktfmt)
 }
 
-anvil {
-    generateDaggerFactories.set(true)
-}
+anvil { generateDaggerFactories.set(true) }
 
 dependencies {
     detektPlugins(libs.detekt.formatting)

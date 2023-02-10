@@ -33,18 +33,12 @@ import kotlin.coroutines.CoroutineContext
  */
 interface CoroutineContextProvider {
 
-    /**
-     * A [CoroutineContext] for doing work on the main thread, like laying out UI components.
-     */
+    /** A [CoroutineContext] for doing work on the main thread, like laying out UI components. */
     val main: CoroutineContext
 
-    /**
-     * A [CoroutineContext] for doing work on a background thread.
-     */
+    /** A [CoroutineContext] for doing work on a background thread. */
     val background: CoroutineContext
 
-    /**
-     * A [CoroutineContext] for handling network requests or writing/reading to/from disk.
-     */
+    /** A [CoroutineContext] for handling network requests or writing/reading to/from disk. */
     val io: CoroutineContext
 }

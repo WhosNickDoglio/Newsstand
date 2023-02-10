@@ -34,11 +34,10 @@ import dev.whosnickdoglio.newsstand.anvil.AppScope
 import javax.inject.Singleton
 
 /**
- * A top level [dagger.Component] for our dependency graph, this
- * [Component] should be a [Singleton] and only initialized
- * once per app launch via the [AppComponentProvider]. All
- * [dagger.Modules][dagger.Module] or classes that contribute
- * to [AppScope] will be available in the [AppComponent] graph.
+ * A top level [dagger.Component] for our dependency graph, this [Component] should be a [Singleton]
+ * and only initialized once per app launch via the [AppComponentProvider]. All [dagger.Modules]
+ * [dagger.Module] or classes that contribute to [AppScope] will be available in the [AppComponent]
+ * graph.
  */
 @Singleton
 @MergeComponent(AppScope::class)
@@ -46,18 +45,15 @@ interface AppComponent {
 
     fun inject(target: MainActivity)
 
-    /**
-     * A [Component.Factory] that outlines how we want to create this
-     * [AppComponent].
-     */
+    /** A [Component.Factory] that outlines how we want to create this [AppComponent]. */
     @Component.Factory
     interface Factory {
 
         /**
          * Creates an instance of a [AppComponent].
          *
-         * @param application A [Application] object that will be bound to our
-         *     Dagger graph via [BindsInstance] for easy injection.
+         * @param application A [Application] object that will be bound to our Dagger graph via
+         *   [BindsInstance] for easy injection.
          */
         fun create(@BindsInstance application: Application): AppComponent
     }
@@ -68,8 +64,7 @@ interface AppComponent {
 }
 
 /**
- * A class that provides and maintains a single instance of a
- * [AppComponent].
+ * A class that provides and maintains a single instance of a [AppComponent].
  *
  * NOTE: This should **only** be applied to the Application class.
  */
@@ -80,7 +75,8 @@ interface AppComponentProvider {
 }
 
 /**
- * Exposes the [AppComponent] via an [android.content.Context] for easy
- * member injection within Android specific classes.
+ * Exposes the [AppComponent] via an [android.content.Context] for easy member injection within
+ * Android specific classes.
  */
-val Context.injector get() = (applicationContext as AppComponentProvider).component
+val Context.injector
+    get() = (applicationContext as AppComponentProvider).component

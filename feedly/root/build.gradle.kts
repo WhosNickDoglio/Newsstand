@@ -28,12 +28,11 @@ plugins {
     alias(libs.plugins.anvil)
     alias(libs.plugins.ksp)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.ktfmt)
     id("kotlin-parcelize")
 }
 
-anvil {
-    generateDaggerFactories.set(true)
-}
+anvil { generateDaggerFactories.set(true) }
 
 android {
     namespace = "dev.whosnickdoglio.newsstand.feedly.root"
@@ -56,22 +55,16 @@ android {
         }
     }
 
-    buildFeatures {
-        compose = true
-    }
+    buildFeatures { compose = true }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
-    }
+    composeOptions { kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get() }
 
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
+    kotlinOptions { jvmTarget = JavaVersion.VERSION_11.toString() }
 }
 
 dependencies {

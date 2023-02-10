@@ -26,10 +26,7 @@ package dev.whosnickdoglio.newsstand.connectivity
 
 import kotlinx.coroutines.flow.Flow
 
-/**
- * A model used to monitor or check the network connectivity of the user's
- * device.
- */
+/** A model used to monitor or check the network connectivity of the user's device. */
 interface ConnectivityModel {
 
     /** Returns the current [ConnectionStatus] of the user's device. */
@@ -40,4 +37,7 @@ interface ConnectivityModel {
 }
 
 /** An enum that represents the connection status of the user's device. */
-enum class ConnectionStatus { CONNECTED, DISCONNECTED, }
+enum class ConnectionStatus {
+    CONNECTED,
+    DISCONNECTED,
+}

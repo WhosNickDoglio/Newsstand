@@ -42,37 +42,39 @@ import javax.inject.Inject
  * @see ConnectivityModel
  */
 @ContributesBinding(AppScope::class)
-class NewsstandConnectivityModel @Inject constructor(
+class NewsstandConnectivityModel
+@Inject
+constructor(
     application: Application,
     private val coroutineContextProvider: CoroutineContextProvider
 ) : ConnectivityModel {
 
     private val connectedStateFlow = MutableStateFlow(ConnectionStatus.CONNECTED)
 
-    private val callback = object : ConnectivityManager.NetworkCallback() {
-        override fun onAvailable(network: Network) {
-            connectedStateFlow.update { ConnectionStatus.CONNECTED }
-        }
+    private val callback =
+        object : ConnectivityManager.NetworkCallback() {
+            override fun onAvailable(network: Network) {
+                connectedStateFlow.update { ConnectionStatus.CONNECTED }
+            }
 
-        override fun onLost(network: Network) {
-            connectedStateFlow.update { ConnectionStatus.DISCONNECTED }
-        }
+            override fun onLost(network: Network) {
+                connectedStateFlow.update { ConnectionStatus.DISCONNECTED }
+            }
 
-        override fun onUnavailable() {
-            connectedStateFlow.update { ConnectionStatus.DISCONNECTED }
+            override fun onUnavailable() {
+                connectedStateFlow.update { ConnectionStatus.DISCONNECTED }
+            }
         }
-    }
 
     init {
         // TODO do I want to unregister this?
-        application.getSystemService(ConnectivityManager::class.java)
+        application
+            .getSystemService(ConnectivityManager::class.java)
             .registerDefaultNetworkCallback(callback)
     }
 
     override suspend fun getCurrentConnectStatus(): ConnectionStatus =
-        withContext(coroutineContextProvider.io) {
-            connectedStateFlow.value
-        }
+        withContext(coroutineContextProvider.io) { connectedStateFlow.value }
 
     override val connectionStatus: Flow<ConnectionStatus> = connectedStateFlow
 }

@@ -62,8 +62,9 @@ class RootPresenter @Inject constructor() : Presenter<Root.State> {
 @Composable
 fun Root(state: Root.State) {
     CircuitContent(
-        screen = when (state.feature) {
-            Root.Feature.FEEDLY -> FeedlyRoot
-        }
+        screen =
+            when (state.feature) {
+                Root.Feature.FEEDLY -> FeedlyRoot
+            }
     )
 }

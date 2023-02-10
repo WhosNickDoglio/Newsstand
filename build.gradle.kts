@@ -23,6 +23,7 @@
  */
 
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import com.ncorti.ktfmt.gradle.KtfmtExtension
 
 plugins {
     alias(libs.plugins.android.app) apply false
@@ -32,23 +33,24 @@ plugins {
     alias(libs.plugins.detekt) apply false
     alias(libs.plugins.secrets) apply false
     alias(libs.plugins.anvil) apply false
+    alias(libs.plugins.ktfmt) apply false
     alias(libs.plugins.gradle.versions)
     alias(libs.plugins.junit.jacoco)
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.doctor)
 }
 
-junitJacoco {
-    version = libs.versions.jacoco.get()
+subprojects {
+    pluginManager.withPlugin("com.ncorti.ktfmt.gradle") {
+        configure<KtfmtExtension> { kotlinLangStyle() }
+    }
 }
 
-tasks.register<Delete>("clean") {
-    delete(rootProject.buildDir)
-}
+junitJacoco { version = libs.versions.jacoco.get() }
 
-tasks.named<Wrapper>("wrapper").configure {
-    distributionType = Wrapper.DistributionType.ALL
-}
+tasks.register<Delete>("clean") { delete(rootProject.buildDir) }
+
+tasks.named<Wrapper>("wrapper").configure { distributionType = Wrapper.DistributionType.ALL }
 
 fun isNonStable(version: String): Boolean {
     val unstableKeywords =
@@ -58,7 +60,5 @@ fun isNonStable(version: String): Boolean {
 }
 
 tasks.named("dependencyUpdates", DependencyUpdatesTask::class.java).configure {
-    rejectVersionIf {
-        isNonStable(candidate.version)
-    }
+    rejectVersionIf { isNonStable(candidate.version) }
 }
