@@ -58,7 +58,7 @@ enum class FeedlyScreen {
 
 @CircuitInject(FeedlyRoot::class, AppScope::class)
 @Composable
-fun FeedlyRoot(state: FeedlyRoot.State) {
+fun FeedlyRoot(state: FeedlyRoot.State, modifier: Modifier = Modifier) {
     // TODO once I have Feedly features I can create my own backstack here
     //    val stack = rememberSaveableBackStack { push(Root) }
     //    val circuitNavigator = rememberCircuitNavigator(stack)
@@ -66,7 +66,7 @@ fun FeedlyRoot(state: FeedlyRoot.State) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
         Text("Hello Feedly! $state")
     }

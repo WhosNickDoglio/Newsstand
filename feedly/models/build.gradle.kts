@@ -25,7 +25,7 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.detekt)
-//    alias(libs.plugins.ktfmt)
+//    alias(libs.plugins.ktfmt) TODO fix
     alias(libs.plugins.ksp)
     alias(libs.plugins.android.lint)
 }

@@ -42,6 +42,7 @@ plugins {
 }
 
 subprojects {
+    // TODO fix
     pluginManager.withPlugin("com.ncorti.ktfmt.gradle") {
         configure<KtfmtExtension> { kotlinLangStyle() }
     }

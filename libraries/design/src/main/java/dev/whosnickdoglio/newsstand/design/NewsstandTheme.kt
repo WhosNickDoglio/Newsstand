@@ -98,6 +98,7 @@ private val DarkColors =
     )
 
 @Composable
+@Suppress("NewApi")
 fun NewsstandTheme(useDarkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val dynamicColor = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
     val colorScheme =
