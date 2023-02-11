@@ -28,6 +28,7 @@ plugins {
     alias(libs.plugins.ktfmt)
     alias(libs.plugins.moshiIr)
     alias(libs.plugins.android.lint)
+    alias(libs.plugins.sortDependencies)
 }
 
 dependencies {

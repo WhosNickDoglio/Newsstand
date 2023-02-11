@@ -35,6 +35,7 @@ plugins {
     alias(libs.plugins.anvil) apply false
     alias(libs.plugins.ktfmt) apply false
     alias(libs.plugins.android.lint) apply false
+    alias(libs.plugins.sortDependencies) apply false
     alias(libs.plugins.gradle.versions)
     alias(libs.plugins.junit.jacoco)
     alias(libs.plugins.dependency.analysis)

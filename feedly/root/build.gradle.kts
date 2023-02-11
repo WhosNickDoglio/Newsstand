@@ -29,6 +29,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.detekt)
     alias(libs.plugins.ktfmt)
+    alias(libs.plugins.sortDependencies)
     id("kotlin-parcelize")
 }
 
@@ -68,24 +69,24 @@ android {
 }
 
 dependencies {
-    lintChecks(libs.lints.compose)
     coreLibraryDesugaring(libs.desugar)
 
-    implementation(projects.libraries.appScope)
+    ksp(libs.circuitCodegen)
 
-    implementation(libs.dagger.core)
+    lintChecks(libs.lints.compose)
 
     implementation(platform(libs.compose.bom))
-    implementation(libs.compose.ui)
-    implementation(libs.compose.material)
-    implementation(libs.compose.foundation)
+    implementation(libs.circuit)
+    implementation(libs.circuitCodegenAnnotations)
+    implementation(libs.circuitOverlay)
     implementation(libs.compose.animations)
     implementation(libs.compose.compiler)
-    debugImplementation(libs.compose.ui.tooling)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material)
+    implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.dagger.core)
+    implementation(projects.libraries.appScope)
 
-    implementation(libs.circuit)
-    implementation(libs.circuitOverlay)
-    implementation(libs.circuitCodegenAnnotations)
-    ksp(libs.circuitCodegen)
+    debugImplementation(libs.compose.ui.tooling)
 }

@@ -28,6 +28,7 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.anvil)
     alias(libs.plugins.ktfmt)
+    alias(libs.plugins.sortDependencies)
 }
 
 anvil { generateDaggerFactories.set(true) }
@@ -62,13 +63,14 @@ android {
 }
 
 dependencies {
-    lintChecks(libs.lints.compose)
     coreLibraryDesugaring(libs.desugar)
 
-    api(projects.libraries.coroutinesExt.public)
-    api(projects.libraries.connectivity.public)
-    implementation(projects.libraries.appScope)
+    lintChecks(libs.lints.compose)
 
-    implementation(libs.dagger.core)
+    api(projects.libraries.connectivity.public)
+    api(projects.libraries.coroutinesExt.public)
+
     implementation(libs.coroutines.android)
+    implementation(libs.dagger.core)
+    implementation(projects.libraries.appScope)
 }

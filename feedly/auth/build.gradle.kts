@@ -28,23 +28,23 @@ plugins {
     alias(libs.plugins.anvil)
     alias(libs.plugins.ktfmt)
     alias(libs.plugins.android.lint)
+    alias(libs.plugins.sortDependencies)
 }
 
 anvil { generateDaggerFactories.set(true) }
 
 dependencies {
     lintChecks(libs.lints.compose)
-    api(projects.feedly.models)
-    api(projects.libraries.coroutinesExt.public)
-    implementation(projects.libraries.appScope)
 
     api(libs.coroutines.core)
-
-    implementation(libs.okhttp.core)
-    implementation(libs.okhttp.logging)
-    implementation(libs.retrofit.core)
-    implementation(libs.retrofit.converter.moshi)
-    implementation(libs.eithernet)
+    api(projects.feedly.models)
+    api(projects.libraries.coroutinesExt.public)
 
     implementation(libs.dagger.core)
+    implementation(libs.eithernet)
+    implementation(libs.okhttp.core)
+    implementation(libs.okhttp.logging)
+    implementation(libs.retrofit.converter.moshi)
+    implementation(libs.retrofit.core)
+    implementation(projects.libraries.appScope)
 }

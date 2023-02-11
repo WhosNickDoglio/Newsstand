@@ -30,6 +30,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.detekt)
     alias(libs.plugins.ktfmt)
+    alias(libs.plugins.sortDependencies)
     //    alias(libs.plugins.secrets)
     id("kotlin-parcelize")
 }
@@ -66,37 +67,35 @@ android {
 }
 
 dependencies {
-    lintChecks(libs.lints.compose)
     coreLibraryDesugaring(libs.desugar)
 
-    implementation(projects.libraries.appScope)
-    implementation(projects.libraries.design)
-    implementation(projects.libraries.coroutinesExt.impl)
-    implementation(projects.libraries.connectivity.impl)
-    implementation(projects.feedly.root)
-
-    implementation(libs.androidx.activity.compose)
-
-    implementation(libs.circuit)
-    implementation(libs.circuitOverlay)
-    implementation(libs.circuitRetained)
-    implementation(libs.circuitCodegenAnnotations)
     ksp(libs.circuitCodegen)
 
+    lintChecks(libs.lints.compose)
+
     implementation(platform(libs.compose.bom))
-    implementation(libs.compose.ui)
-    implementation(libs.compose.material)
-    implementation(libs.compose.foundation)
+    implementation(libs.accompanist.systems.ui)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.circuit)
+    implementation(libs.circuitCodegenAnnotations)
+    implementation(libs.circuitOverlay)
+    implementation(libs.circuitRetained)
     implementation(libs.compose.animations)
     implementation(libs.compose.compiler)
-    debugImplementation(libs.compose.ui.tooling)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material)
+    implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.dagger.core)
+    implementation(projects.feedly.root)
+    implementation(projects.libraries.appScope)
+    implementation(projects.libraries.connectivity.impl)
+    implementation(projects.libraries.coroutinesExt.impl)
+    implementation(projects.libraries.design)
 
+    debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.leakcanary)
 
-    implementation(libs.accompanist.systems.ui)
-
-    implementation(libs.dagger.core)
     annotationProcessor(libs.dagger.compiler)
 
     testImplementation(libs.junit)

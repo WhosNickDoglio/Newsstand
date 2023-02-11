@@ -27,6 +27,7 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.ktfmt)
     alias(libs.plugins.android.lint)
+    alias(libs.plugins.sortDependencies)
 }
 
 dependencies {

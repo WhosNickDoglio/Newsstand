@@ -26,6 +26,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.detekt)
     alias(libs.plugins.ktfmt)
+    alias(libs.plugins.sortDependencies)
 }
 
 android {
@@ -62,15 +63,17 @@ android {
 }
 
 dependencies {
-    lintChecks(libs.lints.compose)
     coreLibraryDesugaring(libs.desugar)
 
+    lintChecks(libs.lints.compose)
+
     implementation(platform(libs.compose.bom))
-    implementation(libs.compose.ui)
-    implementation(libs.compose.material)
-    implementation(libs.compose.foundation)
     implementation(libs.compose.animations)
     implementation(libs.compose.compiler)
-    debugImplementation(libs.compose.ui.tooling)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material)
+    implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
+
+    debugImplementation(libs.compose.ui.tooling)
 }

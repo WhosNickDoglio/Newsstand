@@ -22,11 +22,11 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2.3.3
 
-      - name: Lint
-        run: ./gradlew lint detekt ktfmtCheck
-
       - name: Build Debug APK
         run: ./gradlew assembleDebug
+
+      - name: Lint
+        run: ./gradlew lint detekt ktfmtCheck sortDependencies --mode check
 
       - name: Run Unit Tests
         run: ./gradlew jacocoTestReportDebug
