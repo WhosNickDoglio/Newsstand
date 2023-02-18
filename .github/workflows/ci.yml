@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
       - uses: ./.github/actions/setup
       - name: Run Unit Tests
-        run: ./gradlew jacocoTestReportDebug
+        run: ./gradlew test
       - name: Codecov
         uses: codecov/codecov-action@d9f34f8cd5cb3b3eb79b3e4b5dae3a16df499a70 # v3.1.1
         with:

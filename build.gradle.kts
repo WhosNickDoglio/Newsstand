@@ -24,6 +24,8 @@
 
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import com.ncorti.ktfmt.gradle.KtfmtExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
 plugins {
     alias(libs.plugins.android.app) apply false
@@ -37,7 +39,7 @@ plugins {
     alias(libs.plugins.android.lint) apply false
     alias(libs.plugins.sortDependencies) apply false
     alias(libs.plugins.gradle.versions)
-    alias(libs.plugins.junit.jacoco)
+//    alias(libs.plugins.junit.jacoco)
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.doctor)
 }
@@ -47,13 +49,19 @@ subprojects {
     pluginManager.withPlugin("com.ncorti.ktfmt.gradle") {
         configure<KtfmtExtension> { kotlinLangStyle() }
     }
+
+    pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
+        configure<KotlinJvmProjectExtension> { jvmToolchain(11) }
+    }
+
+    pluginManager.withPlugin("org.jetbrains.kotlin.android") {
+        configure<KotlinAndroidProjectExtension> { jvmToolchain(11) }
+    }
 }
 
-junitJacoco { version = libs.versions.jacoco.get() }
+//junitJacoco { version = libs.versions.jacoco.get() }
 
 tasks.register<Delete>("clean") { delete(rootProject.buildDir) }
-
-tasks.named<Wrapper>("wrapper").configure { distributionType = Wrapper.DistributionType.ALL }
 
 fun isNonStable(version: String): Boolean {
     val unstableKeywords =
