@@ -53,7 +53,7 @@ interface AppComponent {
          * Creates an instance of a [AppComponent].
          *
          * @param application A [Application] object that will be bound to our Dagger graph via
-         * [BindsInstance] for easy injection.
+         *   [BindsInstance] for easy injection.
          */
         fun create(@BindsInstance application: Application): AppComponent
     }

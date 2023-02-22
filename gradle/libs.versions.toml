@@ -32,7 +32,7 @@ android-lint = { id = "com.android.lint", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 napt = { id = "com.sergei-lapin.napt", version = "1.19" }
-ktfmt = { id = "com.ncorti.ktfmt.gradle", version = "0.11.0" }
+ktfmt = { id = "com.ncorti.ktfmt.gradle", version = "0.12.0" }
 moshiIr = { id = "dev.zacsweers.moshix", version = "0.21.0" }
 sortDependencies = { id = "com.squareup.sort-dependencies", version = "0.1" }
 
