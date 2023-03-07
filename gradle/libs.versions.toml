@@ -52,7 +52,7 @@ dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = 
 timber = { module = "com.jakewharton.timber:timber", version = "5.0.1" }
 
 detekt-compose = { module = "com.twitter.compose.rules:detekt", version = "0.0.26" }
-lints-compose = { module = "com.slack.lint.compose:compose-lint-checks", version = "1.0.1" }
+lints-compose = { module = "com.slack.lint.compose:compose-lint-checks", version = "1.1.0" }
 
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
