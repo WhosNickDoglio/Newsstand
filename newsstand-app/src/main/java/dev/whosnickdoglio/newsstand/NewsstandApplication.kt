@@ -28,10 +28,11 @@ import android.app.Application
 import android.os.StrictMode
 import dev.whosnickdoglio.newsstand.di.AppComponent
 import dev.whosnickdoglio.newsstand.di.AppComponentProvider
+import dev.whosnickdoglio.newsstand.di.DaggerAppComponent
 
 class NewsstandApplication : Application(), AppComponentProvider {
 
-    override val component: AppComponent by lazy { AppComponent.factory().create(this) }
+    override val component: AppComponent by lazy { DaggerAppComponent.factory().create(this) }
 
     override fun onCreate() {
         super.onCreate()

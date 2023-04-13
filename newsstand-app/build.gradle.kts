@@ -25,8 +25,8 @@
 plugins {
     alias(libs.plugins.android.app)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.anvil)
-    alias(libs.plugins.napt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.detekt)
     alias(libs.plugins.ktfmt)
@@ -96,7 +96,7 @@ dependencies {
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.leakcanary)
 
-    annotationProcessor(libs.dagger.compiler)
+    kapt(libs.dagger.compiler)
 
     testImplementation(libs.junit)
     testImplementation(libs.truth)
