@@ -26,12 +26,12 @@ package dev.whosnickdoglio.newsstand
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.slack.circuit.CircuitContent
-import com.slack.circuit.CircuitUiEvent
-import com.slack.circuit.CircuitUiState
-import com.slack.circuit.Presenter
-import com.slack.circuit.Screen
 import com.slack.circuit.codegen.annotations.CircuitInject
+import com.slack.circuit.foundation.CircuitContent
+import com.slack.circuit.runtime.CircuitUiEvent
+import com.slack.circuit.runtime.CircuitUiState
+import com.slack.circuit.runtime.Screen
+import com.slack.circuit.runtime.presenter.Presenter
 import dev.whosnickdoglio.newsstand.anvil.AppScope
 import dev.whosnickdoglio.newsstand.feedly.root.FeedlyRoot
 import javax.inject.Inject

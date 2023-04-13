@@ -14,7 +14,7 @@ sqldelight = "1.5.5"
 composeCompiler = "1.4.5"
 accompanist = "0.30.1"
 jacoco = "0.8.7"
-circuit = "0.7.0"
+circuit = "0.8.0"
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
@@ -75,12 +75,14 @@ sqldelight-jvm = { module = "com.squareup.sqldelight:sqlite-driver", version.ref
 
 coil = { module = "io.coil-kt:coil-compose", version = "2.3.0" }
 
-circuit = { module = "com.slack.circuit:circuit-core", version.ref = "circuit" }
-circuitRetained = { module = "com.slack.circuit:circuit-retained", version.ref = "circuit" }
-circuitOverlay = { module = "com.slack.circuit:circuit-overlay", version.ref = "circuit" }
-circuitCodegen = { module = "com.slack.circuit:circuit-codegen", version.ref = "circuit" }
-circuitCodegenAnnotations = { module = "com.slack.circuit:circuit-codegen-annotations", version.ref = "circuit" }
-circuitTest = { module = "com.slack.circuit:circuit-test", version.ref = "circuit" }
+circuit-foundation = { module = "com.slack.circuit:circuit-foundation", version.ref = "circuit" }
+circuit-presenter = { module = "com.slack.circuit:circuit-runtime-presenter", version.ref = "circuit" }
+circuit-ui = { module = "com.slack.circuit:circuit-runtime-ui", version.ref = "circuit" }
+circuit-retained = { module = "com.slack.circuit:circuit-retained", version.ref = "circuit" }
+circuit-overlay = { module = "com.slack.circuit:circuit-overlay", version.ref = "circuit" }
+circuit-codegen = { module = "com.slack.circuit:circuit-codegen", version.ref = "circuit" }
+circuit-annotations = { module = "com.slack.circuit:circuit-codegen-annotations", version.ref = "circuit" }
+circuit-test = { module = "com.slack.circuit:circuit-test", version.ref = "circuit" }
 
 junit = { module = "junit:junit", version = "4.13.2" }
 truth = { module = "com.google.truth:truth", version = "1.1.3" }

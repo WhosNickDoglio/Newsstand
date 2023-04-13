@@ -41,7 +41,6 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -71,14 +70,15 @@ android {
 dependencies {
     coreLibraryDesugaring(libs.desugar)
 
-    ksp(libs.circuitCodegen)
+    ksp(libs.circuit.codegen)
 
     lintChecks(libs.lints.compose)
 
     implementation(platform(libs.compose.bom))
-    implementation(libs.circuit)
-    implementation(libs.circuitCodegenAnnotations)
-    implementation(libs.circuitOverlay)
+    implementation(libs.circuit.annotations)
+    implementation(libs.circuit.foundation)
+    implementation(libs.circuit.overlay)
+    implementation(libs.circuit.retained)
     implementation(libs.compose.animations)
     implementation(libs.compose.compiler)
     implementation(libs.compose.foundation)
