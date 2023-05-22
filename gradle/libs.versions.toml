@@ -73,7 +73,7 @@ sqldelight-android = { module = "com.squareup.sqldelight:android-driver", versio
 sqldelight-coroutines = { module = "com.squareup.sqldelight:coroutines-extensions-jvm", version.ref = "sqldelight" }
 sqldelight-jvm = { module = "com.squareup.sqldelight:sqlite-driver", version.ref = "sqldelight" }
 
-coil = { module = "io.coil-kt:coil-compose", version = "2.3.0" }
+coil = { module = "io.coil-kt:coil-compose", version = "2.4.0" }
 
 circuit-foundation = { module = "com.slack.circuit:circuit-foundation", version.ref = "circuit" }
 circuit-presenter = { module = "com.slack.circuit:circuit-runtime-presenter", version.ref = "circuit" }
